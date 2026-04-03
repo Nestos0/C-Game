@@ -1,0 +1,229 @@
+#include "display.h"
+
+void clear()
+{
+	printf("\033[H\033[J");
+}
+
+void set_unbuffered_mode()
+{
+	struct termios t;
+	tcgetattr(STDIN_FILENO, &t);
+	t.c_lflag &= ~(ICANON | ECHO);
+	t.c_cc[VMIN] = 1;
+	t.c_cc[VTIME] = 0;
+	tcsetattr(STDIN_FILENO, TCSANOW, &t);
+
+	int flags = fcntl(STDIN_FILENO, F_GETFL, 0);
+	fcntl(STDIN_FILENO, F_SETFL, flags | O_NONBLOCK);
+}
+
+void display_field(int rows, int cols, int field[rows][cols])
+{
+	for (int r = 0; r < rows; r++) {
+		for (int c = 0; c < cols; c++) {
+			putchar(field[r][c]);
+		}
+		putchar('\n');
+	}
+}
+
+void move_cursor(int x, int y)
+{
+	printf("\033[%d;%dH", y + 1, x + 1);
+}
+#include "display.h"
+#include "snack.h"
+
+#define Init_Vector2d(matrix, rows, cols)        \
+	for (int r = 0; r < rows; r++) {         \
+		for (int c = 0; c < cols; c++) { \
+			matrix[r][c] = '#';      \
+		}                                \
+	}
+
+int v_x = 1;
+int v_y = 0;
+
+int main()
+{
+	_Bool game_running = true;
+	clear();
+	set_unbuffered_mode();
+
+	char c = 0;
+
+	Snack snack = { .x = 10, .y = 10 };
+	int gamefield[20][20];
+	Init_Vector2d(gamefield, 20, 20);
+
+	while (game_running) {
+		c = getchar();
+		if (c == 4) {
+			game_running = false;
+		}
+		switch (c) {
+		case 'w':
+			v_x = 0;
+			v_y = -1;
+			break;
+		case 'r':
+			v_x = 0;
+			v_y = 1;
+			break;
+		case 'a':
+			v_x = -1;
+			v_y = 0;
+			break;
+		case 's':
+			v_x = 1;
+			v_y = 0;
+			break;
+		case 27:
+			game_running = false;
+			break;
+		}
+
+		move_cursor(0, 0);
+		display_field(20, 20, gamefield);
+		draw_snack(&snack);
+		move_snack(&snack, v_x, v_y);
+
+		move_cursor(0, 21);
+		printf("坐标: x:%d, y:%d (按 Ctrl+D 退出)\n", snack.x, snack.y);
+		printf("%d %c", c, c);
+		usleep(100000);
+	}
+
+	printf("\n");
+	return 0;
+}
+#include <stdbool.h>
+#include <stddef.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+#define DEFAULT_ARRAY_SIZE 8
+#define DEFAULT_ARRAY_SCALE 2
+#define Get_Array_Size(array) (sizeof(array) / sizeof(array[0]))
+#define InitArray(array_out, source_list, source_len)                          \
+	do {                                                                   \
+		(array_out).len = (source_len);                                \
+		(array_out).capacity =                                         \
+			((source_len) / DEFAULT_ARRAY_SIZE + 1) *              \
+			DEFAULT_ARRAY_SIZE;                                    \
+		(array_out).data = malloc(sizeof(int) * (array_out).capacity); \
+		for (int i = 0; i < (source_len); i++) {                       \
+			(array_out).data[i] = (source_list)[i];                \
+		}                                                              \
+	} while (0)
+
+#define ArrayPush(array, item)                                             \
+	do {                                                               \
+		if ((array).len == (array).capacity) {                     \
+			int new_capacity = (array).capacity == 0 ?         \
+						   DEFAULT_ARRAY_SIZE :    \
+						   ((array).capacity *     \
+						    DEFAULT_ARRAY_SCALE);  \
+			void *new_data = realloc((array).data,             \
+						 sizeof((array).data[0]) * \
+							 new_capacity);    \
+			if (new_data != NULL) {                            \
+				(array).data = new_data;                   \
+				(array).capacity = new_capacity;           \
+			}                                                  \
+		}                                                          \
+		if ((array).len < (array).capacity) {                      \
+			array.data[array.len] = (item);                    \
+			(array).len++;                                     \
+		}                                                          \
+	} while (0)
+
+#define Foreach(item, array) \
+	for (int item = 0; item < Get_Array_Size(array); ++item)
+
+#define ARRAY_FOREACH(i, list) for (int i = 0; i < (list).len; i++)
+
+typedef struct Character {
+	size_t id;
+	char *name;
+} Character;
+
+typedef struct GameData {
+	int *id_pool;
+	Character *characters[];
+} GameData;
+
+typedef struct Array {
+	int *data;
+	int len;
+	int capacity;
+} Array;
+
+
+
+int main()
+{
+	return 0;
+}
+#include "snack.h"
+#include "display.h"
+
+void draw_snack(Snack *s)
+{
+	move_cursor(s->x, s->y);
+	printf("%c", SnackHead);
+	fflush(stdout);
+}
+
+void move_snack(Snack *s, int v_x, int v_y)
+{
+	s->x += v_x;
+	s->y += v_y;
+
+	if (s->x >= 20)
+		s->x = 0;
+	if (s->x < 0)
+		s->x = 19;
+	if (s->y >= 20)
+		s->y = 0;
+	if (s->y < 0)
+		s->y = 19;
+}
+#include <stdio.h>
+
+int main()
+{
+	int matrix[20][20] = {};
+	return 0;
+}
+#include <termios.h>
+#include <time.h>
+#include <stdio.h>
+#include <unistd.h>
+#include <stdbool.h>
+#include <fcntl.h>
+
+void clear();
+
+void set_unbuffered_mode();
+
+void display_field(int rows, int cols, int field[rows][cols]);
+
+void move_cursor(int x, int y);
+#include <stdio.h>
+
+#define SnackHead 'O'
+#define SnackTail 'o'
+#define RED "\033[31m"
+#define GREEN "\033[32m"
+#define RESET "\033[0m"
+
+typedef struct {
+	int x;
+	int y;
+} Snack;
+
+void draw_snack(Snack *s);
+
+void move_snack(Snack *s, int v_x, int v_y);
