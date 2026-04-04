@@ -5,6 +5,12 @@
 #include <stdbool.h>
 #include <fcntl.h>
 
+#define RED "\033[31m"
+#define GREEN "\033[32m"
+#define BLUE "\033[33m"
+#define RESET "\033[0m"
+
+
 void clear();
 
 void set_unbuffered_mode();

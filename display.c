@@ -22,7 +22,7 @@ void display_field(int rows, int cols, int field[rows][cols])
 {
 	for (int r = 0; r < rows; r++) {
 		for (int c = 0; c < cols; c++) {
-			putchar(field[r][c]);
+			printf("%s%c%s", GREEN, field[r][c], RESET);
 		}
 		putchar('\n');
 	}
