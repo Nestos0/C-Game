@@ -1,6 +1,20 @@
 #include "display.h"
-#include "snack.h"
-#include <stdlib.h>
+#include "utils.h"
+#include <stdbool.h>
+#include <stdio.h>
+#include <sys/ioctl.h>
+
+#define ERR_NONE 0
+#define ERR_COL (1 << 0)
+#define ERR_ROW (1 << 1)
+
+#define ANSI_RED "\033[31m"
+#define ANSI_GREEN "\033[32m"
+#define ANSI_YELLOW "\033[33m"
+#define ANSI_RESET "\033[0m"
+
+#define REQUIRED_COLS 100
+#define REQUIRED_ROWS 100
 
 #define Init_Vector2d(matrix, rows, cols)        \
 	for (int r = 0; r < rows; r++) {         \
@@ -9,136 +23,73 @@
 		}                                \
 	}
 
-#define Foreach(item, array) \
-	for (int item = 0; item < Get_Array_Size(array); ++item)
+struct GameConfig {
+	int target_fps;
+};
 
-#define SFOREACH_2(item, len) for (int item = 0; item < (len); ++item)
+typedef struct {
+	int x;
+	int y;
+	int h;
+	int w;
+	bool border;
+	struct {
+		int border_width;
+	};
 
-#define SFOREACH_3(item, len, start) \
-	for (int item = (start); item < (len); ++item)
+} TextBox;
 
-#define SFOREACH_4(item, len, start, end)                                \
-	for (int item = (start); item < ((end) > (len)) ? (end) : (len); \
-	     item += (step))
-
-#define GET_MACRO(_1, _2, _3, _4, NAME, ...) NAME
-
-#define SForeach(...) \
-	GET_MACRO(__VA_ARGS__, SFOREACH_4, SFOREACH_3, SFOREACH_2)(__VA_ARGS__)
-
-int v_x = 1;
-int v_y = 0;
-
-void draw_snack(Snack *s)
+void setfps(int fps)
 {
-	move_cursor(s->x, s->y);
-	printf("%s%c%s", RED, SnackHead, RESET);
-	fflush(stdout);
+	usleep(1000000 / fps);
 }
 
-void draw_tail(Snack *s)
+void init_textbox(TextBox *box)
 {
-	SForeach(i, s->len)
-	{
-		Point cord = s->data[i];
-		move_cursor(cord.x, cord.y);
-		printf("%s%c%s", BLUE, SnackTail, RESET);
-		fflush(stdout);
+	struct winsize w;
+	char status = ERR_NONE;
+
+	if (ioctl(STDOUT_FILENO, TIOCGWINSZ, &w) != 0) {
+		perror("ioctl");
+		return;
 	}
-}
 
-void move_snack(Snack *s, int v_x, int v_y)
-{
-	Point *p = s->data;
-	if (s->len) {
-		SForeach(i, s->len, 1)
-		{
-			(p + 1)->x = p->x;
-			(p + 1)->y = p->y;
-			p++;
-		}
+	if (w.ws_col < REQUIRED_COLS)
+		status |= ERR_COL;
+	if (w.ws_row < REQUIRED_ROWS)
+		status |= ERR_ROW;
+
+	if (status) {
+	} else {
+		box->x = 0;
+		box->y = 0;
+		box->w = w.ws_col / 5;
+		box->h = w.ws_row / 5;
 	}
-	s->data->x = s->x;
-	s->data->y = s->y;
-
-	s->x += v_x;
-	s->y += v_y;
-
-	if (s->x >= 20)
-		s->x = 0;
-	if (s->x < 0)
-		s->x = 19;
-	if (s->y >= 20)
-		s->y = 0;
-	if (s->y < 0)
-		s->y = 19;
 }
 
 int main()
 {
-	_Bool game_running = true;
+	bool game_running = true;
+	struct GameConfig config = { 60 };
+
+	TextBox tellbox;
+
 	clear();
 	set_unbuffered_mode();
+	init_textbox(&tellbox);
 
 	char c = 0;
-
-	Snack snack = { .x = 10, .y = 10 };
-	snack.capacity = 10;
-	snack.len = 2;
-	snack.data = (Point *)malloc(sizeof(Point) * snack.capacity);
-	snack.data[0].x = 9;
-	snack.data[0].y = 10;
-	snack.data[1].x = 8;
-	snack.data[1].y = 10;
-	int gamefield[20][20];
-	Init_Vector2d(gamefield, 20, 20);
 
 	while (game_running) {
 		c = getchar();
 		if (c == 4) {
 			game_running = false;
 		}
-		switch (c) {
-		case 'w':
-			v_x = 0;
-			v_y = -1;
-			break;
-		case 'r':
-			v_x = 0;
-			v_y = 1;
-			break;
-		case 'a':
-			v_x = -1;
-			v_y = 0;
-			break;
-		case 's':
-			v_x = 1;
-			v_y = 0;
-			break;
-		case 27:
-			game_running = false;
-			break;
-		}
-
-		move_cursor(0, 0);
-		display_field(20, 20, gamefield);
-		draw_snack(&snack);
-		draw_tail(&snack);
-		move_snack(&snack, v_x, v_y);
-
-		move_cursor(0, 21);
-		printf("坐标: x:%d, y:%d (按 Ctrl+D 退出)\n", snack.x, snack.y);
-		SForeach(i, snack.len)
-		{
-			printf("坐标: x:%d, y:%d (按 Ctrl+D 退出)\n",
-			       snack.data[i].x, snack.data[i].y);
-		}
-		printf("%d %c", c, c);
-		usleep(100000);
+		setfps(config.target_fps);
 	}
 
 	printf("\n");
 
-	free(snack.data);
 	return 0;
 }

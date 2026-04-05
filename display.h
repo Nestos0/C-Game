@@ -1,15 +1,18 @@
 #include <termios.h>
-#include <time.h>
 #include <stdio.h>
-#include <unistd.h>
 #include <stdbool.h>
 #include <fcntl.h>
+#include <unistd.h>
 
 #define RED "\033[31m"
 #define GREEN "\033[32m"
 #define BLUE "\033[33m"
 #define RESET "\033[0m"
 
+typedef struct Point {
+	int x;
+	int y;
+} Point;
 
 void clear();
 

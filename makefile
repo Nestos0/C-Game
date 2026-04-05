@@ -6,7 +6,7 @@ Project = DND-Like
 
 TARGET = game
 
-SRCS = display.c game.c
+SRCS = display.c game.c utils.c
 
 all: $(TARGET)
 
