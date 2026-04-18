@@ -35,12 +35,13 @@ int get_strwidth(char *str)
 	return ret;
 }
 
-int get_strwidth_spec(char *str)
+int get_strwidth_spec(const char *str)
 {
-	char *ptr = str;
+	if (!str)
+		return 0;
+	const char *ptr = str;
 	int len = 0;
 	int ret = 0;
-	wchar_t wc;
 	while ((len = mblen(ptr, MB_CUR_MAX)) > 0) {
 		ret += (len > 1) ? 2 : 1;
 		ptr += len;
@@ -48,11 +49,15 @@ int get_strwidth_spec(char *str)
 	return ret;
 }
 
-int set_string(String *obj, char *str)
+int set_string(String *obj, const char *str)
 {
+	if (!obj || !str)
+		return -1;
+
+	obj->is_flex = false;
 	int len = strlen(str);
 	if (obj->data == NULL || obj->mcapacity < len) {
-		int new_cap = (obj->data == NULL) ? DEFAULT_S_DATA_SIZE :
+		int new_cap = (obj->data == NULL) ? DEFAULT_STRING_CAPACITY :
 						    obj->mcapacity * 2;
 		char *new_data = realloc(obj->data, sizeof(char) * new_cap);
 		if (!new_data)
@@ -62,6 +67,13 @@ int set_string(String *obj, char *str)
 	}
 
 	strcpy(obj->data, str);
-	obj->width = get_strwidth(str);
+	obj->mlen = strlen(str);
+	obj->width = get_strwidth_spec(str);
 	return 0;
+}
+
+char *get_string_data(String *obj_ptr)
+{
+	char *ret = (obj_ptr)->is_flex ? (obj_ptr)->flex_data : (obj_ptr)->data;
+	return ret;
 }

@@ -1,5 +1,7 @@
 #include "display.h"
 #include "utils.h"
+#include "string_utils.h"
+#include <locale.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <sys/ioctl.h>
@@ -41,6 +43,35 @@ typedef struct {
 
 } TextBox;
 
+void setfps(int fps);
+
+void init_textbox(TextBox *box);
+
+int main()
+{
+	bool game_running = true;
+	struct GameConfig config = { 60 };
+
+	TextBox tellbox;
+
+	clear();
+	set_unbuffered_mode();
+	init_textbox(&tellbox);
+
+	char c = 0;
+
+	while (game_running) {
+		c = getchar();
+		if (c == 4) {
+			game_running = false;
+		}
+		setfps(config.target_fps);
+	}
+
+	printf("\n");
+	return 0;
+}
+
 void setfps(int fps)
 {
 	usleep(1000000 / fps);
@@ -68,30 +99,4 @@ void init_textbox(TextBox *box)
 		box->w = w.ws_col / 5;
 		box->h = w.ws_row / 5;
 	}
-}
-
-int main()
-{
-	bool game_running = true;
-	struct GameConfig config = { 60 };
-
-	TextBox tellbox;
-
-	clear();
-	set_unbuffered_mode();
-	init_textbox(&tellbox);
-
-	char c = 0;
-
-	while (game_running) {
-		c = getchar();
-		if (c == 4) {
-			game_running = false;
-		}
-		setfps(config.target_fps);
-	}
-
-	printf("\n");
-
-	return 0;
 }

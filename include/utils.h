@@ -1,3 +1,7 @@
+#pragma once
+#ifndef UTILS_H
+#define UTILS_H
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -79,3 +83,5 @@ typedef struct {
 } Array;
 
 void init_string_utils(Array *buf, int target_capacity);
+
+#endif
