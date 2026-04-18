@@ -82,6 +82,15 @@ typedef struct {
 	int *data;
 } Array;
 
-void init_string_utils(Array *buf, int target_capacity);
+typedef struct MemoryNode {
+	void *ptr;
+	struct MemoryNode *next;
+} MemoryNode;
+
+extern MemoryNode *g_memory_pool;
+
+void *safe_malloc(size_t size);
+
+void *safe_calloc(size_t nmemb, size_t size);
 
 #endif

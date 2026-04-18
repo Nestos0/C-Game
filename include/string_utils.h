@@ -15,7 +15,6 @@ typedef struct String {
 	size_t width;
 	size_t mlen;
 	size_t mcapacity;
-	struct String *next;
 	bool is_flex;
 	union {
 		char *data;
@@ -23,7 +22,6 @@ typedef struct String {
 	};
 } String;
 
-extern String *g_string_head;
 extern void *g_memory_buffer[];
 extern int g_buffer_count;
 
@@ -51,7 +49,7 @@ char *get_string_data(String *obj_ptr);
 		if (_is_f) {                                                   \
 			size_t _total =                                        \
 				sizeof(String) + DEFAULT_STRING_CAPACITY;      \
-			(obj_ptr) = malloc(_total);                            \
+			(obj_ptr) = (String *)safe_malloc(_total);             \
 			if (obj_ptr) {                                         \
 				memset(obj_ptr, 0, sizeof(String));            \
 				(obj_ptr)->is_flex = true;                     \
@@ -61,12 +59,13 @@ char *get_string_data(String *obj_ptr);
 					DEFAULT_STRING_CAPACITY - 1);          \
 				(obj_ptr)->flex_data[DEFAULT_STRING_CAPACITY - \
 						     1] = '\0';                \
-				(obj_ptr)->mlen = strlen((obj_ptr)->flex_data); \
+				(obj_ptr)->mlen =                              \
+					strlen((obj_ptr)->flex_data);          \
 				(obj_ptr)->width = get_strwidth_spec(          \
 					(obj_ptr)->flex_data);                 \
 			}                                                      \
 		} else {                                                       \
-			(obj_ptr) = calloc(1, sizeof(String));                 \
+			(obj_ptr) = (String *)safe_calloc(1, sizeof(String));  \
 			if (obj_ptr)                                           \
 				set_string(obj_ptr, str_val);                  \
 		}                                                              \

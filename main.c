@@ -5,6 +5,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <sys/ioctl.h>
+#include <stdlib.h>
 
 #define ERR_NONE 0
 #define ERR_COL (1 << 0)
@@ -25,7 +26,7 @@
 		}                                \
 	}
 
-static Array s_id_buffer;
+MemoryNode *g_memory_pool = NULL;
 
 struct GameConfig {
 	int target_fps;
@@ -51,6 +52,9 @@ int main()
 {
 	bool game_running = true;
 	struct GameConfig config = { 60 };
+
+	String *text;
+	String_set(text, "C语言");
 
 	TextBox tellbox;
 
