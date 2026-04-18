@@ -1,68 +1,97 @@
+#include "display.h"
+#include "utils.h"
 #include <stdbool.h>
-#include <stddef.h>
 #include <stdio.h>
-#include <stdlib.h>
+#include <sys/ioctl.h>
 
-#define DEFAULT_ARRAY_SIZE 8
-#define DEFAULT_ARRAY_SCALE 2
-#define Get_Array_Size(array) (sizeof(array) / sizeof(array[0]))
-#define InitArray(array_out, source_list, source_len)                          \
-	do {                                                                   \
-		(array_out).len = (source_len);                                \
-		(array_out).capacity =                                         \
-			((source_len) / DEFAULT_ARRAY_SIZE + 1) *              \
-			DEFAULT_ARRAY_SIZE;                                    \
-		(array_out).data = malloc(sizeof(int) * (array_out).capacity); \
-		for (int i = 0; i < (source_len); i++) {                       \
-			(array_out).data[i] = (source_list)[i];                \
-		}                                                              \
-	} while (0)
+#define ERR_NONE 0
+#define ERR_COL (1 << 0)
+#define ERR_ROW (1 << 1)
 
-#define ArrayPush(array, item)                                             \
-	do {                                                               \
-		if ((array).len == (array).capacity) {                     \
-			int new_capacity = (array).capacity == 0 ?         \
-						   DEFAULT_ARRAY_SIZE :    \
-						   ((array).capacity *     \
-						    DEFAULT_ARRAY_SCALE);  \
-			void *new_data = realloc((array).data,             \
-						 sizeof((array).data[0]) * \
-							 new_capacity);    \
-			if (new_data != NULL) {                            \
-				(array).data = new_data;                   \
-				(array).capacity = new_capacity;           \
-			}                                                  \
-		}                                                          \
-		if ((array).len < (array).capacity) {                      \
-			array.data[array.len] = (item);                    \
-			(array).len++;                                     \
-		}                                                          \
-	} while (0)
+#define ANSI_RED "\033[31m"
+#define ANSI_GREEN "\033[32m"
+#define ANSI_YELLOW "\033[33m"
+#define ANSI_RESET "\033[0m"
 
-#define Foreach(item, array) \
-	for (int item = 0; item < Get_Array_Size(array); ++item)
+#define REQUIRED_COLS 100
+#define REQUIRED_ROWS 100
 
-#define ARRAY_FOREACH(i, list) for (int i = 0; i < (list).len; i++)
+#define INIT_VECTOR2D(matrix, rows, cols)        \
+	for (int r = 0; r < rows; r++) {         \
+		for (int c = 0; c < cols; c++) { \
+			matrix[r][c] = '#';      \
+		}                                \
+	}
 
-typedef struct Character {
-	size_t id;
-	char *name;
-} Character;
+static Array s_id_buffer;
 
-typedef struct GameData {
-	int *id_pool;
-	Character *characters[];
-} GameData;
+struct GameConfig {
+	int target_fps;
+};
 
-typedef struct Array {
-	int *data;
-	int len;
-	int capacity;
-} Array;
+typedef struct {
+	int x;
+	int y;
+	int h;
+	int w;
+	bool border;
+	struct {
+		int border_width;
+	};
 
+} TextBox;
 
+void setfps(int fps)
+{
+	usleep(1000000 / fps);
+}
+
+void init_textbox(TextBox *box)
+{
+	struct winsize w;
+	char status = ERR_NONE;
+
+	if (ioctl(STDOUT_FILENO, TIOCGWINSZ, &w) != 0) {
+		perror("ioctl");
+		return;
+	}
+
+	if (w.ws_col < REQUIRED_COLS)
+		status |= ERR_COL;
+	if (w.ws_row < REQUIRED_ROWS)
+		status |= ERR_ROW;
+
+	if (status) {
+	} else {
+		box->x = 0;
+		box->y = 0;
+		box->w = w.ws_col / 5;
+		box->h = w.ws_row / 5;
+	}
+}
 
 int main()
 {
+	bool game_running = true;
+	struct GameConfig config = { 60 };
+
+	TextBox tellbox;
+
+	clear();
+	set_unbuffered_mode();
+	init_textbox(&tellbox);
+
+	char c = 0;
+
+	while (game_running) {
+		c = getchar();
+		if (c == 4) {
+			game_running = false;
+		}
+		setfps(config.target_fps);
+	}
+
+	printf("\n");
+
 	return 0;
 }

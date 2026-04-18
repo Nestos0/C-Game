@@ -3,8 +3,24 @@
 
 #define DEFAULT_ARRAY_SIZE 8
 #define DEFAULT_ARRAY_SCALE 2
-#define Get_Array_Size(array) (sizeof(array) / sizeof(array[0]))
-#define InitArray(array_out, source_list, source_len)                          \
+#define GET_ARRAY_SIZE(array) (sizeof(array) / sizeof(array[0]))
+
+#define INIT_ARRAY(array_out, target_capacity)                                 \
+	do {                                                                   \
+		(array_out).len = 0;                                           \
+		(array_out).capacity = target_capacity;                        \
+		(array_out).data = malloc(sizeof(int) * (array_out).capacity); \
+	} while (0)
+
+#define INIT_P_ARRAY(array_out, target_capacity)                     \
+	do {                                                         \
+		(array_out)->len = 0;                                \
+		(array_out)->capacity = target_capacity;             \
+		(array_out)->data =                                  \
+			malloc(sizeof(int) * (array_out)->capacity); \
+	} while (0)
+
+#define INIT_ARRAY_S(array_out, source_list, source_len)                       \
 	do {                                                                   \
 		(array_out).len = (source_len);                                \
 		(array_out).capacity =                                         \
@@ -16,7 +32,7 @@
 		}                                                              \
 	} while (0)
 
-#define ArrayPush(array, item)                                             \
+#define ARRAY_PUSH(array, item)                                            \
 	do {                                                               \
 		if ((array).len == (array).capacity) {                     \
 			int new_capacity = (array).capacity == 0 ?         \
@@ -39,8 +55,8 @@
 
 #define ARRAY_FOREACH(i, list) for (int i = 0; i < (list).len; i++)
 
-#define Foreach(item, array) \
-	for (int item = 0; item < Get_Array_Size(array); ++item)
+#define FOREACH(item, array) \
+	for (int item = 0; item < GET_ARRAY_SIZE(array); ++item)
 
 #define SFOREACH_2(item, len) for (int item = 0; item < (len); ++item)
 
@@ -53,15 +69,13 @@
 
 #define GET_MACRO(_1, _2, _3, _4, NAME, ...) NAME
 
-#define SForeach(...) \
+#define SFOREACH(...) \
 	GET_MACRO(__VA_ARGS__, SFOREACH_4, SFOREACH_3, SFOREACH_2)(__VA_ARGS__)
 
 typedef struct {
-	char *data;
-	int len;
-	int capacity;
-} String;
+	size_t capacity;
+	size_t len;
+	int *data;
+} Array;
 
-String *string_new(int capacity);
-
-void string_free(String *s);
+void init_string_utils(Array *buf, int target_capacity);
