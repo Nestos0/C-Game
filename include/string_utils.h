@@ -22,9 +22,6 @@ typedef struct String {
 	};
 } String;
 
-extern void *g_memory_buffer[];
-extern int g_buffer_count;
-
 String *string_wrapper(char *str);
 
 void batch_free();
@@ -73,5 +70,39 @@ char *get_string_data(String *obj_ptr);
 
 #define Get_string_data(obj_ptr) \
 	((obj_ptr)->is_flex ? (obj_ptr)->flex_data : (obj_ptr)->data)
+
+typedef struct BBcode {
+	struct BBcode *next;
+	struct BBcode *ending;
+	char *start;
+	char *end;
+	char tag[16];
+} BBcode;
+
+typedef struct Pair {
+	char start;
+	char end;
+} Pair;
+
+// clang-format off
+static const Pair pair_config[] = {
+	{ '[', ']' },
+	{ '<', '>' },
+	{ '{', '}' },
+	{ '[', ']' }
+};
+// clang-format on
+
+BBcode *parse_tag_tail(char *fmt, int pair_select);
+
+BBcode *parse_tag_head(char *fmt, int pair_num);
+
+BBcode *parse_bbcode(char *fmt);
+
+BBcode *match_bbcode_rec(BBcode *tail, size_t depth);
+
+BBcode *match_bbcode(BBcode *tail);
+
+void free_bbcode_buffer(BBcode *buffer);
 
 #endif

@@ -1,82 +1,32 @@
-#include "string_utils.h"
+#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+#include <string.h>
 
-int is_full_width(wchar_t wc)
-{
-	if (wc >= 0x1100 &&
-	    (wc <= 0x115f || // Hangul Jamo
-	     wc == 0x2329 || wc == 0x232a ||
-	     (wc >= 0x2e80 && wc <= 0xa4cf && wc != 0x303f) || // CJK ... Yi
-	     (wc >= 0xac00 && wc <= 0xd7a3) || // Hangul Syllables
-	     (wc >= 0xf900 && wc <= 0xfaff) || // CJK Compatibility Ideographs
-	     (wc >= 0xfe10 && wc <= 0xfe19) || // Vertical forms
-	     (wc >= 0xfe30 && wc <= 0xfe6f) || // CJK Compatibility Forms
-	     (wc >= 0xff00 && wc <= 0xff60) || // Fullwidth Forms
-	     (wc >= 0xffe0 && wc <= 0xffe6)))
-		return 1;
-	if (!wc)
-		return -1;
-	return 0;
-}
+typedef struct BBcode {
+	struct BBcode *next;
+	struct BBcode *ending;
+	char *start;
+	char *end;
+	char tag[16];
+} BBcode;
 
-int get_strwidth(char *str)
-{
-	char *ptr = str;
-	int len = 0;
-	int ret = 0;
-	wchar_t wc;
-	while ((len = mblen(ptr, MB_CUR_MAX)) > 0) {
-		if (len > 1) {
-			mbtowc(&wc, ptr, len);
-			ret += is_full_width(wc) + 1;
-		} else
-			++ret;
-		ptr += len;
-	}
-	return ret;
-}
+typedef struct Pair {
+	char start;
+	char end;
+} Pair;
 
-int get_strwidth_spec(const char *str)
-{
-	if (!str)
-		return 0;
-	const char *ptr = str;
-	int len = 0;
-	int ret = 0;
-	while ((len = mblen(ptr, MB_CUR_MAX)) > 0) {
-		ret += (len > 1) ? 2 : 1;
-		ptr += len;
-	}
-	return ret;
-}
+static BBcode *g_bbcode_buffer;
 
-int set_string(String *obj, const char *str)
-{
-	if (!obj || !str)
-		return -1;
-
-	obj->is_flex = false;
-	int len = strlen(str);
-	if (obj->data == NULL || obj->mcapacity < len) {
-		int new_cap = (obj->data == NULL) ? DEFAULT_STRING_CAPACITY :
-						    obj->mcapacity * 2;
-		char *new_data = realloc(obj->data, sizeof(char) * new_cap);
-		if (!new_data)
-			return -1;
-		obj->data = new_data;
-		obj->mcapacity = new_cap;
-	}
-
-	strcpy(obj->data, str);
-	obj->mlen = strlen(str);
-	obj->width = get_strwidth_spec(str);
-	return 0;
-}
-
-char *get_string_data(String *obj_ptr)
-{
-	char *ret = (obj_ptr)->is_flex ? (obj_ptr)->flex_data : (obj_ptr)->data;
-	return ret;
-}
+// clang-format off
+static const Pair pair_config[] = {
+	{ '[', ']' },
+	{ '<', '>' },
+	{ '{', '}' },
+	{ '[', ']' }
+};
+// clang-format on
 
 BBcode *parse_tag_tail(char *fmt, int pair_select)
 {
@@ -190,11 +140,58 @@ BBcode *match_bbcode(BBcode *tail)
 	return match_bbcode_rec(tail, 0);
 }
 
-void free_bbcode_buffer(BBcode *buffer)
+void test_inspect_bbcode(BBcode *head)
 {
-	while (buffer) {
-		BBcode *tmp = buffer;
-		buffer = buffer->next;
+	printf("\n=== inspect_bbcode test ===\n");
+	printf("Input tags (reversed, head-insert order):\n");
+	BBcode *p = head;
+	while (p) {
+		printf("  tag: %-16s ending: %s\n", p->tag,
+		       p->ending ? p->ending->tag : "(null)");
+		p = p->next;
+	}
+
+	match_bbcode(head);
+
+	printf("After inspect:\n");
+	p = head;
+	while (p) {
+		printf("  tag: %-16s ending: %s\n", p->tag,
+		       p->ending ? p->ending->tag : "(null)");
+		p = p->next;
+	}
+	printf("===========================\n\n");
+}
+
+void free_bbcode_buffer()
+{
+	while (g_bbcode_buffer) {
+		BBcode *tmp = g_bbcode_buffer;
+		g_bbcode_buffer = g_bbcode_buffer->next;
 		free(tmp);
 	}
+}
+
+int main()
+{
+	g_bbcode_buffer = (BBcode *)malloc(sizeof(BBcode));
+	char text[] = "[i]Hello, World[b][/b][i][/i]";
+
+	g_bbcode_buffer = parse_bbcode(text);
+	BBcode *p = g_bbcode_buffer;
+	while (p) {
+		printf("Found tag: %s\n", p->tag);
+		p = p->next;
+	}
+
+	test_inspect_bbcode(g_bbcode_buffer);
+
+	// free memory
+	while (g_bbcode_buffer) {
+		BBcode *tmp = g_bbcode_buffer;
+		g_bbcode_buffer = g_bbcode_buffer->next;
+		free(tmp);
+	}
+
+	return 0;
 }

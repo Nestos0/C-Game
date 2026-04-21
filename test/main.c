@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <locale.h>
+#include <stdarg.h>
 
 #define DEFAULT_S_DATA_SIZE 255
 
@@ -11,6 +12,11 @@ typedef struct {
 	size_t mcapacity;
 } String;
 
+typedef struct {
+	int range[2];
+	char *tag;
+} BBcode;
+
 int is_full_width(wchar_t wc);
 
 int get_strwidth(char *str);
@@ -18,6 +24,8 @@ int get_strwidth(char *str);
 int get_strwidth_spec(char *str);
 
 int set_string(String *obj, char *str);
+
+int mini_printf(const char *fmt, ...);
 
 int main()
 {
@@ -88,7 +96,6 @@ int get_strwidth_spec(char *str)
 	char *ptr = str;
 	int len = 0;
 	int ret = 0;
-	wchar_t wc;
 	while ((len = mblen(ptr, MB_CUR_MAX)) > 0) {
 		ret += (len > 1) ? 2 : 1;
 		ptr += len;
@@ -111,5 +118,74 @@ int set_string(String *obj, char *str)
 
 	strcpy(obj->data, str);
 	obj->width = get_strwidth(str);
+	return 0;
+}
+
+void print_int(int n)
+{
+	char buf[12]; // int32 最大是 10 位，加上符号和 \0 足够了
+	int i = 0;
+	unsigned int num;
+
+	// 1. 处理负数
+	if (n < 0) {
+		putchar('-');
+		num = (unsigned int)(-n); // 转为无符号防止 -2147483648 溢出
+	} else {
+		num = (unsigned int)n;
+	}
+
+	// 2. 逆序转换
+	if (num == 0) {
+		buf[i++] = '0';
+	} else {
+		while (num > 0) {
+			buf[i++] = (num % 10) + '0';
+			num /= 10;
+		}
+	}
+
+	// 3. 反向输出缓冲区
+	while (i > 0) {
+		putchar(buf[--i]);
+	}
+}
+
+int color_printf(const char *fmt, ...)
+{
+	const char *p = fmt;
+
+	va_list args;
+	va_start(args, fmt);
+
+	int op[2] = { 0 };
+
+	int bb_count = 0;
+	char buf[8];
+	char bbcode[8];
+
+	int i = 0;
+
+	while (*p != '\0') {
+		if (*p == '[') {
+			op[(op[0]) ? 0 : 1] = i;
+			++p;
+			++i;
+			if (op[0] != 0 && *p != '/') {
+				op[0] = 0;
+				continue;
+			}
+			while (*p != ']') {
+				buf[bb_count++] = *p;
+				++p;
+				++i;
+			}
+			bb_count = 0;
+		}
+		++p;
+		++i;
+	}
+
+	va_end(args);
 	return 0;
 }
