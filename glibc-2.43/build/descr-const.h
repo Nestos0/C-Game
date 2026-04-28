@@ -1,2 +1,0 @@
-#define TCB_CANCELED_BIT 3
-#define TCB_CANCELED_BITMASK 8

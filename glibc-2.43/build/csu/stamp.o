@@ -1,1 +1,0 @@
-csu/check_fds.o csu/dso_handle.o csu/init-first.o csu/libc-start.o csu/libc-tls.o csu/sysdep.o csu/version.o csu/errno.o csu/errno-loc.o

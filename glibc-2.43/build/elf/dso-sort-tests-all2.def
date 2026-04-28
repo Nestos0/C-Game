@@ -1,6 +1,0 @@
-tunable_option: glibc.rtld.dynamic_sort=1
-tunable_option: glibc.rtld.dynamic_sort=2
-
-tst-dso-ordering-all2-0: {}->a
-output: a>{}<a
-
