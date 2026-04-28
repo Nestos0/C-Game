@@ -1,0 +1,14 @@
+[
+  {
+    "file": "./main.c",
+    "arguments": [
+      "/bin/gcc",
+      "-std=gnu23",
+      "./main.c",
+      "-o",
+      "main"
+    ],
+    "directory": "/home/nestos/projects/C-TuiGame",
+    "output": "main"
+  }
+]
