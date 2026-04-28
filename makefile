@@ -5,4 +5,4 @@ SRC = main.c
 TARGET = main
 
 $(TARGET):
-	$(CC) -o $(TARGET) $(SRC)
+	$(CC) -o build/$(TARGET) $(SRC)
