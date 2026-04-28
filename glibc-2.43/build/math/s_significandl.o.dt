@@ -1,0 +1,16 @@
+/home/nestos/test/glibc-2.43/build/math/s_significandl.o: \
+ ../sysdeps/x86_64/fpu/s_significandl.c ../include/stdc-predef.h \
+ /home/nestos/test/glibc-2.43/build/libc-modules.h \
+ ../include/libc-symbols.h ../include/libc-misc.h \
+ /home/nestos/test/glibc-2.43/build/config.h \
+ ../sysdeps/generic/libc-symver.h ../include/libc-diag.h \
+ ../sysdeps/generic/symbol-hacks.h ../sysdeps/i386/fpu/s_significandl.c
+../include/stdc-predef.h:
+/home/nestos/test/glibc-2.43/build/libc-modules.h:
+../include/libc-symbols.h:
+../include/libc-misc.h:
+/home/nestos/test/glibc-2.43/build/config.h:
+../sysdeps/generic/libc-symver.h:
+../include/libc-diag.h:
+../sysdeps/generic/symbol-hacks.h:
+../sysdeps/i386/fpu/s_significandl.c:

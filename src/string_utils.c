@@ -56,9 +56,9 @@ int set_string(String *obj, const char *str)
 
 	obj->is_flex = false;
 	int len = strlen(str);
-	if (obj->data == NULL || obj->mcapacity < len) {
-		int new_cap = (obj->data == NULL) ? DEFAULT_STRING_CAPACITY :
-						    obj->mcapacity * 2;
+	if (obj->data == nullptr || obj->mcapacity < len) {
+		int new_cap = (obj->data == nullptr) ? DEFAULT_STRING_CAPACITY :
+						       obj->mcapacity * 2;
 		char *new_data = realloc(obj->data, sizeof(char) * new_cap);
 		if (!new_data)
 			return -1;
@@ -78,123 +78,98 @@ char *get_string_data(String *obj_ptr)
 	return ret;
 }
 
-BBcode *parse_tag_tail(char *fmt, int pair_select)
+const char *get_ansi_code(const char *tag)
 {
-	BBcode *head = NULL;
-	BBcode *current = NULL;
-
-	char *p = fmt;
-	while (*p) {
-		if (*p == pair_config[pair_select].start) {
-			char *start = ++p;
-			while (*p && *p != pair_config[pair_select].end)
-				p++;
-			if (*p == pair_config[pair_select].end) {
-				BBcode *new_node =
-					(BBcode *)calloc(1, sizeof(BBcode));
-				if (!new_node)
-					break;
-
-				size_t len = p - start;
-				if (len > 15)
-					len = 15;
-				strncpy(new_node->tag, start, len);
-				new_node->tag[len] = '\0';
-
-				if (head == NULL) {
-					head = new_node;
-					current = head;
-				} else {
-					current->next = new_node;
-					current = new_node;
-				}
-			}
-		}
-		if (*p)
-			p++;
+	if (tag[0] == '/')
+		return "\x1b[0m";
+	for (int i = 0; tags[i].name != NULL; i++) {
+		if (strcmp(tag, tags[i].name) == 0)
+			return tags[i].code;
 	}
-	return head;
+	return "";
 }
 
-BBcode *parse_tag_head(char *fmt, int pair_num)
+char *parse_tag_rec(const char *input, int pair_seq)
 {
-	BBcode *head = NULL;
+	size_t in_size = sizeof(input) + sizeof(char) * 8;
+	char *output = calloc(1, in_size);
 
-	char *p = fmt;
+	char stack[MAX_TAG_CAPACITY][MAX_TAG_LENGTH];
+	int top = -1;
+
+	const char *p = input;
+	char *dest = output;
+
 	while (*p) {
-		if (*p == pair_config[pair_num].start) {
-			BBcode *new_node = (BBcode *)calloc(1, sizeof(BBcode));
-			new_node->start = ++p;
-			while (*p != pair_config[pair_num].end) {
+		if (*p == pair_map[pair_seq].start) {
+			const char *start = ++p;
+			while (*p && *p != pair_map[pair_seq].end)
 				++p;
-			}
-			if (*p == pair_config[pair_num].end) {
-				new_node->end = p;
-				size_t len = ((p - new_node->start) < 15) ?
-						     (p - new_node->start) :
-						     15;
-				strncpy(new_node->tag, new_node->start, len);
 
-				new_node->tag[len] = '\0';
+			if (*p == pair_map[pair_seq].end) {
+				size_t tag_len = p - start;
+				if (tag_len < MAX_TAG_LENGTH) {
+					char tag[MAX_TAG_LENGTH] = { 0 };
+					strncpy(tag, start, tag_len);
 
-				if (head == NULL)
-					head = new_node;
-				else {
-					new_node->next = head;
-					head = new_node;
+					if (tag[0] == '/') {
+						if (get_ansi_code(tag + 1)) {
+							if (top >= 0)
+								--top;
+							const char *code =
+								(top >= 0) ?
+									get_ansi_code(
+										stack[top]) :
+									"\x1b[0m";
+
+							dest += sprintf(dest,
+									"%s",
+									code);
+						} else {
+							dest += sprintf(dest,
+									"[%s]",
+									tag);
+						}
+					} else {
+						if (top <
+						    MAX_STACK_CAPACITY - 1) {
+							strncpy(stack[++top],
+								tag,
+								MAX_TAG_LENGTH);
+						}
+						dest += sprintf(
+							dest, "%s",
+							get_ansi_code(tag));
+					}
 				}
-			} else {
-				free(new_node);
 			}
+			++p;
+			continue;
 		}
-		++p;
+		*dest++ = *p++;
 	}
-
-	return head;
+	return output;
 }
 
-BBcode *parse_bbcode(char *fmt)
+char *parse_bbcode(const char *fmt)
 {
-	return parse_tag_head(fmt, 0);
+	return parse_tag_rec(fmt, 0);
 }
 
-BBcode *match_bbcode_rec(BBcode *tail, size_t depth)
+int print_color(const char *format, ...)
 {
-	if (tail == NULL) {
-		return NULL;
-	}
-	BBcode *head = tail->next;
-	BBcode *current = tail;
+	char raw_buffer[1024];
+	va_list args;
 
-	while (head != NULL) {
-		if (head->tag[0] == '/') {
-			depth++;
-			head = match_bbcode_rec(head, depth);
-			depth--;
-		} else {
-			if (strcmp(head->tag, current->tag + 1) == 0) {
-				head->ending = current;
-				if (depth > 0)
-					return head->next;
-				current = head->next;
-				head = current->next;
-			}
-		}
-	}
+	va_start(args, format);
+	vsnprintf(raw_buffer, sizeof(raw_buffer), format, args);
+	va_end(args);
 
-	return head;
-}
+	char *interpreted = parse_bbcode(raw_buffer);
+	if (!interpreted)
+		return -1;
 
-BBcode *match_bbcode(BBcode *tail)
-{
-	return match_bbcode_rec(tail, 0);
-}
-
-void free_bbcode_buffer(BBcode *buffer)
-{
-	while (buffer) {
-		BBcode *tmp = buffer;
-		buffer = buffer->next;
-		free(tmp);
-	}
+	int len = printf("%s", interpreted);
+	free(interpreted);
+	return len;
 }

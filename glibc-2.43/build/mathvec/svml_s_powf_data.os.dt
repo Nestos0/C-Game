@@ -1,0 +1,17 @@
+/home/nestos/test/glibc-2.43/build/mathvec/svml_s_powf_data.os: \
+ ../sysdeps/x86_64/fpu/svml_s_powf_data.S ../include/stdc-predef.h \
+ /home/nestos/test/glibc-2.43/build/libc-modules.h \
+ ../include/libc-symbols.h ../include/libc-misc.h \
+ /home/nestos/test/glibc-2.43/build/config.h \
+ ../sysdeps/generic/libc-symver.h ../include/libc-diag.h \
+ ../sysdeps/generic/symbol-hacks.h \
+ ../sysdeps/x86_64/fpu/svml_s_powf_data.h
+../include/stdc-predef.h:
+/home/nestos/test/glibc-2.43/build/libc-modules.h:
+../include/libc-symbols.h:
+../include/libc-misc.h:
+/home/nestos/test/glibc-2.43/build/config.h:
+../sysdeps/generic/libc-symver.h:
+../include/libc-diag.h:
+../sysdeps/generic/symbol-hacks.h:
+../sysdeps/x86_64/fpu/svml_s_powf_data.h:

@@ -11,7 +11,7 @@ void *safe_malloc(size_t size)
 {
 	void *p = malloc(size);
 	if (!p)
-		return NULL;
+		return nullptr;
 
 	MemoryNode *node = (MemoryNode *)malloc(sizeof(MemoryNode));
 	node->ptr = p;
@@ -25,7 +25,7 @@ void *safe_calloc(size_t nmemb, size_t size)
 {
 	void *p = calloc(nmemb, size);
 	if (!p)
-		return NULL;
+		return nullptr;
 
 	MemoryNode *node = (MemoryNode *)malloc(sizeof(MemoryNode));
 	node->ptr = p;
@@ -38,12 +38,12 @@ void *safe_calloc(size_t nmemb, size_t size)
 void cleanup_all_memory()
 {
 	MemoryNode *current = g_memory_pool;
-	while (current != NULL) {
+	while (current != nullptr) {
 		MemoryNode *temp = current;
 		free(current->ptr);
 		current = current->next;
 		free(temp);
 	}
-	g_memory_pool = NULL;
+	g_memory_pool = nullptr;
 	printf("所有内存已安全释放。\n");
 }

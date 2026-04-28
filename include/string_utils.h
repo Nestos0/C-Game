@@ -2,14 +2,23 @@
 #ifndef STRING_UTILS_H
 #define STRING_UTILS_H
 
+#include <stdio.h>
 #include <string.h>
+#include <stdint.h>
 #include <stdlib.h>
 #include <stdbool.h>
 #include <stdarg.h>
 
-#define DEFAULT_S_BUFFER_SIZE 1024
-
-#define DEFAULT_STRING_CAPACITY 255
+enum {
+	DEFAULT_S_SIZE = 128,
+	DEFAULT_COMMON_SIZE = 16,
+	MAX_TAG_CAPACITY = DEFAULT_COMMON_SIZE,
+	MAX_TAG_LENGTH = DEFAULT_COMMON_SIZE,
+	MAX_STACK_CAPACITY = 32,
+	DEFAULT_S_LIST_SIZE = DEFAULT_COMMON_SIZE,
+	DEFAULT_STRING_CAPACITY = 255,
+	DEFAULT_S_BUFFER_SIZE = 1024
+};
 
 typedef struct String {
 	size_t width;
@@ -71,21 +80,25 @@ char *get_string_data(String *obj_ptr);
 #define Get_string_data(obj_ptr) \
 	((obj_ptr)->is_flex ? (obj_ptr)->flex_data : (obj_ptr)->data)
 
-typedef struct BBcode {
-	struct BBcode *next;
-	struct BBcode *ending;
-	char *start;
-	char *end;
-	char tag[16];
-} BBcode;
+typedef struct TagMap {
+	const char *name;
+	const char *code;
+} TagMap;
 
 typedef struct Pair {
 	char start;
 	char end;
 } Pair;
 
+static const TagMap tags[] = {
+	{ "red", "\x1b[31m" },	   { "green", "\x1b[32m" },
+	{ "yellow", "\x1b[33m" },  { "blue", "\x1b[34m" },
+	{ "magenta", "\x1b[35m" }, { "cyan", "\x1b[36m" },
+	{ "white", "\x1b[37m" },   { NULL, "\x1b[0m" } // 默认重置
+};
+
 // clang-format off
-static const Pair pair_config[] = {
+static const Pair pair_map[] = {
 	{ '[', ']' },
 	{ '<', '>' },
 	{ '{', '}' },
@@ -93,16 +106,12 @@ static const Pair pair_config[] = {
 };
 // clang-format on
 
-BBcode *parse_tag_tail(char *fmt, int pair_select);
+const char *get_ansi_code(const char *tag);
 
-BBcode *parse_tag_head(char *fmt, int pair_num);
+char *parse_tag_rec(const char *fmt, int pair_num);
 
-BBcode *parse_bbcode(char *fmt);
+char *parse_bbcode(const char *fmt);
 
-BBcode *match_bbcode_rec(BBcode *tail, size_t depth);
-
-BBcode *match_bbcode(BBcode *tail);
-
-void free_bbcode_buffer(BBcode *buffer);
+int print_color(const char *format, ...);
 
 #endif

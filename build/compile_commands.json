@@ -1,0 +1,70 @@
+[
+  {
+    "file": "src/display.c",
+    "arguments": [
+      "/bin/gcc",
+      "-std=gnu23",
+      "src/display.c",
+      "-o",
+      "game",
+      "-Wall",
+      "-g",
+      "-I",
+      "include/",
+      "-O2"
+    ],
+    "directory": "/home/nestos/test",
+    "output": "game"
+  },
+  {
+    "file": "src/string_utils.c",
+    "arguments": [
+      "/bin/gcc",
+      "-std=gnu23",
+      "src/string_utils.c",
+      "-o",
+      "game",
+      "-Wall",
+      "-g",
+      "-I",
+      "include/",
+      "-O2"
+    ],
+    "directory": "/home/nestos/test",
+    "output": "game"
+  },
+  {
+    "file": "src/utils.c",
+    "arguments": [
+      "/bin/gcc",
+      "-std=gnu23",
+      "src/utils.c",
+      "-o",
+      "game",
+      "-Wall",
+      "-g",
+      "-I",
+      "include/",
+      "-O2"
+    ],
+    "directory": "/home/nestos/test",
+    "output": "game"
+  },
+  {
+    "file": "main.c",
+    "arguments": [
+      "/bin/gcc",
+      "-std=gnu23",
+      "main.c",
+      "-o",
+      "game",
+      "-Wall",
+      "-g",
+      "-I",
+      "include/",
+      "-O2"
+    ],
+    "directory": "/home/nestos/test",
+    "output": "game"
+  }
+]

@@ -46,7 +46,7 @@
 			void *new_data = realloc((array).data,             \
 						 sizeof((array).data[0]) * \
 							 new_capacity);    \
-			if (new_data != NULL) {                            \
+			if (new_data != nullptr) {                            \
 				(array).data = new_data;                   \
 				(array).capacity = new_capacity;           \
 			}                                                  \

@@ -1,0 +1,2149 @@
+由于文件 (符号) 而包含了归档成员
+
+/home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-check_fds.os)
+                              /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (__libc_check_standard_fds)
+/home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-errno.os)
+                              /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (rtld_errno)
+/home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-closedir.os)
+                              /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (__closedir)
+/home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fdopendir.os)
+                              /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (__fdopendir)
+/home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-readdir64.os)
+                              /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (__readdir64)
+/home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-rewinddir.os)
+                              /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (__rewinddir)
+/home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-getdents64.os)
+                              /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-readdir64.os) (__getdents64)
+/home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-dl-addr-obj.os)
+                              /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (_dl_addr_inside_object)
+/home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-prof-freq.os)
+                              /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (__profile_frequency)
+/home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-profil.os)
+                              /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (__profil)
+/home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-access.os)
+                              /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (__access)
+/home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fstat64.os)
+                              /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (__GI___fstat64)
+/home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fstatat64.os)
+                              /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (__GI___fstatat64)
+/home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-lseek64.os)
+                              /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (__lseek)
+/home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-lstat64.os)
+                              /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (__GI___lstat64)
+/home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-openat64.os)
+                              /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (__openat64)
+/home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-stat64.os)
+                              /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (__GI___stat64)
+/home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-close_nocancel.os)
+                              /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (__GI___close_nocancel)
+/home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-close_nocancel_nostatus.os)
+                              /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (__GI___close_nocancel_nostatus)
+/home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fcntl_nocancel.os)
+                              /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (__GI___fcntl64_nocancel)
+/home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-open64_nocancel.os)
+                              /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (__GI___open64_nocancel)
+/home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-pread64_nocancel.os)
+                              /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (__GI___pread64_nocancel)
+/home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-read_nocancel.os)
+                              /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (__GI___read_nocancel)
+/home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-write_nocancel.os)
+                              /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (__GI___write_nocancel)
+/home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-scratch_buffer_set_array_size.os)
+                              /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (__libc_scratch_buffer_set_array_size)
+/home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fd_to_filename.os)
+                              /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (__fd_to_filename)
+/home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-mmap64.os)
+                              /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (__mmap)
+/home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-mprotect.os)
+                              /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (__mprotect)
+/home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-munmap.os)
+                              /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (__munmap)
+/home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-setvmaname.os)
+                              /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (__is_decorate_maps_enabled)
+/home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-lowlevellock.os)
+                              /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (__lll_lock_wait_private)
+/home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-_exit.os)
+                              /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (__GI__exit)
+/home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-getpid.os)
+                              /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (__getpid)
+/home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-uname.os)
+                              /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (__uname)
+/home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-environ.os)
+                              /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (__environ)
+/home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-setjmp.os)
+                              /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (__sigsetjmp)
+/home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-__longjmp.os)
+                              /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (__longjmp)
+/home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-libc_sigaction.os)
+                              /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-profil.os) (__libc_sigaction)
+/home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-_fitoa_word.os)
+                              /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (_itoa_word)
+/home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-itoa-udigits.os)
+                              /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-_fitoa_word.os) (__GI__itoa_upper_digits)
+/home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-getenv.os)
+                              /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (getenv)
+/home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-memchr.os)
+                              /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (memchr)
+/home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-memcmp.os)
+                              /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (memcmp)
+/home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-memmove.os)
+                              /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (memmove)
+/home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-memset.os)
+                              /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (memset)
+/home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-stpcpy.os)
+                              /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (stpcpy)
+/home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strchr.os)
+                              /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (strchr)
+/home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strcmp.os)
+                              /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (strcmp)
+/home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strcspn.os)
+                              /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (strcspn)
+/home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strdup.os)
+                              /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (__strdup)
+/home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strerrorname_np.os)
+                              /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (strerrorname_np)
+/home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strlen.os)
+                              /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (strlen)
+/home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strncmp.os)
+                              /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (strncmp)
+/home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strnlen.os)
+                              /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (strnlen)
+/home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strchrnul.os)
+                              /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strcspn.os) (__strchrnul)
+/home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-setitimer.os)
+                              /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-profil.os) (__setitimer)
+/home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-errname.os)
+                              /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strerrorname_np.os) (__get_errname)
+
+Merging object attributes
+
+
+Merging program properties
+
+Updated property 0xc0010001 (0x2f9) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0x2f9) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-check_fds.os) (0x1)
+Updated property 0xc0010002 (0xd) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0xd) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-check_fds.os) (0x1)
+Updated property 0xc0010001 (0x2f9) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0x2f9) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-errno.os) (0x1)
+Updated property 0xc0010002 (0xd) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0xd) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-errno.os) (0x0)
+Updated property 0xc0010001 (0x2f9) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0x2f9) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-closedir.os) (0x1)
+Updated property 0xc0010002 (0xd) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0xd) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-closedir.os) (0x1)
+Updated property 0xc0010001 (0x2f9) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0x2f9) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fdopendir.os) (0x1)
+Updated property 0xc0010002 (0xd) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0xd) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fdopendir.os) (0x1)
+Updated property 0xc0010001 (0x2f9) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0x2f9) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-readdir64.os) (0x1)
+Updated property 0xc0010002 (0xd) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0xd) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-readdir64.os) (0x1)
+Updated property 0xc0010001 (0x2f9) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0x2f9) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-rewinddir.os) (0x9)
+Updated property 0xc0010002 (0xd) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0xd) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-rewinddir.os) (0x1)
+Updated property 0xc0010001 (0x2f9) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0x2f9) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-getdents64.os) (0x1)
+Updated property 0xc0010002 (0xd) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0xd) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-getdents64.os) (0x1)
+Updated property 0xc0010001 (0x2f9) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0x2f9) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-dl-addr-obj.os) (0x1)
+Updated property 0xc0010002 (0xd) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0xd) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-dl-addr-obj.os) (0x1)
+Updated property 0xc0010001 (0x2f9) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0x2f9) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-prof-freq.os) (0x1)
+Updated property 0xc0010002 (0xd) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0xd) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-prof-freq.os) (0x1)
+Updated property 0xc0010001 (0x2f9) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0x2f9) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-profil.os) (0x9)
+Updated property 0xc0010002 (0xd) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0xd) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-profil.os) (0x1)
+Updated property 0xc0010001 (0x2f9) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0x2f9) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-access.os) (0x1)
+Updated property 0xc0010002 (0xd) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0xd) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-access.os) (0x1)
+Updated property 0xc0010001 (0x2f9) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0x2f9) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fstat64.os) (0x1)
+Updated property 0xc0010002 (0xd) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0xd) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fstat64.os) (0x1)
+Updated property 0xc0010001 (0x2f9) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0x2f9) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fstatat64.os) (0x1)
+Updated property 0xc0010002 (0xd) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0xd) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fstatat64.os) (0x1)
+Updated property 0xc0010001 (0x2f9) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0x2f9) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-lseek64.os) (0x1)
+Updated property 0xc0010002 (0xd) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0xd) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-lseek64.os) (0x1)
+Updated property 0xc0010001 (0x2f9) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0x2f9) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-lstat64.os) (0x1)
+Updated property 0xc0010002 (0xd) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0xd) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-lstat64.os) (0x1)
+Updated property 0xc0010001 (0x2f9) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0x2f9) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-openat64.os) (0x1)
+Updated property 0xc0010002 (0xd) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0xd) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-openat64.os) (0x1)
+Updated property 0xc0010001 (0x2f9) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0x2f9) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-stat64.os) (0x1)
+Updated property 0xc0010002 (0xd) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0xd) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-stat64.os) (0x1)
+Updated property 0xc0010001 (0x2f9) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0x2f9) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-close_nocancel.os) (0x1)
+Updated property 0xc0010002 (0xd) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0xd) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-close_nocancel.os) (0x1)
+Updated property 0xc0010001 (0x2f9) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0x2f9) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-close_nocancel_nostatus.os) (0x1)
+Updated property 0xc0010002 (0xd) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0xd) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-close_nocancel_nostatus.os) (0x1)
+Updated property 0xc0010001 (0x2f9) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0x2f9) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fcntl_nocancel.os) (0x1)
+Updated property 0xc0010002 (0xd) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0xd) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fcntl_nocancel.os) (0x1)
+Updated property 0xc0010001 (0x2f9) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0x2f9) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-open64_nocancel.os) (0x1)
+Updated property 0xc0010002 (0xd) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0xd) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-open64_nocancel.os) (0x1)
+Updated property 0xc0010001 (0x2f9) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0x2f9) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-pread64_nocancel.os) (0x1)
+Updated property 0xc0010002 (0xd) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0xd) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-pread64_nocancel.os) (0x1)
+Updated property 0xc0010001 (0x2f9) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0x2f9) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-read_nocancel.os) (0x1)
+Updated property 0xc0010002 (0xd) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0xd) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-read_nocancel.os) (0x1)
+Updated property 0xc0010001 (0x2f9) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0x2f9) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-write_nocancel.os) (0x1)
+Updated property 0xc0010002 (0xd) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0xd) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-write_nocancel.os) (0x1)
+Updated property 0xc0010001 (0x2f9) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0x2f9) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-scratch_buffer_set_array_size.os) (0x1)
+Updated property 0xc0010002 (0xd) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0xd) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-scratch_buffer_set_array_size.os) (0x1)
+Updated property 0xc0010001 (0x2f9) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0x2f9) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fd_to_filename.os) (0x1)
+Updated property 0xc0010002 (0xd) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0xd) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fd_to_filename.os) (0x1)
+Updated property 0xc0010001 (0x2f9) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0x2f9) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-mmap64.os) (0x1)
+Updated property 0xc0010002 (0xd) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0xd) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-mmap64.os) (0x1)
+Updated property 0xc0010001 (0x2f9) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0x2f9) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-mprotect.os) (0x1)
+Updated property 0xc0010002 (0xd) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0xd) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-mprotect.os) (0x1)
+Updated property 0xc0010001 (0x2f9) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0x2f9) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-munmap.os) (0x1)
+Updated property 0xc0010002 (0xd) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0xd) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-munmap.os) (0x1)
+Updated property 0xc0010001 (0x2f9) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0x2f9) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-setvmaname.os) (0x1)
+Updated property 0xc0010002 (0xd) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0xd) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-setvmaname.os) (0x1)
+Updated property 0xc0010001 (0x2f9) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0x2f9) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-lowlevellock.os) (0x1)
+Updated property 0xc0010002 (0xd) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0xd) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-lowlevellock.os) (0x1)
+Updated property 0xc0010001 (0x2f9) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0x2f9) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-_exit.os) (0x1)
+Updated property 0xc0010002 (0xd) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0xd) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-_exit.os) (0x1)
+Updated property 0xc0010001 (0x2f9) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0x2f9) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-getpid.os) (0x1)
+Updated property 0xc0010002 (0xd) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0xd) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-getpid.os) (0x1)
+Updated property 0xc0010001 (0x2f9) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0x2f9) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-uname.os) (0x1)
+Updated property 0xc0010002 (0xd) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0xd) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-uname.os) (0x1)
+Updated property 0xc0010001 (0x2f9) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0x2f9) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-environ.os) (0x1)
+Updated property 0xc0010002 (0xd) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0xd) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-environ.os) (0x0)
+Updated property 0xc0010001 (0x2f9) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0x2f9) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-setjmp.os) (0x1)
+Updated property 0xc0010002 (0xd) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0xd) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-setjmp.os) (0x1)
+Updated property 0xc0010001 (0x2f9) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0x2f9) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-__longjmp.os) (0x1)
+Updated property 0xc0010002 (0xd) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0xd) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-__longjmp.os) (0x1)
+Updated property 0xc0010001 (0x2f9) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0x2f9) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-libc_sigaction.os) (0x9)
+Updated property 0xc0010002 (0xd) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0xd) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-libc_sigaction.os) (0x1)
+Updated property 0xc0010001 (0x2f9) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0x2f9) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-_fitoa_word.os) (0x1)
+Updated property 0xc0010002 (0xd) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0xd) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-_fitoa_word.os) (0x1)
+Updated property 0xc0010001 (0x2f9) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0x2f9) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-itoa-udigits.os) (0x1)
+Updated property 0xc0010002 (0xd) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0xd) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-itoa-udigits.os) (0x0)
+Updated property 0xc0010001 (0x2f9) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0x2f9) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-getenv.os) (0x1)
+Updated property 0xc0010002 (0xd) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0xd) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-getenv.os) (0x1)
+Updated property 0xc0010001 (0x2f9) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0x2f9) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-memchr.os) (0x9)
+Updated property 0xc0010002 (0xd) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0xd) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-memchr.os) (0x1)
+Updated property 0xc0010001 (0x2f9) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0x2f9) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-memcmp.os) (0x9)
+Updated property 0xc0010002 (0xd) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0xd) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-memcmp.os) (0x1)
+Updated property 0xc0010001 (0x2f9) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0x2f9) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-memmove.os) (0x9)
+Updated property 0xc0010002 (0xd) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0xd) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-memmove.os) (0x1)
+Updated property 0xc0010001 (0x2f9) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0x2f9) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-memset.os) (0x9)
+Updated property 0xc0010002 (0xd) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0xd) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-memset.os) (0x1)
+Updated property 0xc0010001 (0x2f9) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0x2f9) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-stpcpy.os) (0x9)
+Updated property 0xc0010002 (0xd) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0xd) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-stpcpy.os) (0x1)
+Updated property 0xc0010001 (0x2f9) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0x2f9) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strchr.os) (0x9)
+Updated property 0xc0010002 (0xd) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0xd) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strchr.os) (0x1)
+Updated property 0xc0010001 (0x2f9) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0x2f9) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strcmp.os) (0x9)
+Updated property 0xc0010002 (0xd) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0xd) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strcmp.os) (0x1)
+Updated property 0xc0010001 (0x2f9) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0x2f9) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strcspn.os) (0x9)
+Updated property 0xc0010002 (0xd) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0xd) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strcspn.os) (0x1)
+Updated property 0xc0010001 (0x2f9) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0x2f9) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strdup.os) (0x1)
+Updated property 0xc0010002 (0xd) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0xd) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strdup.os) (0x1)
+Updated property 0xc0010001 (0x2f9) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0x2f9) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strerrorname_np.os) (0x1)
+Updated property 0xc0010002 (0xd) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0xd) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strerrorname_np.os) (0x1)
+Updated property 0xc0010001 (0x2f9) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0x2f9) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strlen.os) (0x9)
+Updated property 0xc0010002 (0xd) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0xd) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strlen.os) (0x1)
+Updated property 0xc0010001 (0x2f9) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0x2f9) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strncmp.os) (0x9)
+Updated property 0xc0010002 (0xd) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0xd) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strncmp.os) (0x1)
+Updated property 0xc0010001 (0x2f9) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0x2f9) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strnlen.os) (0x9)
+Updated property 0xc0010002 (0xd) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0xd) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strnlen.os) (0x1)
+Updated property 0xc0010001 (0x2f9) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0x2f9) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strchrnul.os) (0x9)
+Updated property 0xc0010002 (0xd) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0xd) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strchrnul.os) (0x1)
+Updated property 0xc0010001 (0x2f9) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0x2f9) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-setitimer.os) (0x1)
+Updated property 0xc0010002 (0xd) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0xd) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-setitimer.os) (0x1)
+Updated property 0xc0010001 (0x2f9) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0x2f9) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-errname.os) (0x1)
+Updated property 0xc0010002 (0xd) to merge /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os (0xd) and /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-errname.os) (0x1)
+
+舍弃的输入节
+
+ .note.gnu.property
+                0x0000000000000000       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-check_fds.os)
+ .note.gnu.property
+                0x0000000000000000       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-errno.os)
+ .note.gnu.property
+                0x0000000000000000       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-closedir.os)
+ .note.gnu.property
+                0x0000000000000000       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fdopendir.os)
+ .note.gnu.property
+                0x0000000000000000       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-readdir64.os)
+ .note.gnu.property
+                0x0000000000000000       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-rewinddir.os)
+ .note.gnu.property
+                0x0000000000000000       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-getdents64.os)
+ .note.gnu.property
+                0x0000000000000000       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-dl-addr-obj.os)
+ .note.gnu.property
+                0x0000000000000000       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-prof-freq.os)
+ .note.gnu.property
+                0x0000000000000000       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-profil.os)
+ .note.gnu.property
+                0x0000000000000000       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-access.os)
+ .note.gnu.property
+                0x0000000000000000       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fstat64.os)
+ .note.gnu.property
+                0x0000000000000000       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fstatat64.os)
+ .note.gnu.property
+                0x0000000000000000       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-lseek64.os)
+ .note.gnu.property
+                0x0000000000000000       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-lstat64.os)
+ .note.gnu.property
+                0x0000000000000000       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-openat64.os)
+ .note.gnu.property
+                0x0000000000000000       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-stat64.os)
+ .note.gnu.property
+                0x0000000000000000       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-close_nocancel.os)
+ .note.gnu.property
+                0x0000000000000000       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-close_nocancel_nostatus.os)
+ .note.gnu.property
+                0x0000000000000000       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fcntl_nocancel.os)
+ .note.gnu.property
+                0x0000000000000000       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-open64_nocancel.os)
+ .note.gnu.property
+                0x0000000000000000       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-pread64_nocancel.os)
+ .note.gnu.property
+                0x0000000000000000       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-read_nocancel.os)
+ .note.gnu.property
+                0x0000000000000000       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-write_nocancel.os)
+ .note.gnu.property
+                0x0000000000000000       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-scratch_buffer_set_array_size.os)
+ .note.gnu.property
+                0x0000000000000000       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fd_to_filename.os)
+ .note.gnu.property
+                0x0000000000000000       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-mmap64.os)
+ .note.gnu.property
+                0x0000000000000000       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-mprotect.os)
+ .note.gnu.property
+                0x0000000000000000       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-munmap.os)
+ .note.gnu.property
+                0x0000000000000000       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-setvmaname.os)
+ .note.gnu.property
+                0x0000000000000000       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-lowlevellock.os)
+ .note.gnu.property
+                0x0000000000000000       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-_exit.os)
+ .note.gnu.property
+                0x0000000000000000       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-getpid.os)
+ .note.gnu.property
+                0x0000000000000000       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-uname.os)
+ .note.gnu.property
+                0x0000000000000000       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-environ.os)
+ .note.gnu.property
+                0x0000000000000000       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-setjmp.os)
+ .note.gnu.property
+                0x0000000000000000       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-__longjmp.os)
+ .note.gnu.property
+                0x0000000000000000       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-libc_sigaction.os)
+ .note.gnu.property
+                0x0000000000000000       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-_fitoa_word.os)
+ .note.gnu.property
+                0x0000000000000000       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-itoa-udigits.os)
+ .note.gnu.property
+                0x0000000000000000       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-getenv.os)
+ .note.gnu.property
+                0x0000000000000000       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-memchr.os)
+ .note.gnu.property
+                0x0000000000000000       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-memcmp.os)
+ .note.gnu.property
+                0x0000000000000000       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-memmove.os)
+ .note.gnu.property
+                0x0000000000000000       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-memset.os)
+ .note.gnu.property
+                0x0000000000000000       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-stpcpy.os)
+ .note.gnu.property
+                0x0000000000000000       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strchr.os)
+ .note.gnu.property
+                0x0000000000000000       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strcmp.os)
+ .note.gnu.property
+                0x0000000000000000       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strcspn.os)
+ .note.gnu.property
+                0x0000000000000000       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strdup.os)
+ .note.gnu.property
+                0x0000000000000000       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strerrorname_np.os)
+ .note.gnu.property
+                0x0000000000000000       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strlen.os)
+ .note.gnu.property
+                0x0000000000000000       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strncmp.os)
+ .note.gnu.property
+                0x0000000000000000       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strnlen.os)
+ .note.gnu.property
+                0x0000000000000000       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strchrnul.os)
+ .note.gnu.property
+                0x0000000000000000       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-setitimer.os)
+ .note.gnu.property
+                0x0000000000000000       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-errname.os)
+
+内存配置
+
+名称           来源             长度             属性
+*default*        0x0000000000000000 0xffffffffffffffff
+
+链结器命令稿和内存映射
+
+START GROUP
+LOAD /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os
+LOAD /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a
+LOAD /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/libgcc.a
+END GROUP
+
+.note.gnu.build-id
+ *(.note.gnu.build-id)
+
+.interp
+ *(.interp)
+
+.note.gnu.property
+                0x0000000000000000       0x30
+ .note.gnu.property
+                0x0000000000000000       0x30 /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os
+
+.hash
+ *(.hash)
+
+.gnu.hash
+ *(.gnu.hash)
+
+.dynsym
+ *(.dynsym)
+
+.dynstr
+ *(.dynstr)
+
+.gnu.version
+ *(.gnu.version)
+
+.gnu.version_d
+ *(.gnu.version_d)
+
+.gnu.version_r
+ *(.gnu.version_r)
+
+.rela.init
+ *(.rela.init)
+
+.rela.text
+ *(.rela.text)
+
+.rela.fini
+ *(.rela.fini)
+
+.rela.rodata
+ *(.rela.rodata)
+
+.rela.data.rel.ro
+ *(.rela.data.rel.ro)
+
+.rela.data
+ *(.rela.data)
+
+.rela.tdata
+ *(.rela.tdata)
+
+.rela.tbss
+ *(.rela.tbss)
+
+.rela.ctors
+ *(.rela.ctors)
+
+.rela.dtors
+ *(.rela.dtors)
+
+.rela.got
+ *(.rela.got)
+
+.rela.tls
+ *(.rela.tls)
+
+.rela.bss
+ *(.rela.bss)
+
+.rela.ldata
+ *(.rela.ldata)
+
+.rela.lbss
+ *(.rela.lbss)
+
+.rela.lrodata
+ *(.rela.lrodata)
+
+.rela.ifunc
+ *(.rela.ifunc)
+
+.rela.plt
+ *(.rela.plt)
+
+.relr.dyn
+ *(.relr.dyn)
+
+.init
+ *(SORT_NONE(.init))
+
+.plt
+ *(.plt)
+
+.plt.got
+ *(.plt.got)
+
+.plt.sec
+ *(.plt.sec)
+
+.text           0x0000000000000000    0x26513
+ *(.text .stub)
+ .text          0x0000000000000000    0x20e3c /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os
+                0x0000000000000000                _dl_call_libc_early_init
+                0x0000000000000070                _dl_call_fini
+                0x00000000000001c0                _dl_signal_exception
+                0x00000000000001c0                __GI__dl_signal_exception
+                0x0000000000000220                __GI__dl_signal_error
+                0x0000000000000220                _dl_signal_error
+                0x0000000000000290                _dl_signal_cexception
+                0x0000000000000320                _dl_signal_cerror
+                0x00000000000003b0                _dl_receive_error
+                0x0000000000000440                _dl_catch_exception
+                0x0000000000000440                __GI__dl_catch_exception
+                0x00000000000005c0                _dl_catch_error
+                0x0000000000000750                _dl_close_worker
+                0x0000000000001530                _dl_close
+                0x00000000000015a0                _dl_debug_post_relocate
+                0x0000000000001630                _dl_debug_update
+                0x0000000000001670                _dl_debug_change_state
+                0x00000000000016a0                _dl_debug_initialize
+                0x00000000000017b0                _dl_debug_state
+                0x00000000000017b0                __GI__dl_debug_state
+                0x0000000000001800                _dl_map_object_deps
+                0x0000000000002780                _dl_error_free
+                0x00000000000027a0                _dl_exception_create
+                0x00000000000027a0                __GI__dl_exception_create
+                0x0000000000002880                __GI__dl_exception_create_format
+                0x0000000000002880                _dl_exception_create_format
+                0x0000000000002c90                _dl_exception_free
+                0x0000000000002c90                __GI__dl_exception_free
+                0x0000000000002cb0                _dl_make_stack_executable
+                0x0000000000002cf0                _dl_handle_execstack_tunable
+                0x0000000000003090                __GI__dl_find_object
+                0x0000000000003090                _dl_find_object
+                0x0000000000003440                _dlfo_sort_mappings
+                0x0000000000003500                _dl_find_object_init
+                0x00000000000036c0                _dl_find_object_update
+                0x0000000000003b90                _dl_find_object_dlclose
+                0x0000000000003c70                _dl_find_object_freeres
+                0x0000000000003cc0                _dl_fini
+                0x0000000000004010                _dl_init
+                0x0000000000005050                _dl_dst_count
+                0x00000000000050e0                _dl_dst_substitute
+                0x00000000000058e0                _dl_init_paths
+                0x0000000000005c80                _dl_process_pt_gnu_property
+                0x00000000000077d0                _dl_lookup_map
+                0x0000000000007900                _dl_map_new_object
+                0x00000000000082f0                _dl_map_object
+                0x0000000000008350                _dl_rtld_di_serinfo
+                0x0000000000009360                _dl_lookup_symbol_x
+                0x0000000000009f20                _dl_lookup_direct
+                0x000000000000a0c0                __minimal_malloc
+                0x000000000000a200                __minimal_calloc
+                0x000000000000a240                __minimal_free
+                0x000000000000a280                __minimal_realloc
+                0x000000000000a300                _dl_sysdep_read_whole_file
+                0x000000000000a3b0                _dl_name_match_p
+                0x000000000000a420                _dl_higher_prime_number
+                0x000000000000a480                _dl_strtoul
+                0x000000000000a640                _dl_add_to_namespace_list
+                0x000000000000a6d0                _dl_new_object
+                0x000000000000aed0                __GI__dl_find_dso_for_object
+                0x000000000000aed0                _dl_find_dso_for_object
+                0x000000000000af70                _dl_open
+                0x000000000000b350                _dl_show_scope
+                0x000000000000be80                _dl_get_origin
+                0x000000000000c000                _dl_canonicalize
+                0x000000000000c630                _dl_debug_printf
+                0x000000000000c6e0                _dl_debug_printf_c
+                0x000000000000c790                _dl_dprintf
+                0x000000000000c830                _dl_printf
+                0x000000000000c8d0                _dl_error_printf
+                0x000000000000c970                _dl_fatal_printf
+                0x000000000000c970                __GI__dl_fatal_printf
+                0x000000000000ca10                _dl_readonly_area
+                0x000000000000cb80                _dl_try_allocate_static_tls
+                0x000000000000ccb0                _dl_allocate_static_tls
+                0x000000000000cce0                _dl_protect_relro
+                0x000000000000cd50                _dl_reloc_bad_type
+                0x000000000000ce20                _dl_relocate_object_no_relro
+                0x000000000000f670                _dl_relocate_object
+                0x000000000000f6a0                _dl_fixup
+                0x000000000000f950                _dl_profile_fixup
+                0x000000000000fc90                _dl_scope_free
+                0x000000000000fd60                _dl_setup_hash
+                0x000000000000ff30                _dl_sort_maps_init
+                0x000000000000ff60                _dl_sort_maps
+                0x00000000000103d0                __thread_gscope_wait
+                0x00000000000108b0                _dl_tls_static_surplus_init
+                0x0000000000010940                _dl_assign_tls_modid
+                0x0000000000010a30                _dl_count_modids
+                0x0000000000010ab0                _dl_determine_tlsoffset
+                0x0000000000010c90                _dl_get_tls_static_info
+                0x0000000000010cb0                _dl_allocate_tls_storage
+                0x0000000000010db0                __GI__dl_allocate_tls_init
+                0x0000000000010db0                _dl_allocate_tls_init
+                0x0000000000010fb0                __GI__dl_allocate_tls
+                0x0000000000010fb0                _dl_allocate_tls
+                0x0000000000010ff0                _dl_deallocate_tls
+                0x0000000000010ff0                __GI__dl_deallocate_tls
+                0x00000000000110a0                _dl_update_slotinfo
+                0x0000000000011290                __GI___tls_get_addr
+                0x0000000000011290                ___tls_get_addr
+                0x00000000000112f0                _dl_tls_get_addr_soft
+                0x0000000000011370                _dl_tls_initial_modid_limit_setup
+                0x00000000000113c0                _dl_add_to_slotinfo
+                0x0000000000011520                _dl_init_static_tls
+                0x0000000000011650                __tls_get_addr_slow
+                0x00000000000116a0                __tls_pre_init_tp
+                0x00000000000116f0                __tls_init_tp
+                0x0000000000011850                _dl_runtime_profile_sse
+                0x00000000000119e0                _dl_runtime_resolve_fxsave
+                0x0000000000011a60                _dl_runtime_resolve_xsave
+                0x0000000000011b30                _dl_runtime_resolve_xsavec
+                0x0000000000011df0                __tunable_is_initialized
+                0x0000000000011df0                __GI___tunable_is_initialized
+                0x0000000000011e10                __GI___tunable_set_val
+                0x0000000000011e30                __GI___tunables_init
+                0x00000000000122d0                __GI___tunables_print
+                0x00000000000123d0                __tunable_get_default
+                0x00000000000123d0                __GI___tunable_get_default
+                0x0000000000012420                __tunable_get_val
+                0x0000000000012420                __GI___tunable_get_val
+                0x0000000000012480                _dl_check_map_versions
+                0x0000000000012cf0                _dl_check_all_versions
+                0x0000000000012d70                _dl_write
+                0x0000000000012d80                _dl_cache_libcmp
+                0x00000000000134f0                _dl_load_cache_lookup
+                0x0000000000013810                _dl_unload_cache
+                0x00000000000163b0                __x86_cpu_features
+                0x00000000000163d0                _dl_x86_init_cpu_features
+                0x00000000000163f0                _dl_x86_get_cpu_features
+                0x0000000000016400                _dl_tlsdesc_return
+                0x0000000000016410                _dl_tlsdesc_undefweak
+                0x0000000000016420                _dl_tlsdesc_dynamic_fxsave
+                0x00000000000164d0                _dl_tlsdesc_dynamic_xsave
+                0x00000000000165e0                _dl_tlsdesc_dynamic_xsavec
+                0x00000000000166e0                __tls_get_addr
+                0x0000000000016740                _dl_make_tlsdesc_dynamic
+                0x0000000000016a70                _dl_unmap
+                0x0000000000016af0                _dl_audit_activity_map
+                0x0000000000016ba0                _dl_audit_activity_nsid
+                0x0000000000016bd0                _dl_audit_objsearch
+                0x0000000000016ca0                _dl_audit_objopen
+                0x0000000000016d80                _dl_audit_objclose
+                0x0000000000016e30                _dl_audit_preinit
+                0x0000000000016ec0                _dl_audit_symbind_alt
+                0x0000000000016ec0                __GI__dl_audit_symbind_alt
+                0x0000000000017070                _dl_audit_symbind
+                0x00000000000172e0                _dl_audit_pltenter
+                0x00000000000174f0                _dl_audit_pltexit
+                0x00000000000176f0                _dl_diagnostics_print_string
+                0x0000000000017770                _dl_diagnostics_print_labeled_string
+                0x00000000000177b0                _dl_diagnostics_print_labeled_value
+                0x00000000000177d0                _dl_print_diagnostics
+                0x0000000000018580                _dl_diagnostics_cpu
+                0x0000000000018d80                _dl_diagnostics_kernel
+                0x0000000000018e20                _dl_next_ld_env_entry
+                0x0000000000018e80                unsetenv
+                0x0000000000018fc0                _dl_important_hwcaps
+                0x0000000000019340                _dl_hwcaps_subdirs_active
+                0x00000000000193c0                _dl_hwcaps_split
+                0x0000000000019450                _dl_hwcaps_contains
+                0x0000000000019500                _dl_hwcaps_split_masked
+                0x00000000000195c0                __rtld_libc_freeres
+                0x0000000000019740                __rtld_malloc_init_stubs
+                0x0000000000019780                __sigjmp_save
+                0x0000000000019790                __strerror_r
+                0x0000000000019840                __GI___libc_fatal
+                0x0000000000019840                __libc_fatal
+                0x0000000000019860                __GI___chk_fail
+                0x0000000000019860                __chk_fail
+                0x0000000000019870                __rtld_malloc_is_complete
+                0x0000000000019960                __rtld_malloc_init_real
+                0x0000000000019a70                _itoa
+                0x0000000000019ac0                __strsep
+                0x0000000000019ac0                strsep
+                0x0000000000019ac0                __strsep_g
+                0x0000000000019b20                __rtld_mutex_init
+                0x0000000000019c00                _dl_start_profile
+                0x000000000001a350                __GI__dl_mcount
+                0x000000000001a350                _dl_mcount
+                0x000000000001a780                _dl_tunable_set_hwcaps
+                0x000000000001b320                _dl_sysdep_start
+                0x000000000001b3e0                _dl_sysdep_start_cleanup
+                0x000000000001b3f0                _dl_show_auxv
+                0x000000000001b5a0                _dl_usage
+                0x000000000001b5f0                _dl_version
+                0x000000000001b610                _dl_help
+                0x000000000001b900                _start
+                0x000000000001b908                _dl_start_user
+                0x000000000001ca30                handle_preload_list
+                0x00000000000205e0                __brk
+                0x00000000000205e0                brk
+                0x0000000000020610                __getcwd
+                0x0000000000020610                getcwd
+                0x0000000000020c10                openat64
+                0x0000000000020c50                __alloc_dir
+                0x0000000000020d20                __opendir
+                0x0000000000020d20                opendir
+                0x0000000000020db0                sbrk
+                0x0000000000020db0                __sbrk
+ *fill*         0x0000000000020e3c        0x4 
+ .text          0x0000000000020e40       0xe2 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-check_fds.os)
+                0x0000000000020ef0                __libc_check_standard_fds
+ .text          0x0000000000020f22        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-errno.os)
+ *fill*         0x0000000000020f22        0xe 
+ .text          0x0000000000020f30       0x26 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-closedir.os)
+                0x0000000000020f30                __closedir
+                0x0000000000020f30                closedir
+ *fill*         0x0000000000020f56        0xa 
+ .text          0x0000000000020f60       0x9e /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fdopendir.os)
+                0x0000000000020f60                fdopendir
+                0x0000000000020f60                __fdopendir
+ *fill*         0x0000000000020ffe        0x2 
+ .text          0x0000000000021000       0xfd /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-readdir64.os)
+                0x0000000000021000                readdir
+                0x0000000000021000                __readdir64
+                0x0000000000021000                __readdir
+                0x0000000000021000                readdir64
+ *fill*         0x00000000000210fd        0x3 
+ .text          0x0000000000021100       0x28 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-rewinddir.os)
+                0x0000000000021100                rewinddir
+                0x0000000000021100                __rewinddir
+ *fill*         0x0000000000021128        0x8 
+ .text          0x0000000000021130       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-getdents64.os)
+                0x0000000000021130                getdents64
+                0x0000000000021130                __getdents64
+ .text          0x0000000000021160       0x6b /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-dl-addr-obj.os)
+                0x0000000000021160                _dl_addr_inside_object
+ *fill*         0x00000000000211cb        0x5 
+ .text          0x00000000000211d0        0x7 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-prof-freq.os)
+                0x00000000000211d0                __profile_frequency
+ *fill*         0x00000000000211d7        0x9 
+ .text          0x00000000000211e0       0xf7 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-profil.os)
+                0x0000000000021230                __profil
+                0x0000000000021230                profil
+ *fill*         0x00000000000212d7        0x9 
+ .text          0x00000000000212e0       0x1e /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-access.os)
+                0x00000000000212e0                access
+                0x00000000000212e0                __access
+ *fill*         0x00000000000212fe        0x2 
+ .text          0x0000000000021300       0x1e /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fstat64.os)
+                0x0000000000021300                __GI___fstat64
+                0x0000000000021300                fstat64
+                0x0000000000021300                fstat
+                0x0000000000021300                __fstat64
+                0x0000000000021300                __fstat
+ *fill*         0x000000000002131e        0x2 
+ .text          0x0000000000021320       0x26 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fstatat64.os)
+                0x0000000000021320                fstatat
+                0x0000000000021320                __fstatat
+                0x0000000000021320                fstatat64
+                0x0000000000021320                __fstatat64
+                0x0000000000021320                __GI___fstatat
+                0x0000000000021320                __GI___fstatat64
+ *fill*         0x0000000000021346        0xa 
+ .text          0x0000000000021350       0x20 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-lseek64.os)
+                0x0000000000021350                __lseek64
+                0x0000000000021350                lseek
+                0x0000000000021350                __libc_lseek64
+                0x0000000000021350                __lseek
+                0x0000000000021350                __libc_lseek
+                0x0000000000021350                lseek64
+ .text          0x0000000000021370       0x15 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-lstat64.os)
+                0x0000000000021370                __lstat64
+                0x0000000000021370                lstat
+                0x0000000000021370                lstat64
+                0x0000000000021370                __GI___lstat64
+                0x0000000000021370                __lstat
+ *fill*         0x0000000000021385        0xb 
+ .text          0x0000000000021390       0x66 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-openat64.os)
+                0x0000000000021390                __openat64
+                0x0000000000021390                __libc_openat64
+                0x0000000000021390                __openat
+                0x0000000000021390                openat
+ *fill*         0x00000000000213f6        0xa 
+ .text          0x0000000000021400       0x12 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-stat64.os)
+                0x0000000000021400                stat64
+                0x0000000000021400                __stat
+                0x0000000000021400                __stat64
+                0x0000000000021400                stat
+                0x0000000000021400                __GI___stat64
+ *fill*         0x0000000000021412        0xe 
+ .text          0x0000000000021420       0x1e /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-close_nocancel.os)
+                0x0000000000021420                __GI___close_nocancel
+ *fill*         0x000000000002143e        0x2 
+ .text          0x0000000000021440        0x8 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-close_nocancel_nostatus.os)
+                0x0000000000021440                __GI___close_nocancel_nostatus
+ *fill*         0x0000000000021448        0x8 
+ .text          0x0000000000021450       0xe1 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fcntl_nocancel.os)
+                0x0000000000021450                __fcntl64_nocancel
+                0x0000000000021450                __GI___fcntl64_nocancel
+                0x00000000000214e0                __fcntl64_nocancel_adjusted
+ *fill*         0x0000000000021531        0xf 
+ .text          0x0000000000021540       0x6e /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-open64_nocancel.os)
+                0x0000000000021540                __GI___open_nocancel
+                0x0000000000021540                __open_nocancel
+                0x0000000000021540                __GI___open64_nocancel
+                0x0000000000021540                __open64_nocancel
+ *fill*         0x00000000000215ae        0x2 
+ .text          0x00000000000215b0       0x28 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-pread64_nocancel.os)
+                0x00000000000215b0                __GI___pread64_nocancel
+                0x00000000000215b0                __pread64_nocancel
+ *fill*         0x00000000000215d8        0x8 
+ .text          0x00000000000215e0       0x20 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-read_nocancel.os)
+                0x00000000000215e0                __read_nocancel
+                0x00000000000215e0                __GI___read_nocancel
+ .text          0x0000000000021600       0x20 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-write_nocancel.os)
+                0x0000000000021600                __GI___write_nocancel
+                0x0000000000021600                __write_nocancel
+ .text          0x0000000000021620       0xaf /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-scratch_buffer_set_array_size.os)
+                0x0000000000021620                __libc_scratch_buffer_set_array_size
+ *fill*         0x00000000000216cf        0x1 
+ .text          0x00000000000216d0       0x43 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fd_to_filename.os)
+                0x00000000000216d0                __fd_to_filename
+ *fill*         0x0000000000021713        0xd 
+ .text          0x0000000000021720       0x99 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-mmap64.os)
+                0x0000000000021720                __mmap
+                0x0000000000021720                mmap
+                0x0000000000021720                __mmap64
+                0x0000000000021720                mmap64
+ *fill*         0x00000000000217b9        0x7 
+ .text          0x00000000000217c0       0x20 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-mprotect.os)
+                0x00000000000217c0                __mprotect
+                0x00000000000217c0                __GI___mprotect
+                0x00000000000217c0                __GI_mprotect
+                0x00000000000217c0                mprotect
+ .text          0x00000000000217e0       0x20 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-munmap.os)
+                0x00000000000217e0                munmap
+                0x00000000000217e0                __GI___munmap
+                0x00000000000217e0                __GI_munmap
+                0x00000000000217e0                __munmap
+ .text          0x0000000000021800       0xc0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-setvmaname.os)
+                0x0000000000021800                __is_decorate_maps_enabled
+                0x0000000000021870                __set_vma_name
+ .text          0x00000000000218c0       0xe4 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-lowlevellock.os)
+                0x00000000000218c0                __lll_lock_wait_private
+                0x0000000000021910                __lll_lock_wait
+                0x0000000000021970                __lll_lock_wake_private
+                0x0000000000021990                __lll_lock_wake
+ *fill*         0x00000000000219a4        0xc 
+ .text          0x00000000000219b0       0x22 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-_exit.os)
+                0x00000000000219b0                _Exit
+                0x00000000000219b0                __GI__exit
+                0x00000000000219b0                _exit
+ *fill*         0x00000000000219d2        0xe 
+ .text          0x00000000000219e0        0x8 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-getpid.os)
+                0x00000000000219e0                __getpid
+                0x00000000000219e0                getpid
+                0x00000000000219e0                __GI_getpid
+                0x00000000000219e0                __GI___getpid
+ *fill*         0x00000000000219e8        0x8 
+ .text          0x00000000000219f0       0x20 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-uname.os)
+                0x00000000000219f0                uname
+                0x00000000000219f0                __GI_uname
+                0x00000000000219f0                __uname
+                0x00000000000219f0                __GI___uname
+ .text          0x0000000000021a10        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-environ.os)
+ .text          0x0000000000021a10       0x4f /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-setjmp.os)
+                0x0000000000021a10                __sigsetjmp
+                0x0000000000021a10                __GI___sigsetjmp
+ *fill*         0x0000000000021a5f        0x1 
+ .text          0x0000000000021a60       0x4a /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-__longjmp.os)
+                0x0000000000021a60                __longjmp
+ *fill*         0x0000000000021aaa        0x6 
+ .text          0x0000000000021ab0      0x1a7 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-libc_sigaction.os)
+                0x0000000000021ad0                __libc_sigaction
+ *fill*         0x0000000000021c57       0x29 
+ .text          0x0000000000021c80      0x188 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-_fitoa_word.os)
+                0x0000000000021c80                _itoa_word
+                0x0000000000021db0                _fitoa_word
+ .text          0x0000000000021e08        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-itoa-udigits.os)
+ *fill*         0x0000000000021e08       0x18 
+ .text          0x0000000000021e20       0xa5 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-getenv.os)
+                0x0000000000021e20                getenv
+ *fill*         0x0000000000021ec5        0xb 
+ .text          0x0000000000021ed0      0x323 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-memchr.os)
+                0x0000000000021ed0                memchr
+                0x0000000000021ed0                __memchr
+ *fill*         0x00000000000221f3        0xd 
+ .text          0x0000000000022200      0x2d0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-memcmp.os)
+                0x0000000000022200                bcmp
+                0x0000000000022200                memcmp
+ .text          0x00000000000224d0      0x1e1 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-memmove.os)
+                0x00000000000224d0                mempcpy
+                0x00000000000224d0                __mempcpy
+                0x00000000000224e0                memmove
+                0x00000000000224e0                memcpy
+ *fill*         0x00000000000226b1        0xf 
+ .text          0x00000000000226c0       0xc9 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-memset.os)
+                0x00000000000226c0                memset
+ *fill*         0x0000000000022789        0x7 
+ .text          0x0000000000022790      0x6b0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-stpcpy.os)
+                0x0000000000022790                stpcpy
+                0x0000000000022790                __stpcpy
+ .text          0x0000000000022e40      0x21a /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strchr.os)
+                0x0000000000022e40                index
+                0x0000000000022e40                strchr
+ *fill*         0x000000000002305a        0x6 
+ .text          0x0000000000023060     0x1439 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strcmp.os)
+                0x0000000000023060                strcmp
+ *fill*         0x0000000000024499       0x27 
+ .text          0x00000000000244c0      0x17d /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strcspn.os)
+                0x00000000000244c0                strcspn
+ *fill*         0x000000000002463d        0x3 
+ .text          0x0000000000024640       0x41 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strdup.os)
+                0x0000000000024640                __strdup
+                0x0000000000024640                strdup
+ *fill*         0x0000000000024681        0xf 
+ .text          0x0000000000024690        0x5 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strerrorname_np.os)
+                0x0000000000024690                strerrorname_np
+ *fill*         0x0000000000024695        0xb 
+ .text          0x00000000000246a0      0x19c /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strlen.os)
+                0x00000000000246a0                strlen
+ *fill*         0x000000000002483c        0x4 
+ .text          0x0000000000024840     0x1849 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strncmp.os)
+                0x0000000000024840                strncmp
+ *fill*         0x0000000000026089        0x7 
+ .text          0x0000000000026090      0x218 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strnlen.os)
+                0x0000000000026090                __strnlen
+                0x0000000000026090                strnlen
+ *fill*         0x00000000000262a8        0x8 
+ .text          0x00000000000262b0      0x20a /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strchrnul.os)
+                0x00000000000262b0                __strchrnul
+                0x00000000000262b0                strchrnul
+ *fill*         0x00000000000264ba        0x6 
+ .text          0x00000000000264c0       0x1e /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-setitimer.os)
+                0x00000000000264c0                setitimer
+                0x00000000000264c0                __setitimer
+ *fill*         0x00000000000264de        0x2 
+ .text          0x00000000000264e0       0x33 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-errname.os)
+                0x00000000000264e0                __get_errname
+ *(.gnu.warning)
+
+.text.unlikely  0x0000000000000000      0xf07
+ .text.unlikely
+                0x0000000000000000      0xee8 /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os
+                0x0000000000000916                __GI___assert_fail
+                0x0000000000000916                __assert_fail
+                0x000000000000097d                __GI___assert_perror_fail
+                0x000000000000097d                __assert_perror_fail
+ .text.unlikely
+                0x0000000000000ee8       0x1f /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fd_to_filename.os)
+
+.text.evex512   0x0000000000000000      0x3f9
+ .text.evex512  0x0000000000000000      0x3f9 /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os
+                0x0000000000000000                _dl_runtime_profile_avx512
+
+.text.avx       0x0000000000000000      0x3eb
+ .text.avx      0x0000000000000000      0x3eb /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os
+                0x0000000000000000                _dl_runtime_profile_avx
+
+.text.compat    0x0000000000000000        0x1
+ .text.compat   0x0000000000000000        0x1 /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os
+                0x0000000000000000                __rtld_version_placeholder_1
+                0x0000000000000000                __rtld_version_placeholder@GLIBC_2.34
+
+.fini
+ *(SORT_NONE(.fini))
+
+.rodata         0x0000000000000000     0x1a35
+ *(.rodata)
+ .rodata        0x0000000000000000     0x13be /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os
+ .rodata        0x00000000000013be       0x80 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-stpcpy.os)
+ *fill*         0x000000000000143e        0x2 
+ .rodata        0x0000000000001440       0x40 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strcmp.os)
+ .rodata        0x0000000000001480       0x40 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strncmp.os)
+ .rodata        0x00000000000014c0      0x575 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-errname.os)
+
+.rodata.str1.1  0x0000000000000000     0x192a
+ .rodata.str1.1
+                0x0000000000000000     0x18f5 /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os
+ .rodata.str1.1
+                0x00000000000018f5       0x14 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-check_fds.os)
+ .rodata.str1.1
+                0x0000000000001909       0x21 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fd_to_filename.os)
+
+.rodata.str1.16
+                0x0000000000000000      0x571
+ .rodata.str1.16
+                0x0000000000000000      0x555 /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os
+                0x0000000000000390                _dl_hwcaps_subdirs
+                0x00000000000003f0                __GI__itoa_lower_digits
+                0x00000000000003f0                _itoa_lower_digits
+ *fill*         0x0000000000000555        0xb 
+ .rodata.str1.16
+                0x0000000000000560       0x11 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fd_to_filename.os)
+
+.rodata.str1.8  0x0000000000000000     0x317f
+ .rodata.str1.8
+                0x0000000000000000     0x3141 /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os
+ *fill*         0x0000000000003141        0x7 
+ .rodata.str1.8
+                0x0000000000003148       0x37 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-lowlevellock.os)
+
+.rodata.str1.32
+                0x0000000000000000       0x85
+ .rodata.str1.32
+                0x0000000000000000       0x5b /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os
+ *fill*         0x000000000000005b        0x5 
+ .rodata.str1.32
+                0x0000000000000060       0x25 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-itoa-udigits.os)
+                0x0000000000000060                __GI__itoa_upper_digits
+
+.rodata.cst4    0x0000000000000000        0x8
+ .rodata.cst4   0x0000000000000000        0x8 /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os
+                0x0000000000000004                __rseq_flags
+
+.rodata.cst16   0x0000000000000000       0x50
+ .rodata.cst16  0x0000000000000000       0x50 /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os
+
+.rodata.cst2    0x0000000000000000        0x2
+ .rodata.cst2   0x0000000000000000        0x2 /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os
+
+.rodata.cst8    0x0000000000000000        0x8
+ .rodata.cst8   0x0000000000000000        0x8 /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os
+
+.rodata1
+ *(.rodata1)
+
+.eh_frame_hdr
+ *(.eh_frame_hdr)
+
+.eh_frame       0x0000000000000000     0x475c
+ *(.eh_frame)
+ .eh_frame      0x0000000000000000     0x3a68 /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os
+                                       0x3ae0 (松开之前的大小)
+ .eh_frame      0x0000000000003a68       0x60 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-check_fds.os)
+ .eh_frame      0x0000000000003ac8       0x38 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-closedir.os)
+ .eh_frame      0x0000000000003b00       0x50 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fdopendir.os)
+ .eh_frame      0x0000000000003b50       0x48 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-readdir64.os)
+ .eh_frame      0x0000000000003b98       0x38 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-rewinddir.os)
+ .eh_frame      0x0000000000003bd0       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-getdents64.os)
+ .eh_frame      0x0000000000003c00       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-dl-addr-obj.os)
+ .eh_frame      0x0000000000003c30       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-prof-freq.os)
+ .eh_frame      0x0000000000003c60       0x48 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-profil.os)
+ .eh_frame      0x0000000000003ca8       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-access.os)
+ .eh_frame      0x0000000000003cd8       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fstat64.os)
+ .eh_frame      0x0000000000003d08       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fstatat64.os)
+ .eh_frame      0x0000000000003d38       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-lseek64.os)
+ .eh_frame      0x0000000000003d68       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-lstat64.os)
+ .eh_frame      0x0000000000003d98       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-openat64.os)
+ .eh_frame      0x0000000000003dc8       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-stat64.os)
+ .eh_frame      0x0000000000003df8       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-close_nocancel.os)
+ .eh_frame      0x0000000000003e28       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-close_nocancel_nostatus.os)
+ .eh_frame      0x0000000000003e58       0x40 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fcntl_nocancel.os)
+ .eh_frame      0x0000000000003e98       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-open64_nocancel.os)
+ .eh_frame      0x0000000000003ec8       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-pread64_nocancel.os)
+ .eh_frame      0x0000000000003ef8       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-read_nocancel.os)
+ .eh_frame      0x0000000000003f28       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-write_nocancel.os)
+ .eh_frame      0x0000000000003f58       0x58 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-scratch_buffer_set_array_size.os)
+ .eh_frame      0x0000000000003fb0       0x50 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fd_to_filename.os)
+ .eh_frame      0x0000000000004000       0x48 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-mmap64.os)
+ .eh_frame      0x0000000000004048       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-mprotect.os)
+ .eh_frame      0x0000000000004078       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-munmap.os)
+ .eh_frame      0x00000000000040a8       0x70 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-setvmaname.os)
+ .eh_frame      0x0000000000004118       0x70 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-lowlevellock.os)
+ .eh_frame      0x0000000000004188       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-_exit.os)
+ .eh_frame      0x00000000000041b8       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-getpid.os)
+ .eh_frame      0x00000000000041e8       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-uname.os)
+ .eh_frame      0x0000000000004218       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-setjmp.os)
+ .eh_frame      0x0000000000004248       0x48 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-__longjmp.os)
+ .eh_frame      0x0000000000004290       0xc8 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-libc_sigaction.os)
+                                         0xd0 (松开之前的大小)
+ .eh_frame      0x0000000000004358       0x50 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-_fitoa_word.os)
+ .eh_frame      0x00000000000043a8       0x78 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-getenv.os)
+ .eh_frame      0x0000000000004420       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-memchr.os)
+ .eh_frame      0x0000000000004450       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-memcmp.os)
+ .eh_frame      0x0000000000004480       0x40 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-memmove.os)
+ .eh_frame      0x00000000000044c0       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-memset.os)
+ .eh_frame      0x00000000000044f0       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-stpcpy.os)
+ .eh_frame      0x0000000000004520       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strchr.os)
+ .eh_frame      0x0000000000004550       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strcmp.os)
+ .eh_frame      0x0000000000004580       0x40 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strcspn.os)
+ .eh_frame      0x00000000000045c0       0x50 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strdup.os)
+ .eh_frame      0x0000000000004610       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strerrorname_np.os)
+ .eh_frame      0x0000000000004640       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strlen.os)
+ .eh_frame      0x0000000000004670       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strncmp.os)
+ .eh_frame      0x00000000000046a0       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strnlen.os)
+ .eh_frame      0x00000000000046d0       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strchrnul.os)
+ .eh_frame      0x0000000000004700       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-setitimer.os)
+ .eh_frame      0x0000000000004730       0x2c /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-errname.os)
+                                         0x30 (松开之前的大小)
+
+.sframe
+ *(.sframe)
+
+.gcc_except_table
+ *(.gcc_except_table)
+
+.gnu_extab
+ *(.gnu_extab*)
+
+.exception_ranges
+ *(.exception_ranges)
+
+.eh_frame
+ *(.eh_frame)
+
+.sframe
+ *(.sframe)
+
+.gnu_extab
+ *(.gnu_extab)
+
+.gcc_except_table
+ *(.gcc_except_table)
+
+.exception_ranges
+ *(.exception_ranges)
+
+.tdata
+ *(.tdata)
+
+.tbss
+ *(.tbss)
+
+.jcr
+ *(.jcr)
+
+.dynamic
+ *(.dynamic)
+
+.got
+ *(.got)
+
+.got.plt
+ *(.got.plt)
+
+.data           0x0000000000000000      0x84c
+ *(.data)
+ .data          0x0000000000000000      0x848 /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os
+                0x0000000000000000                _rtld_global
+                0x0000000000000000                _rtld_local
+ .data          0x0000000000000848        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-check_fds.os)
+ .data          0x0000000000000848        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-errno.os)
+ .data          0x0000000000000848        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-closedir.os)
+ .data          0x0000000000000848        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fdopendir.os)
+ .data          0x0000000000000848        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-readdir64.os)
+ .data          0x0000000000000848        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-rewinddir.os)
+ .data          0x0000000000000848        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-getdents64.os)
+ .data          0x0000000000000848        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-dl-addr-obj.os)
+ .data          0x0000000000000848        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-prof-freq.os)
+ .data          0x0000000000000848        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-profil.os)
+ .data          0x0000000000000848        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-access.os)
+ .data          0x0000000000000848        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fstat64.os)
+ .data          0x0000000000000848        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fstatat64.os)
+ .data          0x0000000000000848        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-lseek64.os)
+ .data          0x0000000000000848        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-lstat64.os)
+ .data          0x0000000000000848        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-openat64.os)
+ .data          0x0000000000000848        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-stat64.os)
+ .data          0x0000000000000848        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-close_nocancel.os)
+ .data          0x0000000000000848        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-close_nocancel_nostatus.os)
+ .data          0x0000000000000848        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fcntl_nocancel.os)
+ .data          0x0000000000000848        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-open64_nocancel.os)
+ .data          0x0000000000000848        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-pread64_nocancel.os)
+ .data          0x0000000000000848        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-read_nocancel.os)
+ .data          0x0000000000000848        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-write_nocancel.os)
+ .data          0x0000000000000848        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-scratch_buffer_set_array_size.os)
+ .data          0x0000000000000848        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fd_to_filename.os)
+ .data          0x0000000000000848        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-mmap64.os)
+ .data          0x0000000000000848        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-mprotect.os)
+ .data          0x0000000000000848        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-munmap.os)
+ .data          0x0000000000000848        0x4 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-setvmaname.os)
+ .data          0x000000000000084c        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-lowlevellock.os)
+ .data          0x000000000000084c        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-_exit.os)
+ .data          0x000000000000084c        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-getpid.os)
+ .data          0x000000000000084c        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-uname.os)
+ .data          0x000000000000084c        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-environ.os)
+ .data          0x000000000000084c        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-setjmp.os)
+ .data          0x000000000000084c        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-__longjmp.os)
+ .data          0x000000000000084c        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-libc_sigaction.os)
+ .data          0x000000000000084c        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-_fitoa_word.os)
+ .data          0x000000000000084c        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-itoa-udigits.os)
+ .data          0x000000000000084c        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-getenv.os)
+ .data          0x000000000000084c        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-memchr.os)
+ .data          0x000000000000084c        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-memcmp.os)
+ .data          0x000000000000084c        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-memmove.os)
+ .data          0x000000000000084c        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-memset.os)
+ .data          0x000000000000084c        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-stpcpy.os)
+ .data          0x000000000000084c        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strchr.os)
+ .data          0x000000000000084c        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strcmp.os)
+ .data          0x000000000000084c        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strcspn.os)
+ .data          0x000000000000084c        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strdup.os)
+ .data          0x000000000000084c        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strerrorname_np.os)
+ .data          0x000000000000084c        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strlen.os)
+ .data          0x000000000000084c        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strncmp.os)
+ .data          0x000000000000084c        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strnlen.os)
+ .data          0x000000000000084c        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strchrnul.os)
+ .data          0x000000000000084c        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-setitimer.os)
+ .data          0x000000000000084c        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-errname.os)
+
+.data.rel.ro.local
+                0x0000000000000000       0x30
+ .data.rel.ro.local
+                0x0000000000000000       0x30 /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os
+                0x0000000000000008                __x86_cpu_features_p
+
+.data.rel.ro    0x0000000000000000     0x1880
+ .data.rel.ro   0x0000000000000000     0x1880 /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os
+                0x0000000000000050                __rtld_search_dirs
+                0x0000000000000080                __rtld_env_path_list
+                0x0000000000000090                _dl_tls_initial_modid_limit
+                0x0000000000001448                __GI___rseq_size
+                0x0000000000001448                _rseq_size
+                0x0000000000001448                __rseq_size
+                0x0000000000001450                __rseq_offset
+                0x0000000000001450                __GI___rseq_offset
+                0x0000000000001450                _rseq_offset
+                0x0000000000001458                __rtld_realloc
+                0x0000000000001460                __rtld_malloc
+                0x0000000000001468                __rtld_free
+                0x0000000000001470                __rtld_calloc
+                0x0000000000001478                ___rtld_mutex_unlock
+                0x0000000000001480                ___rtld_mutex_lock
+                0x0000000000001488                _dl_random
+                0x0000000000001490                __libc_stack_end
+                0x0000000000001490                __GI___libc_stack_end
+                0x0000000000001498                __GI___libc_enable_secure
+                0x0000000000001498                __libc_enable_secure
+                0x00000000000014b0                __pointer_chk_guard_local
+                0x00000000000014b8                __GI__dl_argv
+                0x00000000000014b8                _dl_argv
+                0x00000000000014c0                _dl_argc
+                0x00000000000014e0                _rtld_global_ro
+                0x00000000000014e0                _rtld_local_ro
+
+.data1
+ *(.data1)
+
+.bss            0x0000000000000000      0xa80
+ *(.bss)
+ .bss           0x0000000000000000      0xa40 /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os
+                0x0000000000000020                _r_debug_array
+                0x00000000000002f8                __GI__r_debug
+                0x00000000000002f8                _r_debug_extended
+                0x00000000000002f8                _r_debug
+                0x0000000000000370                _dl_tls_threads_in_update
+                0x0000000000000378                _rseq_align
+                0x0000000000000380                __nptl_initial_report_events
+                0x0000000000000380                __GI___nptl_initial_report_events
+                0x00000000000003b8                _dl_x86_features_tlsdesc_state_size
+                0x00000000000003c0                _dl_hwcaps_priorities_length
+                0x00000000000003c8                _dl_hwcaps_priorities
+                0x0000000000000420                __rtld_tls_init_tp_called
+                0x0000000000000440                _dl_rtld_auditstate
+                0x0000000000000540                _dl_rtld_map
+                0x0000000000000a38                __curbrk
+ .bss           0x0000000000000a40        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-check_fds.os)
+ .bss           0x0000000000000a40        0x4 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-errno.os)
+                0x0000000000000a40                rtld_errno
+ .bss           0x0000000000000a44        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-closedir.os)
+ .bss           0x0000000000000a44        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fdopendir.os)
+ .bss           0x0000000000000a44        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-readdir64.os)
+ .bss           0x0000000000000a44        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-rewinddir.os)
+ .bss           0x0000000000000a44        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-getdents64.os)
+ .bss           0x0000000000000a44        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-dl-addr-obj.os)
+ .bss           0x0000000000000a44        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-prof-freq.os)
+ *fill*         0x0000000000000a44        0x4 
+ .bss           0x0000000000000a48       0x20 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-profil.os)
+ .bss           0x0000000000000a68        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-access.os)
+ .bss           0x0000000000000a68        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fstat64.os)
+ .bss           0x0000000000000a68        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fstatat64.os)
+ .bss           0x0000000000000a68        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-lseek64.os)
+ .bss           0x0000000000000a68        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-lstat64.os)
+ .bss           0x0000000000000a68        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-openat64.os)
+ .bss           0x0000000000000a68        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-stat64.os)
+ .bss           0x0000000000000a68        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-close_nocancel.os)
+ .bss           0x0000000000000a68        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-close_nocancel_nostatus.os)
+ .bss           0x0000000000000a68        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fcntl_nocancel.os)
+ .bss           0x0000000000000a68        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-open64_nocancel.os)
+ .bss           0x0000000000000a68        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-pread64_nocancel.os)
+ .bss           0x0000000000000a68        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-read_nocancel.os)
+ .bss           0x0000000000000a68        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-write_nocancel.os)
+ .bss           0x0000000000000a68        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-scratch_buffer_set_array_size.os)
+ .bss           0x0000000000000a68        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fd_to_filename.os)
+ .bss           0x0000000000000a68        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-mmap64.os)
+ .bss           0x0000000000000a68        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-mprotect.os)
+ .bss           0x0000000000000a68        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-munmap.os)
+ .bss           0x0000000000000a68        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-setvmaname.os)
+ .bss           0x0000000000000a68        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-lowlevellock.os)
+ .bss           0x0000000000000a68        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-_exit.os)
+ .bss           0x0000000000000a68        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-getpid.os)
+ .bss           0x0000000000000a68        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-uname.os)
+ .bss           0x0000000000000a68       0x18 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-environ.os)
+                0x0000000000000a68                __environ_counter
+                0x0000000000000a70                __environ_array_list
+                0x0000000000000a78                _environ
+                0x0000000000000a78                __environ
+                0x0000000000000a78                environ
+ .bss           0x0000000000000a80        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-setjmp.os)
+ .bss           0x0000000000000a80        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-__longjmp.os)
+ .bss           0x0000000000000a80        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-libc_sigaction.os)
+ .bss           0x0000000000000a80        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-_fitoa_word.os)
+ .bss           0x0000000000000a80        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-itoa-udigits.os)
+ .bss           0x0000000000000a80        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-getenv.os)
+ .bss           0x0000000000000a80        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-memchr.os)
+ .bss           0x0000000000000a80        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-memcmp.os)
+ .bss           0x0000000000000a80        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-memmove.os)
+ .bss           0x0000000000000a80        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-memset.os)
+ .bss           0x0000000000000a80        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-stpcpy.os)
+ .bss           0x0000000000000a80        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strchr.os)
+ .bss           0x0000000000000a80        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strcmp.os)
+ .bss           0x0000000000000a80        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strcspn.os)
+ .bss           0x0000000000000a80        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strdup.os)
+ .bss           0x0000000000000a80        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strerrorname_np.os)
+ .bss           0x0000000000000a80        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strlen.os)
+ .bss           0x0000000000000a80        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strncmp.os)
+ .bss           0x0000000000000a80        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strnlen.os)
+ .bss           0x0000000000000a80        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strchrnul.os)
+ .bss           0x0000000000000a80        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-setitimer.os)
+ .bss           0x0000000000000a80        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-errname.os)
+
+.lbss
+ *(.lbss)
+
+.lrodata
+ *(.lrodata)
+
+.ldata
+ *(.ldata)
+
+.stab
+ *(.stab)
+
+.stabstr
+ *(.stabstr)
+
+.stab.excl
+ *(.stab.excl)
+
+.stab.exclstr
+ *(.stab.exclstr)
+
+.stab.index
+ *(.stab.index)
+
+.stab.indexstr
+ *(.stab.indexstr)
+
+.comment        0x0000000000000000      0xab8
+ *(.comment)
+ .comment       0x0000000000000000      0x658 /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os
+ .comment       0x0000000000000658       0x1c /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-check_fds.os)
+ .comment       0x0000000000000674       0x1c /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-errno.os)
+ .comment       0x0000000000000690       0x1c /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-closedir.os)
+ .comment       0x00000000000006ac       0x1c /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fdopendir.os)
+ .comment       0x00000000000006c8       0x1c /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-readdir64.os)
+ .comment       0x00000000000006e4       0x1c /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-rewinddir.os)
+ .comment       0x0000000000000700       0x1c /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-getdents64.os)
+ .comment       0x000000000000071c       0x1c /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-dl-addr-obj.os)
+ .comment       0x0000000000000738       0x1c /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-prof-freq.os)
+ .comment       0x0000000000000754       0x1c /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-profil.os)
+ .comment       0x0000000000000770       0x1c /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-access.os)
+ .comment       0x000000000000078c       0x1c /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fstat64.os)
+ .comment       0x00000000000007a8       0x1c /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fstatat64.os)
+ .comment       0x00000000000007c4       0x1c /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-lseek64.os)
+ .comment       0x00000000000007e0       0x1c /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-lstat64.os)
+ .comment       0x00000000000007fc       0x1c /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-openat64.os)
+ .comment       0x0000000000000818       0x1c /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-stat64.os)
+ .comment       0x0000000000000834       0x1c /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-close_nocancel.os)
+ .comment       0x0000000000000850       0x1c /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-close_nocancel_nostatus.os)
+ .comment       0x000000000000086c       0x1c /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fcntl_nocancel.os)
+ .comment       0x0000000000000888       0x1c /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-open64_nocancel.os)
+ .comment       0x00000000000008a4       0x1c /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-pread64_nocancel.os)
+ .comment       0x00000000000008c0       0x1c /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-read_nocancel.os)
+ .comment       0x00000000000008dc       0x1c /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-write_nocancel.os)
+ .comment       0x00000000000008f8       0x1c /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-scratch_buffer_set_array_size.os)
+ .comment       0x0000000000000914       0x1c /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fd_to_filename.os)
+ .comment       0x0000000000000930       0x1c /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-mmap64.os)
+ .comment       0x000000000000094c       0x1c /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-setvmaname.os)
+ .comment       0x0000000000000968       0x1c /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-lowlevellock.os)
+ .comment       0x0000000000000984       0x1c /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-_exit.os)
+ .comment       0x00000000000009a0       0x1c /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-environ.os)
+ .comment       0x00000000000009bc       0x1c /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-libc_sigaction.os)
+ .comment       0x00000000000009d8       0x1c /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-_fitoa_word.os)
+ .comment       0x00000000000009f4       0x1c /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-itoa-udigits.os)
+ .comment       0x0000000000000a10       0x1c /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-getenv.os)
+ .comment       0x0000000000000a2c       0x1c /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strcspn.os)
+ .comment       0x0000000000000a48       0x1c /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strdup.os)
+ .comment       0x0000000000000a64       0x1c /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strerrorname_np.os)
+ .comment       0x0000000000000a80       0x1c /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-setitimer.os)
+ .comment       0x0000000000000a9c       0x1c /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-errname.os)
+
+.note.GNU-stack
+                0x0000000000000000        0x0
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-check_fds.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-errno.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-closedir.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fdopendir.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-readdir64.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-rewinddir.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-getdents64.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-dl-addr-obj.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-prof-freq.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-profil.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-access.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fstat64.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fstatat64.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-lseek64.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-lstat64.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-openat64.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-stat64.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-close_nocancel.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-close_nocancel_nostatus.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fcntl_nocancel.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-open64_nocancel.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-pread64_nocancel.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-read_nocancel.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-write_nocancel.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-scratch_buffer_set_array_size.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fd_to_filename.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-mmap64.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-mprotect.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-munmap.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-setvmaname.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-lowlevellock.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-_exit.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-getpid.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-uname.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-environ.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-setjmp.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-__longjmp.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-libc_sigaction.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-_fitoa_word.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-itoa-udigits.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-getenv.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-memchr.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-memcmp.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-memmove.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-memset.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-stpcpy.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strchr.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strcmp.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strcspn.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strdup.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strerrorname_np.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strlen.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strncmp.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strnlen.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strchrnul.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-setitimer.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-errname.os)
+
+.gnu.build.attributes
+ *(.gnu.build.attributes)
+
+.debug
+ *(.debug)
+
+.line
+ *(.line)
+
+.debug_srcinfo
+ *(.debug_srcinfo)
+
+.debug_sfnames
+ *(.debug_sfnames)
+
+.debug_aranges  0x0000000000000000     0x1800
+ *(.debug_aranges)
+ .debug_aranges
+                0x0000000000000000      0xd70 /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os
+ .debug_aranges
+                0x0000000000000d70       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-check_fds.os)
+ .debug_aranges
+                0x0000000000000da0       0x20 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-errno.os)
+ .debug_aranges
+                0x0000000000000dc0       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-closedir.os)
+ .debug_aranges
+                0x0000000000000df0       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fdopendir.os)
+ .debug_aranges
+                0x0000000000000e20       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-readdir64.os)
+ .debug_aranges
+                0x0000000000000e50       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-rewinddir.os)
+ .debug_aranges
+                0x0000000000000e80       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-getdents64.os)
+ .debug_aranges
+                0x0000000000000eb0       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-dl-addr-obj.os)
+ .debug_aranges
+                0x0000000000000ee0       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-prof-freq.os)
+ .debug_aranges
+                0x0000000000000f10       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-profil.os)
+ .debug_aranges
+                0x0000000000000f40       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-access.os)
+ .debug_aranges
+                0x0000000000000f70       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fstat64.os)
+ .debug_aranges
+                0x0000000000000fa0       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fstatat64.os)
+ .debug_aranges
+                0x0000000000000fd0       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-lseek64.os)
+ .debug_aranges
+                0x0000000000001000       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-lstat64.os)
+ .debug_aranges
+                0x0000000000001030       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-openat64.os)
+ .debug_aranges
+                0x0000000000001060       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-stat64.os)
+ .debug_aranges
+                0x0000000000001090       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-close_nocancel.os)
+ .debug_aranges
+                0x00000000000010c0       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-close_nocancel_nostatus.os)
+ .debug_aranges
+                0x00000000000010f0       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fcntl_nocancel.os)
+ .debug_aranges
+                0x0000000000001120       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-open64_nocancel.os)
+ .debug_aranges
+                0x0000000000001150       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-pread64_nocancel.os)
+ .debug_aranges
+                0x0000000000001180       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-read_nocancel.os)
+ .debug_aranges
+                0x00000000000011b0       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-write_nocancel.os)
+ .debug_aranges
+                0x00000000000011e0       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-scratch_buffer_set_array_size.os)
+ .debug_aranges
+                0x0000000000001210       0x40 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fd_to_filename.os)
+ .debug_aranges
+                0x0000000000001250       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-mmap64.os)
+ .debug_aranges
+                0x0000000000001280       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-mprotect.os)
+ .debug_aranges
+                0x00000000000012b0       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-munmap.os)
+ .debug_aranges
+                0x00000000000012e0       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-setvmaname.os)
+ .debug_aranges
+                0x0000000000001310       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-lowlevellock.os)
+ .debug_aranges
+                0x0000000000001340       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-_exit.os)
+ .debug_aranges
+                0x0000000000001370       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-getpid.os)
+ .debug_aranges
+                0x00000000000013a0       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-uname.os)
+ .debug_aranges
+                0x00000000000013d0       0x20 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-environ.os)
+ .debug_aranges
+                0x00000000000013f0       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-setjmp.os)
+ .debug_aranges
+                0x0000000000001420       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-__longjmp.os)
+ .debug_aranges
+                0x0000000000001450       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-libc_sigaction.os)
+ .debug_aranges
+                0x0000000000001480       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-_fitoa_word.os)
+ .debug_aranges
+                0x00000000000014b0       0x20 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-itoa-udigits.os)
+ .debug_aranges
+                0x00000000000014d0       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-getenv.os)
+ .debug_aranges
+                0x0000000000001500       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-memchr.os)
+ .debug_aranges
+                0x0000000000001530       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-memcmp.os)
+ .debug_aranges
+                0x0000000000001560       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-memmove.os)
+ .debug_aranges
+                0x0000000000001590       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-memset.os)
+ .debug_aranges
+                0x00000000000015c0       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-stpcpy.os)
+ .debug_aranges
+                0x00000000000015f0       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strchr.os)
+ .debug_aranges
+                0x0000000000001620       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strcmp.os)
+ .debug_aranges
+                0x0000000000001650       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strcspn.os)
+ .debug_aranges
+                0x0000000000001680       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strdup.os)
+ .debug_aranges
+                0x00000000000016b0       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strerrorname_np.os)
+ .debug_aranges
+                0x00000000000016e0       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strlen.os)
+ .debug_aranges
+                0x0000000000001710       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strncmp.os)
+ .debug_aranges
+                0x0000000000001740       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strnlen.os)
+ .debug_aranges
+                0x0000000000001770       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strchrnul.os)
+ .debug_aranges
+                0x00000000000017a0       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-setitimer.os)
+ .debug_aranges
+                0x00000000000017d0       0x30 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-errname.os)
+
+.debug_pubnames
+ *(.debug_pubnames)
+
+.debug_info     0x0000000000000000    0x9b9ae
+ *(.debug_info)
+ .debug_info    0x0000000000000000    0x8fa72 /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os
+ .debug_info    0x000000000008fa72      0x4d7 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-check_fds.os)
+ .debug_info    0x000000000008ff49       0xa6 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-errno.os)
+ .debug_info    0x000000000008ffef      0x250 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-closedir.os)
+ .debug_info    0x000000000009023f      0x40f /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fdopendir.os)
+ .debug_info    0x000000000009064e      0x3e3 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-readdir64.os)
+ .debug_info    0x0000000000090a31      0x1c3 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-rewinddir.os)
+ .debug_info    0x0000000000090bf4      0x192 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-getdents64.os)
+ .debug_info    0x0000000000090d86      0xb08 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-dl-addr-obj.os)
+ .debug_info    0x000000000009188e     0x1ead /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-prof-freq.os)
+ .debug_info    0x000000000009373b      0xb5a /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-profil.os)
+ .debug_info    0x0000000000094295      0x158 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-access.os)
+ .debug_info    0x00000000000943ed      0x2da /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fstat64.os)
+ .debug_info    0x00000000000946c7      0x405 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fstatat64.os)
+ .debug_info    0x0000000000094acc      0x18e /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-lseek64.os)
+ .debug_info    0x0000000000094c5a      0x2b6 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-lstat64.os)
+ .debug_info    0x0000000000094f10      0x263 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-openat64.os)
+ .debug_info    0x0000000000095173      0x2b4 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-stat64.os)
+ .debug_info    0x0000000000095427      0x12d /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-close_nocancel.os)
+ .debug_info    0x0000000000095554      0x104 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-close_nocancel_nostatus.os)
+ .debug_info    0x0000000000095658      0x597 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fcntl_nocancel.os)
+ .debug_info    0x0000000000095bef      0x253 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-open64_nocancel.os)
+ .debug_info    0x0000000000095e42      0x1dc /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-pread64_nocancel.os)
+ .debug_info    0x000000000009601e      0x1a0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-read_nocancel.os)
+ .debug_info    0x00000000000961be      0x1a5 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-write_nocancel.os)
+ .debug_info    0x0000000000096363      0x3ba /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-scratch_buffer_set_array_size.os)
+ .debug_info    0x000000000009671d      0x208 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fd_to_filename.os)
+ .debug_info    0x0000000000096925     0x238b /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-mmap64.os)
+ .debug_info    0x0000000000098cb0       0x6a /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-mprotect.os)
+ .debug_info    0x0000000000098d1a       0x6a /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-munmap.os)
+ .debug_info    0x0000000000098d84      0x579 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-setvmaname.os)
+ .debug_info    0x00000000000992fd      0x5db /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-lowlevellock.os)
+ .debug_info    0x00000000000998d8      0x130 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-_exit.os)
+ .debug_info    0x0000000000099a08       0x6a /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-getpid.os)
+ .debug_info    0x0000000000099a72       0x6a /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-uname.os)
+ .debug_info    0x0000000000099adc      0x157 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-environ.os)
+ .debug_info    0x0000000000099c33       0x48 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-setjmp.os)
+ .debug_info    0x0000000000099c7b       0x39 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-__longjmp.os)
+ .debug_info    0x0000000000099cb4      0x609 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-libc_sigaction.os)
+ .debug_info    0x000000000009a2bd      0x1d0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-_fitoa_word.os)
+ .debug_info    0x000000000009a48d       0x7d /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-itoa-udigits.os)
+ .debug_info    0x000000000009a50a      0x1f1 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-getenv.os)
+ .debug_info    0x000000000009a6fb       0x4d /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-memchr.os)
+ .debug_info    0x000000000009a748       0x4d /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-memcmp.os)
+ .debug_info    0x000000000009a795       0x6d /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-memmove.os)
+ .debug_info    0x000000000009a802       0x3b /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-memset.os)
+ .debug_info    0x000000000009a83d       0x4d /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-stpcpy.os)
+ .debug_info    0x000000000009a88a       0x4d /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strchr.os)
+ .debug_info    0x000000000009a8d7       0x3b /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strcmp.os)
+ .debug_info    0x000000000009a912      0x1f5 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strcspn.os)
+ .debug_info    0x000000000009ab07      0x1ec /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strdup.os)
+ .debug_info    0x000000000009acf3       0xd7 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strerrorname_np.os)
+ .debug_info    0x000000000009adca       0x3b /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strlen.os)
+ .debug_info    0x000000000009ae05       0x3b /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strncmp.os)
+ .debug_info    0x000000000009ae40       0x4d /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strnlen.os)
+ .debug_info    0x000000000009ae8d       0x4d /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strchrnul.os)
+ .debug_info    0x000000000009aeda      0x22c /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-setitimer.os)
+ .debug_info    0x000000000009b106      0x8a8 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-errname.os)
+
+.debug_abbrev   0x0000000000000000    0x15702
+ *(.debug_abbrev)
+ .debug_abbrev  0x0000000000000000    0x11f0b /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os
+ .debug_abbrev  0x0000000000011f0b      0x1bb /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-check_fds.os)
+ .debug_abbrev  0x00000000000120c6       0x48 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-errno.os)
+ .debug_abbrev  0x000000000001210e      0x19c /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-closedir.os)
+ .debug_abbrev  0x00000000000122aa      0x194 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fdopendir.os)
+ .debug_abbrev  0x000000000001243e      0x21b /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-readdir64.os)
+ .debug_abbrev  0x0000000000012659      0x10e /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-rewinddir.os)
+ .debug_abbrev  0x0000000000012767       0xc7 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-getdents64.os)
+ .debug_abbrev  0x000000000001282e      0x218 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-dl-addr-obj.os)
+ .debug_abbrev  0x0000000000012a46      0x32f /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-prof-freq.os)
+ .debug_abbrev  0x0000000000012d75      0x2df /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-profil.os)
+ .debug_abbrev  0x0000000000013054       0xb6 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-access.os)
+ .debug_abbrev  0x000000000001310a       0xf8 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fstat64.os)
+ .debug_abbrev  0x0000000000013202      0x1a2 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fstatat64.os)
+ .debug_abbrev  0x00000000000133a4       0xc6 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-lseek64.os)
+ .debug_abbrev  0x000000000001346a       0xfa /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-lstat64.os)
+ .debug_abbrev  0x0000000000013564      0x125 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-openat64.os)
+ .debug_abbrev  0x0000000000013689       0xfa /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-stat64.os)
+ .debug_abbrev  0x0000000000013783       0xa3 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-close_nocancel.os)
+ .debug_abbrev  0x0000000000013826       0x93 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-close_nocancel_nostatus.os)
+ .debug_abbrev  0x00000000000138b9      0x202 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fcntl_nocancel.os)
+ .debug_abbrev  0x0000000000013abb      0x119 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-open64_nocancel.os)
+ .debug_abbrev  0x0000000000013bd4       0xda /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-pread64_nocancel.os)
+ .debug_abbrev  0x0000000000013cae       0xcf /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-read_nocancel.os)
+ .debug_abbrev  0x0000000000013d7d       0xd6 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-write_nocancel.os)
+ .debug_abbrev  0x0000000000013e53      0x24c /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-scratch_buffer_set_array_size.os)
+ .debug_abbrev  0x000000000001409f      0x139 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fd_to_filename.os)
+ .debug_abbrev  0x00000000000141d8      0x41b /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-mmap64.os)
+ .debug_abbrev  0x00000000000145f3       0x28 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-mprotect.os)
+ .debug_abbrev  0x000000000001461b       0x28 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-munmap.os)
+ .debug_abbrev  0x0000000000014643      0x1ec /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-setvmaname.os)
+ .debug_abbrev  0x000000000001482f      0x1b7 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-lowlevellock.os)
+ .debug_abbrev  0x00000000000149e6       0xa7 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-_exit.os)
+ .debug_abbrev  0x0000000000014a8d       0x28 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-getpid.os)
+ .debug_abbrev  0x0000000000014ab5       0x28 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-uname.os)
+ .debug_abbrev  0x0000000000014add       0xb9 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-environ.os)
+ .debug_abbrev  0x0000000000014b96       0x28 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-setjmp.os)
+ .debug_abbrev  0x0000000000014bbe       0x28 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-__longjmp.os)
+ .debug_abbrev  0x0000000000014be6      0x1c6 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-libc_sigaction.os)
+ .debug_abbrev  0x0000000000014dac       0xfc /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-_fitoa_word.os)
+ .debug_abbrev  0x0000000000014ea8       0x5f /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-itoa-udigits.os)
+ .debug_abbrev  0x0000000000014f07      0x109 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-getenv.os)
+ .debug_abbrev  0x0000000000015010       0x28 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-memchr.os)
+ .debug_abbrev  0x0000000000015038       0x28 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-memcmp.os)
+ .debug_abbrev  0x0000000000015060       0x28 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-memmove.os)
+ .debug_abbrev  0x0000000000015088       0x28 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-memset.os)
+ .debug_abbrev  0x00000000000150b0       0x28 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-stpcpy.os)
+ .debug_abbrev  0x00000000000150d8       0x28 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strchr.os)
+ .debug_abbrev  0x0000000000015100       0x28 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strcmp.os)
+ .debug_abbrev  0x0000000000015128      0x113 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strcspn.os)
+ .debug_abbrev  0x000000000001523b      0x15c /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strdup.os)
+ .debug_abbrev  0x0000000000015397       0x9c /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strerrorname_np.os)
+ .debug_abbrev  0x0000000000015433       0x28 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strlen.os)
+ .debug_abbrev  0x000000000001545b       0x28 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strncmp.os)
+ .debug_abbrev  0x0000000000015483       0x28 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strnlen.os)
+ .debug_abbrev  0x00000000000154ab       0x28 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strchrnul.os)
+ .debug_abbrev  0x00000000000154d3      0x10f /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-setitimer.os)
+ .debug_abbrev  0x00000000000155e2      0x120 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-errname.os)
+
+.debug_line     0x0000000000000000    0x24dd4
+ *(.debug_line)
+ .debug_line    0x0000000000000000    0x21573 /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os
+ .debug_line    0x0000000000021573      0x12b /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-check_fds.os)
+ .debug_line    0x000000000002169e       0x3f /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-errno.os)
+ .debug_line    0x00000000000216dd       0xd8 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-closedir.os)
+ .debug_line    0x00000000000217b5      0x133 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fdopendir.os)
+ .debug_line    0x00000000000218e8      0x195 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-readdir64.os)
+ .debug_line    0x0000000000021a7d       0xb6 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-rewinddir.os)
+ .debug_line    0x0000000000021b33       0xb0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-getdents64.os)
+ .debug_line    0x0000000000021be3       0xf4 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-dl-addr-obj.os)
+ .debug_line    0x0000000000021cd7      0x119 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-prof-freq.os)
+ .debug_line    0x0000000000021df0      0x21c /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-profil.os)
+ .debug_line    0x000000000002200c       0x86 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-access.os)
+ .debug_line    0x0000000000022092       0xa9 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fstat64.os)
+ .debug_line    0x000000000002213b       0xbf /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fstatat64.os)
+ .debug_line    0x00000000000221fa       0xa1 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-lseek64.os)
+ .debug_line    0x000000000002229b       0x7e /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-lstat64.os)
+ .debug_line    0x0000000000022319       0xda /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-openat64.os)
+ .debug_line    0x00000000000223f3       0x7e /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-stat64.os)
+ .debug_line    0x0000000000022471       0x84 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-close_nocancel.os)
+ .debug_line    0x00000000000224f5       0x5b /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-close_nocancel_nostatus.os)
+ .debug_line    0x0000000000022550      0x169 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fcntl_nocancel.os)
+ .debug_line    0x00000000000226b9       0xc6 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-open64_nocancel.os)
+ .debug_line    0x000000000002277f       0xb1 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-pread64_nocancel.os)
+ .debug_line    0x0000000000022830       0xa8 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-read_nocancel.os)
+ .debug_line    0x00000000000228d8       0xa8 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-write_nocancel.os)
+ .debug_line    0x0000000000022980      0x189 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-scratch_buffer_set_array_size.os)
+ .debug_line    0x0000000000022b09       0xc7 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fd_to_filename.os)
+ .debug_line    0x0000000000022bd0      0x1f4 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-mmap64.os)
+ .debug_line    0x0000000000022dc4       0x50 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-mprotect.os)
+ .debug_line    0x0000000000022e14       0x50 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-munmap.os)
+ .debug_line    0x0000000000022e64      0x13f /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-setvmaname.os)
+ .debug_line    0x0000000000022fa3      0x17f /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-lowlevellock.os)
+ .debug_line    0x0000000000023122       0x8a /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-_exit.os)
+ .debug_line    0x00000000000231ac       0x4f /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-getpid.os)
+ .debug_line    0x00000000000231fb       0x50 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-uname.os)
+ .debug_line    0x000000000002324b       0x63 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-environ.os)
+ .debug_line    0x00000000000232ae       0x60 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-setjmp.os)
+ .debug_line    0x000000000002330e       0x5e /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-__longjmp.os)
+ .debug_line    0x000000000002336c      0x1bb /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-libc_sigaction.os)
+ .debug_line    0x0000000000023527      0x176 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-_fitoa_word.os)
+ .debug_line    0x000000000002369d       0x3f /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-itoa-udigits.os)
+ .debug_line    0x00000000000236dc      0x139 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-getenv.os)
+ .debug_line    0x0000000000023815      0x118 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-memchr.os)
+ .debug_line    0x000000000002392d      0x137 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-memcmp.os)
+ .debug_line    0x0000000000023a64       0xda /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-memmove.os)
+ .debug_line    0x0000000000023b3e       0x97 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-memset.os)
+ .debug_line    0x0000000000023bd5      0x1c8 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-stpcpy.os)
+ .debug_line    0x0000000000023d9d       0xd0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strchr.os)
+ .debug_line    0x0000000000023e6d      0x48e /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strcmp.os)
+ .debug_line    0x00000000000242fb      0x18c /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strcspn.os)
+ .debug_line    0x0000000000024487       0xaf /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strdup.os)
+ .debug_line    0x0000000000024536       0x5a /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strerrorname_np.os)
+ .debug_line    0x0000000000024590       0x97 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strlen.os)
+ .debug_line    0x0000000000024627      0x524 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strncmp.os)
+ .debug_line    0x0000000000024b4b       0x9a /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strnlen.os)
+ .debug_line    0x0000000000024be5       0xcb /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strchrnul.os)
+ .debug_line    0x0000000000024cb0       0xa9 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-setitimer.os)
+ .debug_line    0x0000000000024d59       0x7b /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-errname.os)
+
+.debug_frame
+ *(.debug_frame)
+
+.debug_str      0x0000000000000000    0x60b7d
+ *(.debug_str)
+ .debug_str     0x0000000000000000    0x562f1 /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os
+ .debug_str     0x00000000000562f1      0x3a1 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-check_fds.os)
+ .debug_str     0x0000000000056692      0x1c0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-errno.os)
+ .debug_str     0x0000000000056852      0x268 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-closedir.os)
+ .debug_str     0x0000000000056aba      0x394 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fdopendir.os)
+ .debug_str     0x0000000000056e4e      0x315 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-readdir64.os)
+ .debug_str     0x0000000000057163      0x22e /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-rewinddir.os)
+ .debug_str     0x0000000000057391      0x213 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-getdents64.os)
+ .debug_str     0x00000000000575a4      0x930 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-dl-addr-obj.os)
+ .debug_str     0x0000000000057ed4     0x1524 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-prof-freq.os)
+ .debug_str     0x00000000000593f8      0x6d8 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-profil.os)
+ .debug_str     0x0000000000059ad0      0x1f2 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-access.os)
+ .debug_str     0x0000000000059cc2      0x30a /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fstat64.os)
+ .debug_str     0x0000000000059fcc      0x335 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fstatat64.os)
+ .debug_str     0x000000000005a301      0x210 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-lseek64.os)
+ .debug_str     0x000000000005a511      0x2f0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-lstat64.os)
+ .debug_str     0x000000000005a801      0x288 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-openat64.os)
+ .debug_str     0x000000000005aa89      0x2ee /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-stat64.os)
+ .debug_str     0x000000000005ad77      0x1ff /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-close_nocancel.os)
+ .debug_str     0x000000000005af76      0x1ff /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-close_nocancel_nostatus.os)
+ .debug_str     0x000000000005b175      0x2ec /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fcntl_nocancel.os)
+ .debug_str     0x000000000005b461      0x291 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-open64_nocancel.os)
+ .debug_str     0x000000000005b6f2      0x250 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-pread64_nocancel.os)
+ .debug_str     0x000000000005b942      0x22b /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-read_nocancel.os)
+ .debug_str     0x000000000005bb6d      0x22d /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-write_nocancel.os)
+ .debug_str     0x000000000005bd9a      0x299 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-scratch_buffer_set_array_size.os)
+ .debug_str     0x000000000005c033      0x20b /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fd_to_filename.os)
+ .debug_str     0x000000000005c23e     0x1997 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-mmap64.os)
+ .debug_str     0x000000000005dbd5       0x83 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-mprotect.os)
+ .debug_str     0x000000000005dc58       0x7b /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-munmap.os)
+ .debug_str     0x000000000005dcd3      0xa9a /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-setvmaname.os)
+ .debug_str     0x000000000005e76d      0x28f /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-lowlevellock.os)
+ .debug_str     0x000000000005e9fc      0x1f0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-_exit.os)
+ .debug_str     0x000000000005ebec       0x7c /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-getpid.os)
+ .debug_str     0x000000000005ec68       0x78 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-uname.os)
+ .debug_str     0x000000000005ece0      0x224 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-environ.os)
+ .debug_str     0x000000000005ef04       0x68 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-setjmp.os)
+ .debug_str     0x000000000005ef6c       0x58 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-__longjmp.os)
+ .debug_str     0x000000000005efc4      0x42c /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-libc_sigaction.os)
+ .debug_str     0x000000000005f3f0      0x1bb /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-_fitoa_word.os)
+ .debug_str     0x000000000005f5ab      0x141 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-itoa-udigits.os)
+ .debug_str     0x000000000005f6ec      0x218 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-getenv.os)
+ .debug_str     0x000000000005f904       0x77 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-memchr.os)
+ .debug_str     0x000000000005f97b       0x73 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-memcmp.os)
+ .debug_str     0x000000000005f9ee       0x8a /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-memmove.os)
+ .debug_str     0x000000000005fa78       0x7c /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-memset.os)
+ .debug_str     0x000000000005faf4       0x81 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-stpcpy.os)
+ .debug_str     0x000000000005fb75       0x74 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strchr.os)
+ .debug_str     0x000000000005fbe9       0x6e /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strcmp.os)
+ .debug_str     0x000000000005fc57      0x1c7 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strcspn.os)
+ .debug_str     0x000000000005fe1e      0x1dd /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strdup.os)
+ .debug_str     0x000000000005fffb      0x188 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strerrorname_np.os)
+ .debug_str     0x0000000000060183       0x6e /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strlen.os)
+ .debug_str     0x00000000000601f1       0x6f /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strncmp.os)
+ .debug_str     0x0000000000060260       0x79 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strnlen.os)
+ .debug_str     0x00000000000602d9       0x7d /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strchrnul.os)
+ .debug_str     0x0000000000060356      0x2a0 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-setitimer.os)
+ .debug_str     0x00000000000605f6      0x587 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-errname.os)
+
+.debug_loc
+ *(.debug_loc)
+
+.debug_macinfo
+ *(.debug_macinfo)
+
+.debug_weaknames
+ *(.debug_weaknames)
+
+.debug_funcnames
+ *(.debug_funcnames)
+
+.debug_typenames
+ *(.debug_typenames)
+
+.debug_varnames
+ *(.debug_varnames)
+
+.debug_pubtypes
+ *(.debug_pubtypes)
+
+.debug_ranges
+ *(.debug_ranges)
+
+.debug_addr
+ *(.debug_addr)
+
+.debug_line_str
+                0x0000000000000000     0xe5da
+ *(.debug_line_str)
+ .debug_line_str
+                0x0000000000000000     0xb153 /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os
+ .debug_line_str
+                0x000000000000b153      0x141 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-check_fds.os)
+ .debug_line_str
+                0x000000000000b294       0x6d /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-errno.os)
+ .debug_line_str
+                0x000000000000b301      0x16d /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-closedir.os)
+ .debug_line_str
+                0x000000000000b46e      0x1d8 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fdopendir.os)
+ .debug_line_str
+                0x000000000000b646      0x196 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-readdir64.os)
+ .debug_line_str
+                0x000000000000b7dc      0x161 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-rewinddir.os)
+ .debug_line_str
+                0x000000000000b93d      0x11c /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-getdents64.os)
+ .debug_line_str
+                0x000000000000ba59      0x1ac /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-dl-addr-obj.os)
+ .debug_line_str
+                0x000000000000bc05      0x2ca /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-prof-freq.os)
+ .debug_line_str
+                0x000000000000becf      0x2c1 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-profil.os)
+ .debug_line_str
+                0x000000000000c190       0xa4 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-access.os)
+ .debug_line_str
+                0x000000000000c234      0x114 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fstat64.os)
+ .debug_line_str
+                0x000000000000c348      0x11a /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fstatat64.os)
+ .debug_line_str
+                0x000000000000c462       0xcf /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-lseek64.os)
+ .debug_line_str
+                0x000000000000c531      0x117 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-lstat64.os)
+ .debug_line_str
+                0x000000000000c648      0x112 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-openat64.os)
+ .debug_line_str
+                0x000000000000c75a      0x114 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-stat64.os)
+ .debug_line_str
+                0x000000000000c86e       0xbc /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-close_nocancel.os)
+ .debug_line_str
+                0x000000000000c92a       0xc4 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-close_nocancel_nostatus.os)
+ .debug_line_str
+                0x000000000000c9ee      0x144 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fcntl_nocancel.os)
+ .debug_line_str
+                0x000000000000cb32      0x103 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-open64_nocancel.os)
+ .debug_line_str
+                0x000000000000cc35      0x123 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-pread64_nocancel.os)
+ .debug_line_str
+                0x000000000000cd58      0x11a /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-read_nocancel.os)
+ .debug_line_str
+                0x000000000000ce72      0x11d /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-write_nocancel.os)
+ .debug_line_str
+                0x000000000000cf8f      0x113 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-scratch_buffer_set_array_size.os)
+ .debug_line_str
+                0x000000000000d0a2       0xca /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fd_to_filename.os)
+ .debug_line_str
+                0x000000000000d16c      0x2db /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-mmap64.os)
+ .debug_line_str
+                0x000000000000d447       0x45 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-mprotect.os)
+ .debug_line_str
+                0x000000000000d48c       0x45 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-munmap.os)
+ .debug_line_str
+                0x000000000000d4d1      0x1ac /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-setvmaname.os)
+ .debug_line_str
+                0x000000000000d67d       0xa5 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-lowlevellock.os)
+ .debug_line_str
+                0x000000000000d722       0xa7 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-_exit.os)
+ .debug_line_str
+                0x000000000000d7c9       0x46 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-getpid.os)
+ .debug_line_str
+                0x000000000000d80f       0x46 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-uname.os)
+ .debug_line_str
+                0x000000000000d855       0xef /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-environ.os)
+ .debug_line_str
+                0x000000000000d944       0x3f /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-setjmp.os)
+ .debug_line_str
+                0x000000000000d983       0x42 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-__longjmp.os)
+ .debug_line_str
+                0x000000000000d9c5      0x1db /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-libc_sigaction.os)
+ .debug_line_str
+                0x000000000000dba0       0x99 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-_fitoa_word.os)
+ .debug_line_str
+                0x000000000000dc39       0x9c /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-itoa-udigits.os)
+ .debug_line_str
+                0x000000000000dcd5      0x10d /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-getenv.os)
+ .debug_line_str
+                0x000000000000dde2       0x5b /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-memchr.os)
+ .debug_line_str
+                0x000000000000de3d       0x5b /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-memcmp.os)
+ .debug_line_str
+                0x000000000000de98       0x5d /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-memmove.os)
+ .debug_line_str
+                0x000000000000def5       0x69 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-memset.os)
+ .debug_line_str
+                0x000000000000df5e       0x65 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-stpcpy.os)
+ .debug_line_str
+                0x000000000000dfc3       0x5b /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strchr.os)
+ .debug_line_str
+                0x000000000000e01e       0x5b /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strcmp.os)
+ .debug_line_str
+                0x000000000000e079      0x112 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strcspn.os)
+ .debug_line_str
+                0x000000000000e18b       0xc9 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strdup.os)
+ .debug_line_str
+                0x000000000000e254       0x91 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strerrorname_np.os)
+ .debug_line_str
+                0x000000000000e2e5       0x5b /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strlen.os)
+ .debug_line_str
+                0x000000000000e340       0x5b /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strncmp.os)
+ .debug_line_str
+                0x000000000000e39b       0x5b /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strnlen.os)
+ .debug_line_str
+                0x000000000000e3f6       0x5b /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strchrnul.os)
+ .debug_line_str
+                0x000000000000e451       0xfe /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-setitimer.os)
+ .debug_line_str
+                0x000000000000e54f       0x8b /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-errname.os)
+
+.debug_loclists
+                0x0000000000000000    0x28558
+ *(.debug_loclists)
+ .debug_loclists
+                0x0000000000000000    0x26e65 /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os
+ .debug_loclists
+                0x0000000000026e65       0xc5 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-check_fds.os)
+ .debug_loclists
+                0x0000000000026f2a       0x46 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-closedir.os)
+ .debug_loclists
+                0x0000000000026f70       0x57 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fdopendir.os)
+ .debug_loclists
+                0x0000000000026fc7      0x123 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-readdir64.os)
+ .debug_loclists
+                0x00000000000270ea       0x25 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-rewinddir.os)
+ .debug_loclists
+                0x000000000002710f      0x119 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-getdents64.os)
+ .debug_loclists
+                0x0000000000027228       0x83 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-dl-addr-obj.os)
+ .debug_loclists
+                0x00000000000272ab      0x14e /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-profil.os)
+ .debug_loclists
+                0x00000000000273f9       0x2c /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-access.os)
+ .debug_loclists
+                0x0000000000027425       0x2c /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fstat64.os)
+ .debug_loclists
+                0x0000000000027451       0x82 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fstatat64.os)
+ .debug_loclists
+                0x00000000000274d3       0x34 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-lseek64.os)
+ .debug_loclists
+                0x0000000000027507       0x3e /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-lstat64.os)
+ .debug_loclists
+                0x0000000000027545       0x85 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-openat64.os)
+ .debug_loclists
+                0x00000000000275ca       0x3e /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-stat64.os)
+ .debug_loclists
+                0x0000000000027608       0x24 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-close_nocancel.os)
+ .debug_loclists
+                0x000000000002762c       0x14 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-close_nocancel_nostatus.os)
+ .debug_loclists
+                0x0000000000027640      0x219 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fcntl_nocancel.os)
+ .debug_loclists
+                0x0000000000027859       0xd1 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-open64_nocancel.os)
+ .debug_loclists
+                0x000000000002792a       0x52 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-pread64_nocancel.os)
+ .debug_loclists
+                0x000000000002797c       0x34 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-read_nocancel.os)
+ .debug_loclists
+                0x00000000000279b0       0x34 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-write_nocancel.os)
+ .debug_loclists
+                0x00000000000279e4      0x115 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-scratch_buffer_set_array_size.os)
+ .debug_loclists
+                0x0000000000027af9       0xab /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fd_to_filename.os)
+ .debug_loclists
+                0x0000000000027ba4      0x1a8 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-mmap64.os)
+ .debug_loclists
+                0x0000000000027d4c      0x12d /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-setvmaname.os)
+ .debug_loclists
+                0x0000000000027e79      0x188 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-lowlevellock.os)
+ .debug_loclists
+                0x0000000000028001       0x3a /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-_exit.os)
+ .debug_loclists
+                0x000000000002803b       0xd7 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-libc_sigaction.os)
+ .debug_loclists
+                0x0000000000028112      0x1ad /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-_fitoa_word.os)
+ .debug_loclists
+                0x00000000000282bf       0x96 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-getenv.os)
+ .debug_loclists
+                0x0000000000028355      0x133 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strcspn.os)
+ .debug_loclists
+                0x0000000000028488       0x6a /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strdup.os)
+ .debug_loclists
+                0x00000000000284f2       0x1e /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-strerrorname_np.os)
+ .debug_loclists
+                0x0000000000028510       0x34 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-setitimer.os)
+ .debug_loclists
+                0x0000000000028544       0x14 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-errname.os)
+
+.debug_macro
+ *(.debug_macro)
+
+.debug_names
+ *(.debug_names)
+
+.debug_rnglists
+                0x0000000000000000     0x5d39
+ *(.debug_rnglists)
+ .debug_rnglists
+                0x0000000000000000     0x5a40 /home/nestos/test/glibc-2.43/build/elf/dl-allobjs.os
+ .debug_rnglists
+                0x0000000000005a40       0x45 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-readdir64.os)
+ .debug_rnglists
+                0x0000000000005a85       0x3a /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-getdents64.os)
+ .debug_rnglists
+                0x0000000000005abf       0x18 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-profil.os)
+ .debug_rnglists
+                0x0000000000005ad7       0x13 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-access.os)
+ .debug_rnglists
+                0x0000000000005aea       0x13 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fstat64.os)
+ .debug_rnglists
+                0x0000000000005afd       0x13 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-lseek64.os)
+ .debug_rnglists
+                0x0000000000005b10       0x13 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-openat64.os)
+ .debug_rnglists
+                0x0000000000005b23       0x13 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-close_nocancel.os)
+ .debug_rnglists
+                0x0000000000005b36       0x3c /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fcntl_nocancel.os)
+ .debug_rnglists
+                0x0000000000005b72       0x13 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-open64_nocancel.os)
+ .debug_rnglists
+                0x0000000000005b85       0x1d /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-pread64_nocancel.os)
+ .debug_rnglists
+                0x0000000000005ba2       0x13 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-read_nocancel.os)
+ .debug_rnglists
+                0x0000000000005bb5       0x13 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-write_nocancel.os)
+ .debug_rnglists
+                0x0000000000005bc8       0x1f /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-scratch_buffer_set_array_size.os)
+ .debug_rnglists
+                0x0000000000005be7       0x36 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-fd_to_filename.os)
+ .debug_rnglists
+                0x0000000000005c1d       0x20 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-mmap64.os)
+ .debug_rnglists
+                0x0000000000005c3d       0x1e /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-setvmaname.os)
+ .debug_rnglists
+                0x0000000000005c5b       0x2f /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-lowlevellock.os)
+ .debug_rnglists
+                0x0000000000005c8a       0x13 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-_exit.os)
+ .debug_rnglists
+                0x0000000000005c9d       0x4b /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-libc_sigaction.os)
+ .debug_rnglists
+                0x0000000000005ce8       0x2b /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-getenv.os)
+ .debug_rnglists
+                0x0000000000005d13       0x13 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-setitimer.os)
+ .debug_rnglists
+                0x0000000000005d26       0x13 /home/nestos/test/glibc-2.43/build/elf/rtld-libc.a(rtld-errname.os)
+
+.debug_str_offsets
+ *(.debug_str_offsets)
+
+.debug_sup
+ *(.debug_sup)
+
+.gnu.attributes
+ *(.gnu.attributes)
+OUTPUT(/home/nestos/test/glibc-2.43/build/elf/librtld.os elf64-x86-64)

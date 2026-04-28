@@ -5,16 +5,10 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <sys/ioctl.h>
-#include <stdlib.h>
 
 #define ERR_NONE 0
 #define ERR_COL (1 << 0)
 #define ERR_ROW (1 << 1)
-
-#define ANSI_RED "\033[31m"
-#define ANSI_GREEN "\033[32m"
-#define ANSI_YELLOW "\033[33m"
-#define ANSI_RESET "\033[0m"
 
 #define REQUIRED_COLS 100
 #define REQUIRED_ROWS 100
@@ -95,6 +89,8 @@ void init_textbox(TextBox *box)
 		status |= ERR_COL;
 	if (w.ws_row < REQUIRED_ROWS)
 		status |= ERR_ROW;
+
+	print_color("[blue]Blue text[/blue]");
 
 	if (status) {
 	} else {
