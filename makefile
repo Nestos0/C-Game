@@ -1,8 +1,19 @@
 CC = gcc
 
-SRC = main.c
+CFLAGS = -Wall -g
 
-TARGET = main
+TARGET = Zi-Game
 
-$(TARGET):
-	$(CC) -o build/$(TARGET) $(SRC)
+SRCS = $(wildcard src/*.c) main.c
+
+all: $(TARGET)
+
+$(TARGET): $(SRCS)
+	$(CC) -std=gnu23 -o build/$(TARGET) $(SRCS) -I include/ -O2
+
+run:
+	$(CC) -o build/$(TARGET) $(SRCS)
+	./build/$(TARGET)
+
+clean:
+	rm -rf ./build/

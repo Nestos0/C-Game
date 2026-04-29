@@ -1,14 +1,32 @@
 [
   {
-    "file": "./main.c",
+    "file": "src/utils.c",
     "arguments": [
       "/bin/gcc",
       "-std=gnu23",
-      "./main.c",
       "-o",
-      "main"
+      "build/Zi-Game",
+      "src/utils.c",
+      "-I",
+      "include/",
+      "-O2"
     ],
-    "directory": "/home/nestos/projects/C-TuiGame",
-    "output": "main"
+    "directory": "/home/nestos/Projects/Project-PolarRegions/test",
+    "output": "build/Zi-Game"
+  },
+  {
+    "file": "main.c",
+    "arguments": [
+      "/bin/gcc",
+      "-std=gnu23",
+      "-o",
+      "build/Zi-Game",
+      "main.c",
+      "-I",
+      "include/",
+      "-O2"
+    ],
+    "directory": "/home/nestos/Projects/Project-PolarRegions/test",
+    "output": "build/Zi-Game"
   }
 ]
