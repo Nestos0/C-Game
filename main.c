@@ -35,8 +35,28 @@ void terminal_restore()
 
 void game_loop()
 {
-	while (1)
-		;
+	int width = 0;
+	while (1) {
+		char ch = getchar();
+		putchar(ch);
+		/* printf("%d ", ch); */
+		if (ch == 4)
+			break;
+		else if (ch == 127) {
+			printf("\x1b[1D");
+			printf("\x1b[s");
+			putchar(' ');
+			printf("\x1b[u");
+			fflush(stdout);
+			width -= 1;
+		} else {
+			width += 1;
+		}
+		if (width > 40) {
+			putchar('\n');
+			width = 0;
+		}
+	}
 }
 
 int main()

@@ -1,0 +1,77 @@
+[
+  {
+    "file": "src/render/renderer.c",
+    "arguments": [
+      "/bin/gcc",
+      "-std=gnu23",
+      "-o",
+      "build/Zi-Game",
+      "src/render/renderer.c",
+      "-I",
+      "include/",
+      "-O2"
+    ],
+    "directory": "/home/nestos/C-Game",
+    "output": "build/Zi-Game"
+  },
+  {
+    "file": "src/text/rich_text.c",
+    "arguments": [
+      "/bin/gcc",
+      "-std=gnu23",
+      "-o",
+      "build/Zi-Game",
+      "src/text/rich_text.c",
+      "-I",
+      "include/",
+      "-O2"
+    ],
+    "directory": "/home/nestos/C-Game",
+    "output": "build/Zi-Game"
+  },
+  {
+    "file": "src/text/utf8.c",
+    "arguments": [
+      "/bin/gcc",
+      "-std=gnu23",
+      "-o",
+      "build/Zi-Game",
+      "src/text/utf8.c",
+      "-I",
+      "include/",
+      "-O2"
+    ],
+    "directory": "/home/nestos/C-Game",
+    "output": "build/Zi-Game"
+  },
+  {
+    "file": "src/ui/screen.c",
+    "arguments": [
+      "/bin/gcc",
+      "-std=gnu23",
+      "-o",
+      "build/Zi-Game",
+      "src/ui/screen.c",
+      "-I",
+      "include/",
+      "-O2"
+    ],
+    "directory": "/home/nestos/C-Game",
+    "output": "build/Zi-Game"
+  },
+  {
+    "file": "main.c",
+    "arguments": [
+      "/bin/gcc",
+      "-std=gnu23",
+      "-o",
+      "build/Zi-Game",
+      "main.c",
+      "-I",
+      "include/",
+      "-O2"
+    ],
+    "directory": "/home/nestos/C-Game",
+    "output": "build/Zi-Game"
+  }
+]
