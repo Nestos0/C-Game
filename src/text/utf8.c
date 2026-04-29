@@ -1,3 +1,5 @@
+#include "module.h"
+#include <locale.h>
 #include <text/utf8.h>
 
 int get_utf8_width(uint8_t byte)
@@ -12,3 +14,10 @@ int get_utf8_width(uint8_t byte)
 		return 4; // 11110xxx
 	return 1;
 }
+
+int __utf8_init(void)
+{
+	setlocale(LC_ALL, "");
+	return 0;
+}
+init_register(__utf8_init);

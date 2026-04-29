@@ -1,19 +1,22 @@
-CC = gcc
+CC      = gcc
+CFLAGS  = -std=gnu23 -Wall -g -O2 -I include/
+TARGET  = Zi-Game
+BUILD_DIR = build
 
-CFLAGS = -Wall -g
+SRCS    = $(shell find src/ -name '*.c') main.c
 
-TARGET = Zi-Game
+.PHONY: all run clean debug
 
-SRCS = $(shell find src/ -name '*.c') main.c
+all: $(BUILD_DIR) $(TARGET)
 
-all: $(TARGET)
+$(BUILD_DIR):
+	mkdir -p $(BUILD_DIR)
 
 $(TARGET): $(SRCS)
-	$(CC) -std=gnu23 -o build/$(TARGET) $(SRCS) -I include/ -O2
+	$(CC) $(CFLAGS) $(SRCS) -o $(BUILD_DIR)/$(TARGET)
 
-run:
-	$(CC) -std=gnu23 -o build/$(TARGET) $(SRCS) -I include/ -O2
-	./build/$(TARGET)
+run: all
+	./$(BUILD_DIR)/$(TARGET)
 
 clean:
-	rm -rf ./build/
+	rm -rf $(BUILD_DIR)
