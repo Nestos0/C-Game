@@ -4,7 +4,7 @@ CFLAGS = -Wall -g
 
 TARGET = Zi-Game
 
-SRCS = $(wildcard src/*.c) main.c
+SRCS = $(shell find src/ -name '*.c') main.c
 
 all: $(TARGET)
 
@@ -12,7 +12,7 @@ $(TARGET): $(SRCS)
 	$(CC) -std=gnu23 -o build/$(TARGET) $(SRCS) -I include/ -O2
 
 run:
-	$(CC) -o build/$(TARGET) $(SRCS)
+	$(CC) -std=gnu23 -o build/$(TARGET) $(SRCS) -I include/ -O2
 	./build/$(TARGET)
 
 clean:

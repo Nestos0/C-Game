@@ -1,17 +1,13 @@
+#include "module.h"
 #include "text/rich_text.h"
+#include "ui/screen.h"
 #include <locale.h>
 #include <stdio.h>
 #include <termios.h>
 #include <unistd.h>
 
-typedef void (*initcall_t)(void);
-
 extern initcall_t __start_initcalls[];
 extern initcall_t __stop_initcalls[];
-
-#define init_register(fn)              \
-	static initcall_t __init##fn \
-		__attribute__((section("initcalls"), used)) = fn;
 
 struct termios oldt, newt;
 
@@ -26,16 +22,32 @@ void terminal_init()
 }
 init_register(terminal_init);
 
+void utf8_init()
+{
+	setlocale(LC_ALL, "");
+}
+init_register(utf8_init);
+
 void terminal_restore()
 {
 	tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
 }
 
+void game_loop()
+{
+	while (1)
+		;
+}
+
 int main()
 {
+	screen_clear();
 	for (initcall_t *p = __start_initcalls;
-		p < __stop_initcalls; ++p)
-		(*p)();
+		p < __stop_initcalls; p++)
+		if (*p)
+			(*p)();
+
+	game_loop();
 
 	terminal_restore();
 	return 0;
