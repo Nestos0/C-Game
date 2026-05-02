@@ -49,12 +49,17 @@ void game_refresh_ui()
 		BoxLTRB *inputbox = widget_draw_box_ltrb(screen, main->left + 1, main->bottom - 3,
 			main->right - 1, main->bottom - 1, NULL, NULL);
 		InputLine *input = widget_create_inputline(inputbox);
-		widget_draw_inputline(input, (RGB *)THEME("indicator"), NULL);
+		widget_draw_inputline(screen, input, (RGB *)THEME("indicator"), NULL);
 		cur_input = input;
 		/* term_set_cell(screen, input->left + 1, input->top + 1, '$', (RGB *)THEME("indicator"), NULL); */
 	} else {
 		widget_draw_box(screen, 0, 0, screen->width, screen->height, (RGB *)THEME("border"), (RGB *)THEME("border_bg"));
 		widget_draw_box_ltrb(screen, 2, 1, pos_at_margin(screen->width / 2, 2), (screen->height) - 2, NULL, NULL);
+	}
+
+	if (cur_input) {
+		screen->cursor.x = cur_input->parent->left;
+		screen->cursor.y = cur_input->parent->top + cur_input->row;
 	}
 }
 
@@ -121,8 +126,7 @@ void update_game(void)
 		game_refresh_ui();
 	}
 	if (cur_input->dirty) {
-		widget_draw_inputline(cur_input, (RGB *)THEME("indicator"), NULL);
-		log4engine("log.txt", "%s", cur_input->text);
+		widget_draw_inputline(screen, cur_input, (RGB *)THEME("indicator"), NULL);
 	}
 }
 

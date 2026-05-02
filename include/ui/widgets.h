@@ -16,6 +16,7 @@ typedef struct BoxLTRB {
 typedef struct InputLine {
 	struct BoxLTRB *parent;
 	int row;
+	int col;
 	bool dirty : 1;
 	char *text;
 	char *start;
@@ -56,4 +57,4 @@ void widget_draw_hline(Screen *screen, int x, RGB *fg, RGB *bg);
 int pos_at_margin(int total_size, int margin);
 
 InputLine *widget_create_inputline(BoxLTRB *parent);
-void widget_draw_inputline(InputLine *input, RGB *fg, RGB *bg);
+void widget_draw_inputline(Screen *screen, InputLine *input, RGB *fg, RGB *bg);

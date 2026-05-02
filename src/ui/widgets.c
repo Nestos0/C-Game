@@ -1,4 +1,5 @@
 #include "ui/widgets.h"
+#include "log.h"
 #include "module.h"
 #include "text/utf8.h"
 #include "ui/display.h"
@@ -180,7 +181,7 @@ InputLine *widget_create_inputline(BoxLTRB *parent)
 	return ret;
 }
 
-void widget_draw_inputline(InputLine *input, RGB *fg, RGB *bg)
+void widget_draw_inputline(Screen *screen, InputLine *input, RGB *fg, RGB *bg)
 {
 	int input_left = input->parent->left + 1;
 	int input_ceiling = (input->parent->top + 1);
@@ -190,6 +191,8 @@ void widget_draw_inputline(InputLine *input, RGB *fg, RGB *bg)
 	RGB bg_color = (bg != NULL) ? *bg : G_ENV.bg;
 
 	set_cell_inline(input_left, input_row, '$', &fg_color, &bg_color);
+	/* log4engine("log.txt", "Input Left POS: %d, Input TOP Pos: %d\n", input_left, input_row); */
+	widget_write_text(screen, input_left + 2, input_row, "%s", input->text);
 }
 
 BoxLTRB *widget_draw_box(Screen *screen, int x, int y, int w, int h, RGB *fg, RGB *bg)
@@ -262,19 +265,11 @@ void widget_write_text(Screen *screen, int x, int y, const char *format, ...)
 	vsnprintf(buffer, len + 1, format, args);
 	va_end(args);
 
-	FILE *fp = fopen("./log.txt", "a");
-	{
-		int x = 0;
-		for (const char *p = buffer; p < (buffer + len); p++) {
-			uint32_t cp = { 0 };
-			utf8_decode(p, &cp);
-			set_cell_inline(x, 0, cp, NULL, NULL);
-			fprintf(fp, "%c", cp);
-			++x;
-		}
-		screen_flush(screen);
+	for (const char *p = buffer; p < (buffer + len);) {
+		uint32_t cp = { 0 };
+		p += utf8_decode(p, &cp);
+		set_cell_inline(x, y, cp, NULL, NULL);
 	}
-	fclose(fp);
 
 	free(buffer);
 }
