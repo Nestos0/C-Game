@@ -1,6 +1,7 @@
 #include "core/engine.h"
 #include "module.h"
 #include "ui/display.h"
+#include "ui/widgets.h"
 #include <string.h>
 #include <unistd.h>
 
@@ -12,7 +13,7 @@ extern initcall_t __stop_exitcalls[];
 struct GameState game_state;
 struct Screen *screen;
 struct Environment G_ENV;
-struct BoxBuffer *G_BOX_BUFFER;
+WidgetBuffer *G_WIDGET_BUFFER;
 
 int environment_init(void)
 {

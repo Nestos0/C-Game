@@ -21,7 +21,7 @@ static const struct {
 	{ "fg", { 155, 155, 155 } },
 	{ "border", { 155, 155, 155 } },
 	{ "border_bg", { 16, 16, 28 } },
-	{ "input_cursor", { 48, 172, 82 } },
+	{ "indicator", { 48, 172, 82 } },
 };
 #define THEME(name) theme_lookup(name, sizeof(theme) / sizeof(theme[0]))
 
@@ -43,9 +43,11 @@ void game_refresh_ui()
 		widget_draw_box_ltrb(screen, 2, main->bottom + 1,
 			pos_at_margin(screen->width, 2),
 			pos_at_margin(screen->height, 1), NULL, NULL);
-		BoxLTRB *input = widget_draw_box_ltrb(screen, main->left + 1, main->bottom - 3,
+		BoxLTRB *inputbox = widget_draw_box_ltrb(screen, main->left + 1, main->bottom - 3,
 			main->right - 1, main->bottom - 1, NULL, NULL);
-		term_set_cell(screen, input->left + 1, input->top + 1, '$', (RGB *)THEME("input_cursor"), NULL);
+		InputLine *input = widget_create_inputline(inputbox);
+		widget_draw_inputline(input, (RGB *)THEME("indicator"), NULL);
+		/* term_set_cell(screen, input->left + 1, input->top + 1, '$', (RGB *)THEME("indicator"), NULL); */
 	} else {
 		widget_draw_box(screen, 0, 0, screen->width, screen->height, (RGB *)THEME("border"), (RGB *)THEME("border_bg"));
 		widget_draw_box_ltrb(screen, 2, 1, pos_at_margin(screen->width / 2, 2), (screen->height) - 2, NULL, NULL);

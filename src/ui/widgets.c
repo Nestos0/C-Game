@@ -8,29 +8,40 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define DEFAULT_BOX_LIMIT 8
+#define DEFAULT_WIDGET_LIMIT 8
 
 int __widgets_init(void)
 {
-	G_BOX_BUFFER = calloc(1, sizeof(BoxBuffer));
-	if (!G_BOX_BUFFER)
+	G_WIDGET_BUFFER = calloc(1, sizeof(WidgetBuffer));
+	if (!G_WIDGET_BUFFER)
 		return -1;
-	G_BOX_BUFFER->box = calloc(DEFAULT_BOX_LIMIT, sizeof(BoxLTRB *));
-	G_BOX_BUFFER->count = 0;
-	G_BOX_BUFFER->cap = DEFAULT_BOX_LIMIT;
+	G_WIDGET_BUFFER->widgets = calloc(DEFAULT_WIDGET_LIMIT, sizeof(GenericWidget));
+	if (!G_WIDGET_BUFFER->widgets) {
+		free(G_WIDGET_BUFFER);
+		G_WIDGET_BUFFER = NULL;
+		return -1;
+	}
+	G_WIDGET_BUFFER->count = 0;
+	G_WIDGET_BUFFER->cap = DEFAULT_WIDGET_LIMIT;
 	return 0;
 }
 APP_INIT(__widgets_init);
 
 int __widgets_exit(void)
 {
-	if (G_BOX_BUFFER) {
-		for (int i = 0; i < G_BOX_BUFFER->count; i++)
-			free(G_BOX_BUFFER->box[i]);
-		free(G_BOX_BUFFER->box);
-		free(G_BOX_BUFFER);
+	if (G_WIDGET_BUFFER) {
+		if (G_WIDGET_BUFFER->widgets) {
+			for (size_t i = 0; i < G_WIDGET_BUFFER->count; i++) {
+				GenericWidget *gw = &G_WIDGET_BUFFER->widgets[i];
+				if (gw->type == TYPE_INPUT && gw->data.input.text) {
+					free(gw->data.input.text);
+				}
+			}
+			free(G_WIDGET_BUFFER->widgets);
+		}
+		free(G_WIDGET_BUFFER);
 	}
-	G_BOX_BUFFER = NULL;
+	G_WIDGET_BUFFER = NULL;
 	return 0;
 }
 APP_EXIT(__widgets_exit);
@@ -50,24 +61,22 @@ static void set_cell_inline(int x, int y, uint32_t cp, RGB *fg, RGB *bg)
 	}
 }
 
-void widget_boxbuffer_push(GenericWidget *widget)
+static GenericWidget *widget_buffer_alloc(void)
 {
-	BoxBuffer *buffer = G_BOX_BUFFER;
-	if (buffer == NULL) {
+	if (G_WIDGET_BUFFER == NULL) {
 		__widgets_init();
 	}
-	if (buffer->count >= buffer->cap) {
-		size_t new_cap = (buffer->cap == 0) ? DEFAULT_BOX_LIMIT : buffer->cap * 2;
-		void *temp = realloc(buffer->widget, sizeof(GenericWidget *) * new_cap);
+	if (G_WIDGET_BUFFER->count >= G_WIDGET_BUFFER->cap) {
+		size_t new_cap = (G_WIDGET_BUFFER->cap == 0) ? DEFAULT_WIDGET_LIMIT : G_WIDGET_BUFFER->cap * 2;
+		void *temp = realloc(G_WIDGET_BUFFER->widgets, sizeof(GenericWidget) * new_cap);
 		if (temp == NULL) {
 			fprintf(stderr, "Out of memory!\n");
-			return;
+			return NULL;
 		}
-		buffer->widget = (GenericWidget **)temp;
-		buffer->cap = new_cap;
+		G_WIDGET_BUFFER->widgets = (GenericWidget *)temp;
+		G_WIDGET_BUFFER->cap = new_cap;
 	}
-	buffer->widget[buffer->count] = widget;
-	buffer->count++;
+	return &G_WIDGET_BUFFER->widgets[G_WIDGET_BUFFER->count++];
 }
 
 void widget_draw_vline(Screen *screen, int x, RGB *fg, RGB *bg)
@@ -124,7 +133,11 @@ void widget_draw_hline(Screen *screen, int y, RGB *fg, RGB *bg)
 
 BoxLTRB *widget_draw_box_ltrb(Screen *screen, int left, int top, int right, int bottom, RGB *fg, RGB *bg)
 {
-	BoxLTRB *ret = calloc(1, sizeof(BoxLTRB));
+	GenericWidget *gw = widget_buffer_alloc();
+	if (!gw)
+		return NULL;
+	gw->type = TYPE_BOX;
+	BoxLTRB *ret = &gw->data.box;
 
 	RGB fg_color = (fg != NULL) ? *fg : G_ENV.fg;
 	RGB bg_color = (bg != NULL) ? *bg : G_ENV.bg;
@@ -148,13 +161,16 @@ BoxLTRB *widget_draw_box_ltrb(Screen *screen, int left, int top, int right, int 
 		set_cell_inline(right, y, 0x2502, &fg_color, &bg_color);
 	}
 
-	widget_boxbuffer_push(ret);
 	return ret;
 }
 
-InputBox *widget_create_inputbox(BoxLTRB *parent)
+InputLine *widget_create_inputline(BoxLTRB *parent)
 {
-	InputBox *ret = calloc(1, sizeof(InputBox));
+	GenericWidget *gw = widget_buffer_alloc();
+	if (!gw)
+		return NULL;
+	gw->type = TYPE_INPUT;
+	InputLine *ret = &gw->data.input;
 	if (parent == NULL)
 		return NULL;
 	ret->parent = parent;
@@ -164,17 +180,25 @@ InputBox *widget_create_inputbox(BoxLTRB *parent)
 	return ret;
 }
 
-void widget_draw_inputbox(InputBox *input, RGB *fg, RGB *bg)
+void widget_draw_inputline(InputLine *input, RGB *fg, RGB *bg)
 {
-	int input_left = input->parent->left;
+	int input_left = input->parent->left + 1;
 	int input_ceiling = (input->parent->top + 1);
 	int input_row = (input_ceiling + input->row < input->parent->bottom) ? input_ceiling + input->row : input->parent->bottom - 1;
-	set_cell_inline(input_left, input_row, '$', fg, bg);
+
+	RGB fg_color = (fg != NULL) ? *fg : G_ENV.fg;
+	RGB bg_color = (bg != NULL) ? *bg : G_ENV.bg;
+
+	set_cell_inline(input_left, input_row, '$', &fg_color, &bg_color);
 }
 
 BoxLTRB *widget_draw_box(Screen *screen, int x, int y, int w, int h, RGB *fg, RGB *bg)
 {
-	BoxLTRB *ret = calloc(1, sizeof(BoxLTRB));
+	GenericWidget *gw = widget_buffer_alloc();
+	if (!gw)
+		return NULL;
+	gw->type = TYPE_BOX;
+	BoxLTRB *ret = &gw->data.box;
 
 	RGB fg_color = (fg != NULL) ? *fg : G_ENV.fg;
 	RGB bg_color = (bg != NULL) ? *bg : G_ENV.bg;
@@ -201,10 +225,10 @@ BoxLTRB *widget_draw_box(Screen *screen, int x, int y, int w, int h, RGB *fg, RG
 		}                                                                              \
 	} while (0)
 
-	SET_CELL_INLINE(left, top, 0x250C); // 左上 ┌
-	SET_CELL_INLINE(right, top, 0x2510); // 右上 ┐
-	SET_CELL_INLINE(left, bottom, 0x2514); // 左下 └
-	SET_CELL_INLINE(right, bottom, 0x2518); // 右下 ┘
+	SET_CELL_INLINE(left, top, 0x250C);
+	SET_CELL_INLINE(right, top, 0x2510);
+	SET_CELL_INLINE(left, bottom, 0x2514);
+	SET_CELL_INLINE(right, bottom, 0x2518);
 
 	for (int x = left + 1; x < right; x++) {
 		SET_CELL_INLINE(x, top, 0x2500);
@@ -217,7 +241,6 @@ BoxLTRB *widget_draw_box(Screen *screen, int x, int y, int w, int h, RGB *fg, RG
 	}
 
 #undef SET_CELL_INLINE
-	widget_boxbuffer_push(ret);
 	return ret;
 }
 
