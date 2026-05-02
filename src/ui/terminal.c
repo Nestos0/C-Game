@@ -116,26 +116,28 @@ bool term_get_size(int *rows, int *cols)
 
 void term_set_cell(Screen *s, int x, int y, uint32_t cp, RGB *fg, RGB *bg)
 {
-	if (x > screen->width)
+	if (x > s->width)
 		return;
-	if (y > screen->height)
+	if (y > s->height)
 		return;
 
-	int idx = (y)*screen->width + (x);
+	int idx = (y)*s->width + (x);
 	s->cells[idx].cp = cp;
+	/* RGB fg_color = (fg != NULL) ? *fg : G_ENV.fg; */
+	/* RGB bg_color = (bg != NULL) ? *bg : G_ENV.bg; */
 
-	screen->cells[idx].cp = (cp);
-	screen->cells[idx].fg = (fg) ? *fg : G_ENV.fg;
-	screen->cells[idx].bg = (fg) ? *bg : G_ENV.bg;
-	screen->cells[idx].dirty = true;
-	screen->cells[idx].wide = false;
-	screen->cells[idx].wide_cont = false;
-	screen->cursor.x = x;
-	screen->cursor.y = y;
+	s->cells[idx].cp = (cp);
+	s->cells[idx].fg = (fg != NULL) ? *fg : G_ENV.fg;;
+	s->cells[idx].bg = (bg != NULL) ? *bg : G_ENV.bg;;
+	s->cells[idx].dirty = true;
+	s->cells[idx].wide = false;
+	s->cells[idx].wide_cont = false;
+	s->cursor.x = x;
+	s->cursor.y = y;
 
 	if (cp_display_width(cp) > 1) {
-		screen->cells[idx].wide = true;
-		screen->cells[idx + 1].wide_cont = false;
+		s->cells[idx].wide = true;
+		s->cells[idx + 1].wide_cont = false;
 	}
 }
 

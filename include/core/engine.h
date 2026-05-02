@@ -16,4 +16,4 @@ void update_game(void);
 
 void init_game();
 
-void game_refresh_ui(void *config);
+void game_refresh_ui();

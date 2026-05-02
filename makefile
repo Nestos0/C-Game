@@ -20,4 +20,4 @@ run: all
 	./$(BUILD_DIR)/$(TARGET)
 
 clean:
-	rm -f $(BUILD_FILE)
+	rm -rf $(BUILD_FILE)

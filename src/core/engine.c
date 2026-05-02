@@ -1,4 +1,5 @@
 #include "core/engine.h"
+#include "log.h"
 #include "module.h"
 #include "text/rich_text.h"
 #include "ui/display.h"
@@ -9,61 +10,54 @@
 #include <sys/time.h>
 #include <unistd.h>
 
-#define TARGET_FPS 60
+#define TARGET_FPS 20
 #define TARGET_FRAME_TIME (1000000 / TARGET_FPS)
 
-typedef struct {
-	char name[16];
-	enum { CFG_RGB,
-		CFG_TEXT } type;
-	struct {
-		int r, g, b;
-	} color;
-} Config;
+static const struct {
+	const char *name;
+	RGB color;
+} theme[] = {
+	{ "bg", { 16, 16, 28 } },
+	{ "fg", { 155, 155, 155 } },
+	{ "border", { 155, 155, 155 } },
+	{ "border_bg", { 16, 16, 28 } },
+	{ "input_cursor", { 48, 172, 82 } },
+};
+#define THEME(name) theme_lookup(name, sizeof(theme) / sizeof(theme[0]))
 
-RGB def_bg = (struct RGB) { 16, 16, 28 };
-RGB outer_border = (struct RGB) { 155, 155, 155 };
-RGB outer_border_bg = (struct RGB) { 16, 16, 28 };
-
-Config config[] = { { .name = "bg", .type = CFG_RGB, .color = { 16, 16, 28 } },
-	{ .name = "fg", .type = CFG_RGB, .color = { 155, 155, 155 } } };
-
-Config get_name(char *name, Config *cfg)
+static const RGB *theme_lookup(const char *name, size_t len)
 {
-	for (int i = 0; i < 3; i++) {
-		if (cfg[i].name == name) {
-			return cfg[i];
-		}
+	for (size_t i = 0; i < len; i++) {
+		if (strcmp(theme[i].name, name) == 0)
+			return &theme[i].color;
 	}
-	return (Config) { 0 };
+	return NULL;
 }
 
-void game_refresh_ui(void *config)
+void game_refresh_ui()
 {
 	if (screen->width < 90) {
 		/* widget_write_text(screen, 0, 0, "Terminal width:%d, height:%d", screen->width, screen->height); */
-		widget_draw_box(screen, 0, 0, screen->width, screen->height, &outer_border, &outer_border_bg);
+		widget_draw_box(screen, 0, 0, screen->width, screen->height, (RGB *)THEME("border"), (RGB *)THEME("border_bg"));
 		BoxLTRB *main = widget_draw_box(screen, 2, 1, screen->width - 4, screen->height - 10, NULL, NULL);
 		widget_draw_box_ltrb(screen, 2, main->bottom + 1,
 			pos_at_margin(screen->width, 2),
 			pos_at_margin(screen->height, 1), NULL, NULL);
-		widget_draw_box_ltrb(screen, main->left + 1, main->bottom - 5,
+		BoxLTRB *input = widget_draw_box_ltrb(screen, main->left + 1, main->bottom - 3,
 			main->right - 1, main->bottom - 1, NULL, NULL);
+		term_set_cell(screen, input->left + 1, input->top + 1, '$', (RGB *)THEME("input_cursor"), NULL);
 	} else {
-		/* widget_write_text(screen, 0, 0, "Terminal width:%d, height:%d", screen->width, screen->height); */
-		widget_draw_box(screen, 0, 0, screen->width, screen->height, &outer_border, &outer_border_bg);
+		widget_draw_box(screen, 0, 0, screen->width, screen->height, (RGB *)THEME("border"), (RGB *)THEME("border_bg"));
 		widget_draw_box_ltrb(screen, 2, 1, pos_at_margin(screen->width / 2, 2), (screen->height) - 2, NULL, NULL);
 	}
 }
 
 void init_game()
 {
-	Config config[] = { { .name = "bg", .type = CFG_RGB, .color = { 16, 16, 28 } },
-		{ .name = "bg", .type = CFG_RGB, .color = { 155, 155, 155 } } };
 	screen_clear();
-	screen_set_fg(screen, get_anti_color(def_bg));
-	screen_set_bg(screen, def_bg);
-	game_refresh_ui(&config);
+	screen_set_fg(screen, get_anti_color(*THEME("bg")));
+	screen_set_bg(screen, *THEME("bg"));
+	game_refresh_ui();
 	screen_flush(screen);
 }
 
@@ -78,11 +72,13 @@ int kbhit()
 
 void process_input(void)
 {
-	/* char ch = getchar(); */
-	/* if (ch == 4) { */
-	/* 	screen_clear(); */
-	/* 	game_state.is_running = false; */
-	/* } */
+	if (kbhit()) {
+		char ch = getchar();
+		if (ch == 4) {
+			screen_clear();
+			game_state.is_running = false;
+		}
+	}
 }
 
 void update_game(void)
@@ -106,10 +102,11 @@ void update_game(void)
 		for (size_t y = 0; y < s->height; y++) {
 			for (size_t x = 0; x < s->width; x++) {
 				size_t idx = y * s->width + x;
-				s->cells[idx].bg = def_bg;
+				s->cells[idx].bg = *THEME("bg");
+				s->cells[idx].dirty = true;
 			}
 		}
-		game_refresh_ui(config);
+		game_refresh_ui();
 	}
 }
 
@@ -131,6 +128,7 @@ void game_loop()
 		process_input();
 		update_game();
 		screen_flush(screen);
+
 		long long frame_end = get_microtime();
 		long long actual_frame_duration = frame_end - frame_start;
 

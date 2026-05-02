@@ -68,24 +68,27 @@ int screen_set_bg(Screen *s, RGB rgb)
 		for (size_t x = 0; x < s->width; x++) {
 			size_t idx = y * s->width + x;
 			s->cells[idx].bg = rgb;
+			s->cells[idx].dirty = true;
 		}
 	}
 	return 0;
 }
 
+Screen s_buffer;
 void screen_flush(Screen *s)
 {
 	int last_fg[3] = { -1, -1, -1 };
 	int last_bg[3] = { -1, -1, -1 };
 
 	for (int y = 0; y < s->height; y++) {
-		ansi_cursor_goto(y, 0);
-
 		for (int x = 0; x < s->width; x++) {
 			Cell *c = &s->cells[y * s->width + x];
 
+			if (!c->dirty)
+				continue;
 			if (c->wide_cont)
 				continue;
+			ansi_cursor_goto(y, x);
 
 			if (c->fg.r != last_fg[0] || c->fg.g != last_fg[1] || c->fg.b != last_fg[2]
 				|| c->bg.r != last_bg[0] || c->bg.g != last_bg[1] || c->bg.b != last_bg[2]) {

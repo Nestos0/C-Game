@@ -2,15 +2,39 @@
 #include "ui/display.h"
 #include <stdint.h>
 
+struct InputBox;
+struct BoxLTRB;
+
 typedef struct BoxLTRB {
 	int left;
 	int right;
 	int top;
 	int bottom;
+	struct InputBox *child;
 } BoxLTRB;
 
+typedef struct InputBox {
+	struct BoxLTRB *parent;
+	int row;
+	char *text;
+	char *p;
+} InputBox;
+
+typedef enum {
+	TYPE_BOX = 0,
+	TYPE_INPUT = 1
+} WidgetType;
+
+typedef struct GenericWidget {
+	int *type;
+	union {
+		InputBox *input;
+		BoxLTRB *box;
+	} data;
+} GenericWidget;
+
 typedef struct BoxBuffer {
-	BoxLTRB **box;
+	GenericWidget **widget;
 	size_t count;
 	size_t cap;
 } BoxBuffer;

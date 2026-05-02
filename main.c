@@ -1,8 +1,6 @@
 #include "core/engine.h"
 #include "module.h"
 #include "ui/display.h"
-#include "ui/terminal.h"
-#include <stdio.h>
 #include <string.h>
 #include <unistd.h>
 
