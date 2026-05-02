@@ -16,8 +16,10 @@ typedef struct BoxLTRB {
 typedef struct InputLine {
 	struct BoxLTRB *parent;
 	int row;
+	bool dirty : 1;
 	char *text;
-	char *p;
+	char *start;
+	char *end;
 } InputLine;
 
 typedef enum {

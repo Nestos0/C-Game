@@ -7,6 +7,7 @@
 #include "ui/widgets.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <sys/time.h>
 #include <unistd.h>
 
@@ -34,6 +35,8 @@ static const RGB *theme_lookup(const char *name, size_t len)
 	return NULL;
 }
 
+struct InputLine *cur_input;
+
 void game_refresh_ui()
 {
 	if (screen->width < 90) {
@@ -47,6 +50,7 @@ void game_refresh_ui()
 			main->right - 1, main->bottom - 1, NULL, NULL);
 		InputLine *input = widget_create_inputline(inputbox);
 		widget_draw_inputline(input, (RGB *)THEME("indicator"), NULL);
+		cur_input = input;
 		/* term_set_cell(screen, input->left + 1, input->top + 1, '$', (RGB *)THEME("indicator"), NULL); */
 	} else {
 		widget_draw_box(screen, 0, 0, screen->width, screen->height, (RGB *)THEME("border"), (RGB *)THEME("border_bg"));
@@ -63,7 +67,7 @@ void init_game()
 	screen_flush(screen);
 }
 
-int kbhit()
+int kbhit(void)
 {
 	struct timeval tv = { 0L, 0L };
 	fd_set fds;
@@ -74,11 +78,17 @@ int kbhit()
 
 void process_input(void)
 {
-	if (kbhit()) {
-		char ch = getchar();
-		if (ch == 4) {
+	if (!kbhit()) {
+		char prev = getchar();
+		if (prev == 4) {
 			screen_clear();
 			game_state.is_running = false;
+		} else {
+			if (cur_input && prev > 0) {
+				cur_input->start[0] = prev;
+				cur_input->start++;
+				cur_input->dirty = true;
+			}
 		}
 	}
 }
@@ -109,6 +119,10 @@ void update_game(void)
 			}
 		}
 		game_refresh_ui();
+	}
+	if (cur_input->dirty) {
+		widget_draw_inputline(cur_input, (RGB *)THEME("indicator"), NULL);
+		log4engine("log.txt", "%s", cur_input->text);
 	}
 }
 

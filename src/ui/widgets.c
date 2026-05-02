@@ -176,7 +176,7 @@ InputLine *widget_create_inputline(BoxLTRB *parent)
 	ret->parent = parent;
 	ret->row = 0;
 	ret->text = calloc(32, sizeof(char));
-	ret->p = ret->text;
+	ret->start = ret->text;
 	return ret;
 }
 
