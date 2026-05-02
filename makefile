@@ -1,9 +1,10 @@
-CC      = gcc
-CFLAGS  = -std=gnu23 -Wall -g -O2 -I include/
-TARGET  = Zi-Game
+CC = gcc
+CFLAGS = -std=gnu23 -Wall -g -O2 -I include/
+TARGET = Zi-Game
 BUILD_DIR = build
+BUILD_FILE = $(shell find build -not -name "compile_commands.json" -not -path build)
 
-SRCS    = $(shell find src/ -name '*.c') main.c
+SRCS = $(shell find src/ -name '*.c') main.c
 
 .PHONY: all run clean debug
 
@@ -19,4 +20,4 @@ run: all
 	./$(BUILD_DIR)/$(TARGET)
 
 clean:
-	rm -rf $(BUILD_DIR)
+	rm -f $(BUILD_FILE)

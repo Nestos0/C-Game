@@ -1,32 +1,19 @@
 [
   {
-    "file": "src/render/renderer.c",
-    "arguments": [
-      "/bin/gcc",
-      "-std=gnu23",
-      "-o",
-      "build/Zi-Game",
-      "src/render/renderer.c",
-      "-I",
-      "include/",
-      "-O2"
-    ],
-    "directory": "/home/nestos/C-Game",
-    "output": "build/Zi-Game"
-  },
-  {
     "file": "src/text/rich_text.c",
     "arguments": [
       "/bin/gcc",
       "-std=gnu23",
-      "-o",
-      "build/Zi-Game",
-      "src/text/rich_text.c",
+      "-Wall",
+      "-g",
+      "-O2",
       "-I",
       "include/",
-      "-O2"
+      "src/text/rich_text.c",
+      "-o",
+      "build/Zi-Game"
     ],
-    "directory": "/home/nestos/C-Game",
+    "directory": "/home/nestos/Projects/Project-PolarRegions/test",
     "output": "build/Zi-Game"
   },
   {
@@ -34,14 +21,33 @@
     "arguments": [
       "/bin/gcc",
       "-std=gnu23",
-      "-o",
-      "build/Zi-Game",
-      "src/text/utf8.c",
+      "-Wall",
+      "-g",
+      "-O2",
       "-I",
       "include/",
-      "-O2"
+      "src/text/utf8.c",
+      "-o",
+      "build/Zi-Game"
     ],
-    "directory": "/home/nestos/C-Game",
+    "directory": "/home/nestos/Projects/Project-PolarRegions/test",
+    "output": "build/Zi-Game"
+  },
+  {
+    "file": "src/render/renderer.c",
+    "arguments": [
+      "/bin/gcc",
+      "-std=gnu23",
+      "-Wall",
+      "-g",
+      "-O2",
+      "-I",
+      "include/",
+      "src/render/renderer.c",
+      "-o",
+      "build/Zi-Game"
+    ],
+    "directory": "/home/nestos/Projects/Project-PolarRegions/test",
     "output": "build/Zi-Game"
   },
   {
@@ -49,14 +55,84 @@
     "arguments": [
       "/bin/gcc",
       "-std=gnu23",
-      "-o",
-      "build/Zi-Game",
-      "src/ui/screen.c",
+      "-Wall",
+      "-g",
+      "-O2",
       "-I",
       "include/",
-      "-O2"
+      "src/ui/screen.c",
+      "-o",
+      "build/Zi-Game"
     ],
-    "directory": "/home/nestos/C-Game",
+    "directory": "/home/nestos/Projects/Project-PolarRegions/test",
+    "output": "build/Zi-Game"
+  },
+  {
+    "file": "src/ui/widgets.c",
+    "arguments": [
+      "/bin/gcc",
+      "-std=gnu23",
+      "-Wall",
+      "-g",
+      "-O2",
+      "-I",
+      "include/",
+      "src/ui/widgets.c",
+      "-o",
+      "build/Zi-Game"
+    ],
+    "directory": "/home/nestos/Projects/Project-PolarRegions/test",
+    "output": "build/Zi-Game"
+  },
+  {
+    "file": "src/ui/terminal.c",
+    "arguments": [
+      "/bin/gcc",
+      "-std=gnu23",
+      "-Wall",
+      "-g",
+      "-O2",
+      "-I",
+      "include/",
+      "src/ui/terminal.c",
+      "-o",
+      "build/Zi-Game"
+    ],
+    "directory": "/home/nestos/Projects/Project-PolarRegions/test",
+    "output": "build/Zi-Game"
+  },
+  {
+    "file": "src/core/engine.c",
+    "arguments": [
+      "/bin/gcc",
+      "-std=gnu23",
+      "-Wall",
+      "-g",
+      "-O2",
+      "-I",
+      "include/",
+      "src/core/engine.c",
+      "-o",
+      "build/Zi-Game"
+    ],
+    "directory": "/home/nestos/Projects/Project-PolarRegions/test",
+    "output": "build/Zi-Game"
+  },
+  {
+    "file": "src/module.c",
+    "arguments": [
+      "/bin/gcc",
+      "-std=gnu23",
+      "-Wall",
+      "-g",
+      "-O2",
+      "-I",
+      "include/",
+      "src/module.c",
+      "-o",
+      "build/Zi-Game"
+    ],
+    "directory": "/home/nestos/Projects/Project-PolarRegions/test",
     "output": "build/Zi-Game"
   },
   {
@@ -64,14 +140,16 @@
     "arguments": [
       "/bin/gcc",
       "-std=gnu23",
-      "-o",
-      "build/Zi-Game",
-      "main.c",
+      "-Wall",
+      "-g",
+      "-O2",
       "-I",
       "include/",
-      "-O2"
+      "main.c",
+      "-o",
+      "build/Zi-Game"
     ],
-    "directory": "/home/nestos/C-Game",
+    "directory": "/home/nestos/Projects/Project-PolarRegions/test",
     "output": "build/Zi-Game"
   }
 ]
