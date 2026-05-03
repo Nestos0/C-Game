@@ -148,3 +148,4 @@ int printf_bbcode(const char *format, ...)
 
 	return done;
 }
+

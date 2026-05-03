@@ -144,3 +144,4 @@ static int in_range_table(uint32_t cp)
 	}
 	return 0;
 }
+

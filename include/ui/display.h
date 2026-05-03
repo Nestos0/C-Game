@@ -42,6 +42,8 @@ extern struct Screen *screen;
 
 extern struct Environment G_ENV;
 
+void screen_destroy(Screen *s);
+
 RGB get_anti_color(RGB color);
 
 int screen_clear(void);

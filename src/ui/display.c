@@ -139,3 +139,4 @@ int __screen_uninit(void)
 	return 0;
 }
 APP_EXIT(__screen_uninit);
+

@@ -16,11 +16,13 @@ typedef struct BoxLTRB {
 typedef struct InputLine {
 	struct BoxLTRB *parent;
 	int row;
-	int col;
+	int curser_col;
 	bool dirty : 1;
-	char *text;
-	char *start;
-	char *end;
+	struct {
+		char *p;
+		char *text;
+		size_t cap;
+	} string;
 } InputLine;
 
 typedef enum {
@@ -29,6 +31,7 @@ typedef enum {
 } WidgetType;
 
 typedef struct GenericWidget {
+	bool is_active : 1;
 	WidgetType type;
 	union {
 		BoxLTRB box;
@@ -38,6 +41,8 @@ typedef struct GenericWidget {
 
 typedef struct WidgetBuffer {
 	GenericWidget *widgets;
+	GenericWidget **active_map;
+	GenericWidget **free_map;
 	size_t count;
 	size_t cap;
 } WidgetBuffer;
@@ -58,3 +63,5 @@ int pos_at_margin(int total_size, int margin);
 
 InputLine *widget_create_inputline(BoxLTRB *parent);
 void widget_draw_inputline(Screen *screen, InputLine *input, RGB *fg, RGB *bg);
+char *inputline_text_realloc(InputLine *iw);
+void widget_buffer_reset(void);

@@ -22,6 +22,11 @@ int __widgets_init(void)
 		G_WIDGET_BUFFER = NULL;
 		return -1;
 	}
+	G_WIDGET_BUFFER->active_map = calloc(DEFAULT_WIDGET_LIMIT, sizeof(GenericWidget *));
+	G_WIDGET_BUFFER->free_map = calloc(DEFAULT_WIDGET_LIMIT, sizeof(GenericWidget *));
+	for (size_t i = 0; i < DEFAULT_WIDGET_LIMIT; i++) {
+		G_WIDGET_BUFFER->free_map[i] = G_WIDGET_BUFFER->widgets + 0;
+	}
 	G_WIDGET_BUFFER->count = 0;
 	G_WIDGET_BUFFER->cap = DEFAULT_WIDGET_LIMIT;
 	return 0;
@@ -34,8 +39,8 @@ int __widgets_exit(void)
 		if (G_WIDGET_BUFFER->widgets) {
 			for (size_t i = 0; i < G_WIDGET_BUFFER->count; i++) {
 				GenericWidget *gw = &G_WIDGET_BUFFER->widgets[i];
-				if (gw->type == TYPE_INPUT && gw->data.input.text) {
-					free(gw->data.input.text);
+				if (gw->type == TYPE_INPUT && gw->data.input.string.text) {
+					free(gw->data.input.string.text);
 				}
 			}
 			free(G_WIDGET_BUFFER->widgets);
@@ -60,6 +65,24 @@ static void set_cell_inline(int x, int y, uint32_t cp, RGB *fg, RGB *bg)
 		screen->cells[idx].wide = false;
 		screen->cells[idx].wide_cont = false;
 	}
+}
+
+static void widget_buffer_clear(void)
+{
+	if (!G_WIDGET_BUFFER || !G_WIDGET_BUFFER->widgets)
+		return;
+	for (size_t i = 0; i < G_WIDGET_BUFFER->count; i++) {
+		GenericWidget *gw = &G_WIDGET_BUFFER->widgets[i];
+		if (gw->type == TYPE_INPUT && gw->data.input.string.text) {
+			free(gw->data.input.string.text);
+		}
+	}
+	G_WIDGET_BUFFER->count = 0;
+}
+
+void widget_buffer_reset(void)
+{
+	widget_buffer_clear();
 }
 
 static GenericWidget *widget_buffer_alloc(void)
@@ -176,9 +199,49 @@ InputLine *widget_create_inputline(BoxLTRB *parent)
 		return NULL;
 	ret->parent = parent;
 	ret->row = 0;
-	ret->text = calloc(32, sizeof(char));
-	ret->start = ret->text;
+	ret->string.text = calloc(8 + 1, sizeof(char));
+	ret->string.cap = 8;
+	ret->string.p = ret->string.text;
+	ret->dirty = false;
 	return ret;
+}
+
+size_t next_power_of_2(size_t n)
+{
+	if (n == 0)
+		return 1;
+	n--; // 如果 n 本身是 2 的幂，减 1 可以保证结果还是 n
+	n |= n >> 1;
+	n |= n >> 2;
+	n |= n >> 4;
+	n |= n >> 8;
+	n |= n >> 16;
+#if SIZE_MAX > 0xFFFFFFFF // 如果是 64 位系统
+	n |= n >> 32;
+#endif
+	return n + 1;
+}
+
+char *inputline_text_realloc(InputLine *iw)
+{
+	if (iw->string.text) {
+		size_t len = strlen(iw->string.text);
+		if (!iw->string.cap) {
+			size_t cap = next_power_of_2(len);
+			iw->string.cap = cap;
+		}
+		size_t new_cap = (iw->string.cap >= 32) ? iw->string.cap * 2 : 32;
+		char *temp = calloc(new_cap + 1, sizeof(char));
+		if (!temp) {
+			return iw->string.text;
+		}
+		memcpy(temp, iw->string.text, len + 1);
+		free(iw->string.text);
+		iw->string.text = temp;
+		iw->string.p = temp + len;
+		iw->string.cap = new_cap;
+	}
+	return iw->string.text;
 }
 
 void widget_draw_inputline(Screen *screen, InputLine *input, RGB *fg, RGB *bg)
@@ -191,8 +254,9 @@ void widget_draw_inputline(Screen *screen, InputLine *input, RGB *fg, RGB *bg)
 	RGB bg_color = (bg != NULL) ? *bg : G_ENV.bg;
 
 	set_cell_inline(input_left, input_row, '$', &fg_color, &bg_color);
-	/* log4engine("log.txt", "Input Left POS: %d, Input TOP Pos: %d\n", input_left, input_row); */
-	widget_write_text(screen, input_left + 2, input_row, "%s", input->text);
+	log4engine("log.txt", "CURRENT: TEXT%s\n", input->string.text);
+	widget_write_text(screen, input_left + 2, input_row, input->string.text);
+	input->dirty = false;
 }
 
 BoxLTRB *widget_draw_box(Screen *screen, int x, int y, int w, int h, RGB *fg, RGB *bg)
@@ -268,7 +332,7 @@ void widget_write_text(Screen *screen, int x, int y, const char *format, ...)
 	for (const char *p = buffer; p < (buffer + len);) {
 		uint32_t cp = { 0 };
 		p += utf8_decode(p, &cp);
-		set_cell_inline(x, y, cp, NULL, NULL);
+		set_cell_inline(x++, y, cp, NULL, NULL);
 	}
 
 	free(buffer);
