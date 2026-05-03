@@ -1,4 +1,5 @@
 #include "ui/widgets.h"
+#include "calc.h"
 #include "log.h"
 #include "module.h"
 #include "text/utf8.h"
@@ -191,13 +192,12 @@ void widget_draw_hline(Screen *screen, int y, RGB *fg, RGB *bg)
 #undef SET_CELL_INLINE
 }
 
-BoxLTRB *widget_draw_box_ltrb(Screen *screen, int left, int top, int right, int bottom, RGB *fg, RGB *bg)
+GenericWidget *widget_draw_box_ltrb(Screen *screen, int left, int top, int right, int bottom, RGB *fg, RGB *bg)
 {
 	GenericWidget *gw = widget_buffer_alloc();
 	if (!gw)
 		return NULL;
 	gw->type = TYPE_BOX;
-	BoxLTRB *ret = &gw->data.box;
 
 	RGB fg_color = (fg != NULL) ? *fg : G_ENV.fg;
 	RGB bg_color = (bg != NULL) ? *bg : G_ENV.bg;
@@ -206,10 +206,10 @@ BoxLTRB *widget_draw_box_ltrb(Screen *screen, int left, int top, int right, int 
 	set_cell_inline(right, top, 0x2510, &fg_color, &bg_color);
 	set_cell_inline(left, bottom, 0x2514, &fg_color, &bg_color);
 	set_cell_inline(right, bottom, 0x2518, &fg_color, &bg_color);
-	ret->left = left;
-	ret->top = top;
-	ret->right = right;
-	ret->bottom = bottom;
+	gw->left = left;
+	gw->top = top;
+	gw->right = right;
+	gw->bottom = bottom;
 
 	for (int x = left + 1; x < right; x++) {
 		set_cell_inline(x, top, 0x2500, &fg_color, &bg_color);
@@ -221,41 +221,29 @@ BoxLTRB *widget_draw_box_ltrb(Screen *screen, int left, int top, int right, int 
 		set_cell_inline(right, y, 0x2502, &fg_color, &bg_color);
 	}
 
-	return ret;
+	return gw;
 }
 
-InputLine *widget_create_inputline(BoxLTRB *parent)
+GenericWidget *widget_create_inputline(GenericWidget *window)
 {
+	if (window == NULL)
+		return NULL;
 	GenericWidget *gw = widget_buffer_alloc();
 	if (!gw)
 		return NULL;
 	gw->type = TYPE_INPUT;
-	InputLine *ret = &gw->data.input;
-	if (parent == NULL)
-		return NULL;
-	ret->parent = parent;
-	ret->row = 0;
-	ret->string.text = calloc(8 + 1, sizeof(char));
-	ret->string.cap = 8;
-	ret->string.p = ret->string.text;
-	ret->dirty = false;
-	return ret;
-}
-
-size_t next_power_of_2(size_t n)
-{
-	if (n == 0)
-		return 1;
-	n--; // 如果 n 本身是 2 的幂，减 1 可以保证结果还是 n
-	n |= n >> 1;
-	n |= n >> 2;
-	n |= n >> 4;
-	n |= n >> 8;
-	n |= n >> 16;
-#if SIZE_MAX > 0xFFFFFFFF // 如果是 64 位系统
-	n |= n >> 32;
-#endif
-	return n + 1;
+	InputLine *input = &gw->data.input;
+	gw->left = window->left;
+	gw->top = window->top;
+	gw->right = window->right;
+	gw->bottom = window->bottom;
+	input->self = gw;
+	input->row = 0;
+	input->string.text = calloc(8 + 1, sizeof(char));
+	input->string.cap = 8;
+	input->string.p = input->string.text;
+	input->dirty = false;
+	return gw;
 }
 
 char *inputline_text_realloc(InputLine *iw)
@@ -282,26 +270,33 @@ char *inputline_text_realloc(InputLine *iw)
 
 void widget_draw_inputline(Screen *screen, InputLine *input, RGB *fg, RGB *bg)
 {
-	int input_left = input->parent->left + 1;
-	int input_ceiling = (input->parent->top + 1);
-	int input_row = (input_ceiling + input->row < input->parent->bottom) ? input_ceiling + input->row : input->parent->bottom - 1;
+	int input_left = input->self->left + 1;
+	int input_ceiling = (input->self->top + 1);
+	int input_row = (input_ceiling + input->row < input->self->bottom) ? input_ceiling + input->row : input->self->bottom - 1;
 
 	RGB fg_color = (fg != NULL) ? *fg : G_ENV.fg;
 	RGB bg_color = (bg != NULL) ? *bg : G_ENV.bg;
 
 	set_cell_inline(input_left, input_row, '$', &fg_color, &bg_color);
-	log4engine("log.txt", "CURRENT: TEXT%s\n", input->string.text);
+	/* log4engine("log.txt", "CURRENT: TEXT%s\n", input->self->string.text); */
 	widget_write_text(screen, input_left + 2, input_row, input->string.text);
+
+	int x = input->self->left + 2;
+	for (const char *p = input->string.p; p < (input->string.p + strlen(input->string.p));) {
+		uint32_t cp = { 0 };
+		p += utf8_decode(p, &cp);
+		set_cell_inline(x++, input->self->top + 1, cp, NULL, NULL);
+	}
+
 	input->dirty = false;
 }
 
-BoxLTRB *widget_draw_box(Screen *screen, int x, int y, int w, int h, RGB *fg, RGB *bg)
+GenericWidget *widget_draw_box(Screen *screen, int x, int y, int w, int h, RGB *fg, RGB *bg)
 {
 	GenericWidget *gw = widget_buffer_alloc();
 	if (!gw)
 		return NULL;
 	gw->type = TYPE_BOX;
-	BoxLTRB *ret = &gw->data.box;
 
 	RGB fg_color = (fg != NULL) ? *fg : G_ENV.fg;
 	RGB bg_color = (bg != NULL) ? *bg : G_ENV.bg;
@@ -310,10 +305,10 @@ BoxLTRB *widget_draw_box(Screen *screen, int x, int y, int w, int h, RGB *fg, RG
 	int right = (x + w > screen->width) ? screen->width : x + w - 1;
 	int top = (y < 0) ? 0 : y;
 	int bottom = (y + h > screen->height) ? screen->height : y + h - 1;
-	ret->left = left;
-	ret->top = top;
-	ret->right = right;
-	ret->bottom = bottom;
+	gw->left = left;
+	gw->top = top;
+	gw->right = right;
+	gw->bottom = bottom;
 
 #define SET_CELL_INLINE(_x, _y, _cp)                                                           \
 	do {                                                                                   \
@@ -344,7 +339,7 @@ BoxLTRB *widget_draw_box(Screen *screen, int x, int y, int w, int h, RGB *fg, RG
 	}
 
 #undef SET_CELL_INLINE
-	return ret;
+	return gw;
 }
 
 void widget_write_text(Screen *screen, int x, int y, const char *format, ...)
@@ -358,8 +353,6 @@ void widget_write_text(Screen *screen, int x, int y, const char *format, ...)
 	if (len < 0)
 		return;
 
-	if (len < 0)
-		return;
 	char *buffer = calloc(1, sizeof(char) * (len + 1));
 	va_start(args, format);
 	vsnprintf(buffer, len + 1, format, args);

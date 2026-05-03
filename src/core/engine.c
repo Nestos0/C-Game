@@ -5,6 +5,7 @@
 #include "ui/display.h"
 #include "ui/terminal.h"
 #include "ui/widgets.h"
+#include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -48,26 +49,24 @@ void game_refresh_ui()
 				GenericWidget *gw = &G_WIDGET_BUFFER->widgets[i];
 				switch (gw->type) {
 				case TYPE_INPUT:
-					InputLine *input = &(gw->data.input);
-					widget_draw_inputline(screen, input, (RGB *)THEME("indicator"), NULL);
+					widget_draw_inputline(screen, &(gw->data.input), (RGB *)THEME("indicator"), NULL);
 					break;
 				case TYPE_BOX:
-					BoxLTRB *box = &(gw->data.box);
-					widget_draw_box_ltrb(screen, box->left, box->top, box->right, box->bottom, NULL, NULL);
+					widget_draw_box_ltrb(screen, gw->left, gw->top, gw->right, gw->bottom, NULL, NULL);
 					break;
 				}
 			}
 		} else {
-			BoxLTRB *main = widget_draw_box(screen, 2, 1, screen->width - 4, screen->height - 10, NULL, NULL);
+			GenericWidget *main = widget_draw_box(screen, 2, 1, screen->width - 4, screen->height - 10, NULL, NULL);
 			widget_draw_box_ltrb(screen, 2, main->bottom + 1,
 				pos_at_margin(screen->width, 2),
 				pos_at_margin(screen->height, 1), NULL, NULL);
-
-			BoxLTRB *inputbox = widget_draw_box_ltrb(screen, main->left + 1, main->bottom - 3,
+			GenericWidget *inputbox = widget_draw_box_ltrb(screen, main->left + 1, main->bottom - 3,
 				main->right - 1, main->bottom - 1, NULL, NULL);
-			InputLine *input = widget_create_inputline(inputbox);
-			widget_draw_inputline(screen, input, (RGB *)THEME("indicator"), NULL);
-			cur_input = input;
+			GenericWidget *input = widget_create_inputline(inputbox);
+			cur_input = &(input->data.input);
+
+			widget_draw_inputline(screen, cur_input, (RGB *)THEME("indicator"), NULL);
 		}
 	} else {
 		widget_draw_box(screen, 0, 0, screen->width, screen->height, (RGB *)THEME("border"), (RGB *)THEME("border_bg"));
@@ -99,10 +98,23 @@ void process_input(void)
 					cur_input->string.text = inputline_text_realloc(cur_input);
 				}
 				char *ptr = cur_input->string.p;
-				*ptr++ = prev;
-				*ptr = '\0';
-				cur_input->string.p = ptr;
-				cur_input->dirty = true;
+				if (isprint(prev)) {
+					*ptr++ = prev;
+					*ptr = '\0';
+					cur_input->string.p = ptr;
+					cur_input->dirty = true;
+				} else {
+					switch (prev) {
+					case 127:
+						if (ptr > cur_input->string.text)
+							*ptr-- = '\0';
+						else
+							*ptr = '\0';
+						cur_input->string.p = ptr;
+						cur_input->dirty = true;
+						break;
+					}
+				}
 			}
 		}
 	}
@@ -130,8 +142,8 @@ void update_game(void)
 	}
 	if (cur_input && cur_input->dirty) {
 		widget_draw_inputline(screen, cur_input, (RGB *)THEME("indicator"), NULL);
-		screen->cursor.x = cur_input->parent->left;
-		screen->cursor.y = cur_input->parent->top + cur_input->row;
+		screen->cursor.x = cur_input->self->left;
+		screen->cursor.y = cur_input->self->top + cur_input->row;
 	}
 }
 
