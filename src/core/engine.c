@@ -129,7 +129,6 @@ void update_game(void)
 		game_refresh_ui();
 	}
 	if (cur_input && cur_input->dirty) {
-		term_set_cell(screen, 10, 10, 'A', (RGB *)THEME("indicator"), NULL);
 		widget_draw_inputline(screen, cur_input, (RGB *)THEME("indicator"), NULL);
 		screen->cursor.x = cur_input->parent->left;
 		screen->cursor.y = cur_input->parent->top + cur_input->row;

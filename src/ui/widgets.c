@@ -4,6 +4,7 @@
 #include "text/utf8.h"
 #include "ui/display.h"
 #include <stdarg.h>
+#include <stddef.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -22,13 +23,11 @@ int __widgets_init(void)
 		G_WIDGET_BUFFER = NULL;
 		return -1;
 	}
-	G_WIDGET_BUFFER->active_map = calloc(DEFAULT_WIDGET_LIMIT, sizeof(GenericWidget *));
-	G_WIDGET_BUFFER->free_map = calloc(DEFAULT_WIDGET_LIMIT, sizeof(GenericWidget *));
-	for (size_t i = 0; i < DEFAULT_WIDGET_LIMIT; i++) {
-		G_WIDGET_BUFFER->free_map[i] = G_WIDGET_BUFFER->widgets + 0;
-	}
+
 	G_WIDGET_BUFFER->count = 0;
 	G_WIDGET_BUFFER->cap = DEFAULT_WIDGET_LIMIT;
+	G_WIDGET_BUFFER->free_stack = calloc(DEFAULT_WIDGET_LIMIT, sizeof(int));
+	G_WIDGET_BUFFER->free_top = -1;
 	return 0;
 }
 APP_INIT(__widgets_init);
@@ -85,11 +84,37 @@ void widget_buffer_reset(void)
 	widget_buffer_clear();
 }
 
+void widget_buffer_pop(GenericWidget *gw)
+{
+	if (!gw || !G_WIDGET_BUFFER)
+		return;
+
+	ptrdiff_t seq = gw - G_WIDGET_BUFFER->widgets;
+	if (seq < 0 || (size_t)seq >= G_WIDGET_BUFFER->cap) {
+		fprintf(stderr, "Error: Attempt to pop an invalid widget pointer.\n");
+		return;
+	}
+
+	if (gw->type == TYPE_INPUT && gw->data.input.string.text) {
+		free(gw->data.input.string.text);
+		gw->data.input.string.text = NULL;
+	}
+
+	gw->is_active = false;
+
+	if (G_WIDGET_BUFFER->free_top < (int)(G_WIDGET_BUFFER->cap - 1)) {
+		G_WIDGET_BUFFER->free_stack[++(G_WIDGET_BUFFER->free_top)] = (int)seq;
+	} else {
+		fprintf(stderr, "Error: Free stack overflow! Possileb double pop.\n");
+	}
+}
+
 static GenericWidget *widget_buffer_alloc(void)
 {
 	if (G_WIDGET_BUFFER == NULL) {
 		__widgets_init();
 	}
+
 	if (G_WIDGET_BUFFER->count >= G_WIDGET_BUFFER->cap) {
 		size_t new_cap = (G_WIDGET_BUFFER->cap == 0) ? DEFAULT_WIDGET_LIMIT : G_WIDGET_BUFFER->cap * 2;
 		void *temp = realloc(G_WIDGET_BUFFER->widgets, sizeof(GenericWidget) * new_cap);
@@ -99,8 +124,19 @@ static GenericWidget *widget_buffer_alloc(void)
 		}
 		G_WIDGET_BUFFER->widgets = (GenericWidget *)temp;
 		G_WIDGET_BUFFER->cap = new_cap;
+		int *new_stack = realloc(G_WIDGET_BUFFER->free_stack, sizeof(int) * new_cap);
+		G_WIDGET_BUFFER->free_stack = new_stack;
 	}
-	return &G_WIDGET_BUFFER->widgets[G_WIDGET_BUFFER->count++];
+	GenericWidget *gw;
+	if (G_WIDGET_BUFFER->free_top >= 0) {
+		gw = &G_WIDGET_BUFFER->widgets[G_WIDGET_BUFFER->free_top--];
+	} else
+		gw = &G_WIDGET_BUFFER->widgets[G_WIDGET_BUFFER->count++];
+	if (!gw) {
+		fprintf(stderr, "Out of memory!\n");
+		return NULL;
+	}
+	return gw;
 }
 
 void widget_draw_vline(Screen *screen, int x, RGB *fg, RGB *bg)

@@ -41,10 +41,10 @@ typedef struct GenericWidget {
 
 typedef struct WidgetBuffer {
 	GenericWidget *widgets;
-	GenericWidget **active_map;
-	GenericWidget **free_map;
 	size_t count;
 	size_t cap;
+	int *free_stack;
+	int free_top;
 } WidgetBuffer;
 
 extern WidgetBuffer *G_WIDGET_BUFFER;
@@ -65,3 +65,5 @@ InputLine *widget_create_inputline(BoxLTRB *parent);
 void widget_draw_inputline(Screen *screen, InputLine *input, RGB *fg, RGB *bg);
 char *inputline_text_realloc(InputLine *iw);
 void widget_buffer_reset(void);
+
+void widget_buffer_pop(GenericWidget *gw);
