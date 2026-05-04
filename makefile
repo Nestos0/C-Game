@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -std=gnu23 -Wall -g -O2 -I include/
+CFLAGS = -std=gnu23 -Wall -g -O0 -I include/
 TARGET = Zi-Game
 BUILD_DIR = build
 BUILD_FILE = $(shell find build -not -name "compile_commands.json" -not -path build)

@@ -12,6 +12,7 @@
 #include <string.h>
 
 #define DEFAULT_WIDGET_LIMIT 8
+#define DEFAULT_INPUTLINE_CAP 32
 
 int __widgets_init(void)
 {
@@ -239,8 +240,8 @@ GenericWidget *widget_create_inputline(GenericWidget *window)
 	gw->bottom = window->bottom;
 	input->self = gw;
 	input->row = 0;
-	input->string.text = calloc(8 + 1, sizeof(char));
-	input->string.cap = 8;
+	input->string.text = calloc(DEFAULT_INPUTLINE_CAP + 1, sizeof(char));
+	input->string.cap = DEFAULT_INPUTLINE_CAP;
 	input->string.p = input->string.text;
 	input->dirty = false;
 	return gw;
@@ -270,22 +271,33 @@ char *inputline_text_realloc(InputLine *iw)
 
 void widget_draw_inputline(Screen *screen, InputLine *input, RGB *fg, RGB *bg)
 {
-	int input_left = input->self->left + 1;
-	int input_ceiling = (input->self->top + 1);
-	int input_row = (input_ceiling + input->row < input->self->bottom) ? input_ceiling + input->row : input->self->bottom - 1;
+	int left = input->self->left + 1;
+	int right = input->self->right - 1;
+	int ceiling = input->self->top + 1;
+	int row = (ceiling + input->row < input->self->bottom) ? ceiling + input->row : input->self->bottom - 1;
 
 	RGB fg_color = (fg != NULL) ? *fg : G_ENV.fg;
 	RGB bg_color = (bg != NULL) ? *bg : G_ENV.bg;
 
-	set_cell_inline(input_left, input_row, '$', &fg_color, &bg_color);
-	/* log4engine("log.txt", "CURRENT: TEXT%s\n", input->self->string.text); */
-	widget_write_text(screen, input_left + 2, input_row, input->string.text);
+	set_cell_inline(left, row, '$', &fg_color, &bg_color);
 
-	int x = input->self->left + 2;
-	for (const char *p = input->string.p; p < (input->string.p + strlen(input->string.p));) {
+	int cur_x = left + 2;
+	const char *p = input->string.text;
+	while (*p != '\0' && cur_x <= right) {
 		uint32_t cp = { 0 };
 		p += utf8_decode(p, &cp);
-		set_cell_inline(x++, input->self->top + 1, cp, NULL, NULL);
+		int width = cp_display_width(cp);
+
+		if (cur_x + width > right + 1)
+			break;
+
+		set_cell_inline(cur_x, row, cp, NULL, NULL);
+		cur_x += width;
+	}
+
+	while (cur_x <= right) {
+		set_cell_inline(cur_x, row, ' ', &fg_color, &bg_color);
+		cur_x++;
 	}
 
 	input->dirty = false;

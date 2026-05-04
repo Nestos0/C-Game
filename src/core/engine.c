@@ -12,10 +12,12 @@
 #include <sys/time.h>
 #include <unistd.h>
 
-#define TARGET_FPS 20
+#define TARGET_FPS 4
 #define TARGET_FRAME_TIME (1000000 / TARGET_FPS)
 
+bool SYNC = true;
 struct InputLine *cur_input = NULL;
+struct GenericWidget *main_window = NULL;
 bool initialized = false;
 
 static const struct {
@@ -57,12 +59,12 @@ void game_refresh_ui()
 				}
 			}
 		} else {
-			GenericWidget *main = widget_draw_box(screen, 2, 1, screen->width - 4, screen->height - 10, NULL, NULL);
-			widget_draw_box_ltrb(screen, 2, main->bottom + 1,
+			main_window = widget_draw_box(screen, 2, 1, screen->width - 4, screen->height - 10, NULL, NULL);
+			widget_draw_box_ltrb(screen, 2, main_window->bottom + 1,
 				pos_at_margin(screen->width, 2),
 				pos_at_margin(screen->height, 1), NULL, NULL);
-			GenericWidget *inputbox = widget_draw_box_ltrb(screen, main->left + 1, main->bottom - 3,
-				main->right - 1, main->bottom - 1, NULL, NULL);
+			GenericWidget *inputbox = widget_draw_box_ltrb(screen, main_window->left + 1, main_window->bottom - 3,
+				main_window->right - 1, main_window->bottom - 1, NULL, NULL);
 			GenericWidget *input = widget_create_inputline(inputbox);
 			cur_input = &(input->data.input);
 
@@ -85,37 +87,41 @@ int kbhit(void)
 
 void process_input(void)
 {
-	if (kbhit()) {
+	while (kbhit()) {
 		char prev = getchar();
 		if (prev == 4) {
 			screen_clear();
 			game_state.is_running = false;
-		} else {
-			if (cur_input && prev) {
-				size_t len = strlen(cur_input->string.text);
-				if (cur_input->string.cap - len <= 2) {
-					log4engine("log.txt", "REALLOC cur_input->string.text\n");
-					cur_input->string.text = inputline_text_realloc(cur_input);
-				}
-				char *ptr = cur_input->string.p;
-				if (isprint(prev)) {
-					*ptr++ = prev;
-					*ptr = '\0';
-					cur_input->string.p = ptr;
-					cur_input->dirty = true;
-				} else {
-					switch (prev) {
-					case 127:
-						if (ptr > cur_input->string.text)
-							*ptr-- = '\0';
-						else
-							*ptr = '\0';
-						cur_input->string.p = ptr;
-						cur_input->dirty = true;
-						break;
-					}
+			break;
+		}
+		if (cur_input && prev) {
+			size_t len = strlen(cur_input->string.text);
+			if (cur_input->string.cap - len <= 2) {
+				log4engine("log.txt", "REALLOC cur_input->string.text\n");
+				cur_input->string.text = inputline_text_realloc(cur_input);
+			}
+			if (isprint(prev)) {
+				*cur_input->string.p++ = prev;
+				*cur_input->string.p = '\0';
+			} else {
+				switch (prev) {
+				case 127:
+					if (cur_input->string.p > cur_input->string.text) {
+						cur_input->string.p--;
+						*cur_input->string.p = '\0';
+					} else
+						*cur_input->string.p = '\0';
+					break;
+				case 13:
+					int top = main_window->top + 1;
+					for (int i = 3; i < main_window->right - 1; i++)
+						term_set_cell(screen, i, top, 0, NULL, NULL);
+					widget_write_text(screen, 3, top, "%s", cur_input->string.text);
+					cur_input->string.p = cur_input->string.text;
+					*cur_input->string.p = '\0';
 				}
 			}
+			cur_input->dirty = true;
 		}
 	}
 }
@@ -178,11 +184,13 @@ void game_loop()
 		update_game();
 		screen_flush(screen);
 
-		long long frame_end = get_microtime();
-		long long actual_frame_duration = frame_end - frame_start;
+		if (SYNC) {
+			long long frame_end = get_microtime();
+			long long actual_frame_duration = frame_end - frame_start;
 
-		if (actual_frame_duration < TARGET_FRAME_TIME) {
-			usleep(TARGET_FRAME_TIME - actual_frame_duration);
+			if (actual_frame_duration < TARGET_FRAME_TIME) {
+				usleep(TARGET_FRAME_TIME - actual_frame_duration);
+			}
 		}
 	} while (game_state.is_running);
 }

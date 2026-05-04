@@ -54,5 +54,3 @@ int screen_set_fg(Screen *s, RGB rgb);
 int screen_set_bg(Screen *s, RGB rgb);
 
 void screen_flush(Screen *s);
-
-void screen_set_cell(Screen *s, int x, int y, uint32_t cp, RGB *fg_rgb, RGB *bg_rgb);
