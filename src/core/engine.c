@@ -15,7 +15,7 @@
 #define TARGET_FPS 4
 #define TARGET_FRAME_TIME (1000000 / TARGET_FPS)
 
-bool SYNC = true;
+bool SYNC = false;
 struct InputLine *cur_input = NULL;
 struct GenericWidget *main_window = NULL;
 bool initialized = false;
@@ -43,11 +43,14 @@ static const RGB *theme_lookup(const char *name, size_t len)
 
 void game_refresh_ui()
 {
-	widget_draw_box(screen, 0, 0, screen->width, screen->height, (RGB *)THEME("border"), (RGB *)THEME("border_bg")); // Create Windows border
+	int width, height = 0;
+	screen_get_size(screen, &width, &height);
+	widget_draw_box(screen, 0, 0, width, height, (RGB *)THEME("border"), (RGB *)THEME("border_bg")); // Create Windows border
 
-	if (screen->width < 90) {
+	if (width < 90) {
 		if (initialized) {
-			for (int i = 0; i < G_WIDGET_BUFFER->count; i++) {
+			size_t count = G_WIDGET_BUFFER->count;
+			for (int i = 0; i < count; i++) {
 				GenericWidget *gw = &G_WIDGET_BUFFER->widgets[i];
 				switch (gw->type) {
 				case TYPE_INPUT:
@@ -59,10 +62,10 @@ void game_refresh_ui()
 				}
 			}
 		} else {
-			main_window = widget_draw_box(screen, 2, 1, screen->width - 4, screen->height - 10, NULL, NULL);
+			main_window = widget_draw_box(screen, 2, 1, width - 4, height - 10, NULL, NULL);
 			widget_draw_box_ltrb(screen, 2, main_window->bottom + 1,
-				pos_at_margin(screen->width, 2),
-				pos_at_margin(screen->height, 1), NULL, NULL);
+				pos_at_margin(width, 2),
+				pos_at_margin(height, 1), NULL, NULL);
 			GenericWidget *inputbox = widget_draw_box_ltrb(screen, main_window->left + 1, main_window->bottom - 3,
 				main_window->right - 1, main_window->bottom - 1, NULL, NULL);
 			GenericWidget *input = widget_create_inputline(inputbox);
@@ -71,8 +74,8 @@ void game_refresh_ui()
 			widget_draw_inputline(screen, cur_input, (RGB *)THEME("indicator"), NULL);
 		}
 	} else {
-		widget_draw_box(screen, 0, 0, screen->width, screen->height, (RGB *)THEME("border"), (RGB *)THEME("border_bg"));
-		widget_draw_box_ltrb(screen, 2, 1, pos_at_margin(screen->width / 2, 2), (screen->height) - 2, NULL, NULL);
+		widget_draw_box(screen, 0, 0, width, height, (RGB *)THEME("border"), (RGB *)THEME("border_bg"));
+		widget_draw_box_ltrb(screen, 2, 1, pos_at_margin(width / 2, 2), (height)-2, NULL, NULL);
 	}
 }
 
@@ -129,27 +132,39 @@ void process_input(void)
 void update_game(void)
 {
 	int width, height = 0;
-	term_get_size(&height, &width);
-	if (screen->height != height || screen->width != width) {
+	term_get_size(&width, &height);
+
+	if (screen_get_width(screen) != width || screen_get_height(screen) != height) {
 		Screen *s = screen_create(width, height);
 		if (!s)
 			return;
 
 		screen_destroy(screen);
 		screen = s;
-		for (size_t y = 0; y < s->height; y++) {
-			for (size_t x = 0; x < s->width; x++) {
-				size_t idx = y * s->width + x;
-				s->cells[idx].bg = *THEME("bg");
-				s->cells[idx].dirty = true;
+
+		// 设置背景色：通过公开方法循环设置，或使用 display 提供的全屏填充方法
+		for (int y = 0; y < height; y++) {
+			for (int x = 0; x < width; x++) {
+				// 使用 set_cell 或专门的背景设置函数
+				set_cell(s, x, y, 0, NULL, (RGB *)THEME("bg"));
 			}
 		}
 		game_refresh_ui();
 	}
+
+	// 更新输入行并设置光标
 	if (cur_input && cur_input->dirty) {
 		widget_draw_inputline(screen, cur_input, (RGB *)THEME("indicator"), NULL);
-		screen->cursor.x = cur_input->self->left;
-		screen->cursor.y = cur_input->self->top + cur_input->row;
+
+		// 准备坐标变量
+		int new_x = cur_input->self->left;
+		int new_y = cur_input->self->top + cur_input->row;
+
+		// --- 核心修改：使用符合管理办法的 Setter 函数 ---
+		// 传递变量地址，由于 Screen 是隐藏的，内部会处理具体成员赋值
+		screen_set_cursor(screen, &new_x, &new_y);
+
+		cur_input->dirty = false;
 	}
 }
 

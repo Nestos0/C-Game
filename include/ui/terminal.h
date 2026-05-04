@@ -10,7 +10,7 @@ bool term_enter_raw(void);
 
 void term_leave_raw(void);
 
-bool term_get_size(int *rows, int *cols);
+bool term_get_size(int *cols, int *rows);
 
 void ansi_cursor_hide(void);
 

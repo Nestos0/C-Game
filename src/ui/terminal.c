@@ -9,6 +9,15 @@
 static bool raw_mode_active = false;
 struct termios oldt, newt;
 
+struct Screen {
+	int width, height;
+	Cell *cells;
+	struct {
+		int x;
+		int y;
+	} cursor;
+};
+
 int term_restore()
 {
 	write(STDIN_FILENO, "\e[?1049l", 8);
@@ -25,9 +34,6 @@ void get_terminal_size(int *width, int *height)
 	if (ioctl(STDOUT_FILENO, TIOCGWINSZ, &w) == 0) {
 		*width = w.ws_col;
 		*height = w.ws_row;
-	} else {
-		*width = 80;
-		*height = 24;
 	}
 }
 
@@ -104,7 +110,7 @@ void term_leave_raw(void)
 	}
 }
 
-bool term_get_size(int *rows, int *cols)
+bool term_get_size(int *cols, int *rows)
 {
 	struct winsize ws;
 	if (ioctl(STDOUT_FILENO, TIOCGWINSZ, &ws) < 0)
@@ -127,8 +133,10 @@ void term_set_cell(Screen *s, int x, int y, uint32_t cp, RGB *fg, RGB *bg)
 	/* RGB bg_color = (bg != NULL) ? *bg : G_ENV.bg; */
 
 	s->cells[idx].cp = (cp);
-	s->cells[idx].fg = (fg != NULL) ? *fg : G_ENV.fg;;
-	s->cells[idx].bg = (bg != NULL) ? *bg : G_ENV.bg;;
+	s->cells[idx].fg = (fg != NULL) ? *fg : G_ENV.fg;
+	;
+	s->cells[idx].bg = (bg != NULL) ? *bg : G_ENV.bg;
+	;
 	s->cells[idx].dirty = true;
 	s->cells[idx].wide = false;
 	s->cells[idx].wide_cont = false;

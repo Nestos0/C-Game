@@ -1,7 +1,0 @@
-#include <stdio.h>
-
-int main()
-{
-	printf("%d\n", getchar_unlocked());
-	return 0;
-}

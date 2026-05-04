@@ -22,15 +22,7 @@ typedef struct {
 	bool dirty : 1;
 } Cell;
 
-typedef struct Screen {
-	int width;
-	int height;
-	Cell *cells;
-	struct {
-		int x;
-		int y;
-	} cursor;
-} Screen;
+typedef struct Screen Screen;
 
 typedef struct Environment {
 	RGB fg;
@@ -54,3 +46,14 @@ int screen_set_fg(Screen *s, RGB rgb);
 int screen_set_bg(Screen *s, RGB rgb);
 
 void screen_flush(Screen *s);
+
+void set_cell(Screen *s, int x, int y, uint32_t cp, RGB *fg, RGB *bg);
+
+void set_cell_wide(Screen *s, int x, int y, uint32_t cp, RGB *fg, RGB *bg);
+
+void screen_get_size(Screen *s, int *width, int *height);
+
+int screen_get_width(Screen *s);
+int screen_get_height(Screen *s);
+
+void screen_set_cursor(struct Screen *s, int *x, int *y);
