@@ -489,8 +489,8 @@ void widget_draw_inputline(Screen *s, InputLine *input, RGB *fg, RGB *bg)
 		view_offset = cursor_col - available + 1;
 
 	/* scroll left: cursor moved before left edge (e.g. after backspace) */
-	if (cursor_col - view_offset < 0)
-		view_offset = cursor_col;
+	if (cursor_col - view_offset < 4 && cursor_col > 3)
+		view_offset = cursor_col - 4;
 
 	/* clamp to non-negative */
 	if (view_offset < 0)
