@@ -50,9 +50,10 @@ typedef struct WidgetBuffer {
 
 extern WidgetBuffer *G_WIDGET_BUFFER;
 
-GenericWidget *widget_draw_box_ltrb(Screen *screen, int left, int top, int right, int bottom, RGB *fg, RGB *bg);
+GenericWidget *widget_create_box_ltrb(Screen *screen, int left, int top, int right, int bottom, RGB *fg, RGB *bg);
 
-GenericWidget *widget_draw_box(Screen *screen, int x, int y, int w, int h, RGB *fg, RGB *bg);
+GenericWidget *widget_create_box(Screen *screen, int x, int y, int w, int h, RGB *fg, RGB *bg);
+void widget_draw_box(Screen *s, GenericWidget *gw);
 
 void widget_write_text(Screen *screen, int x, int y, const char *format, ...);
 
@@ -60,9 +61,11 @@ void widget_draw_vline(Screen *screen, int x, RGB *fg, RGB *bg);
 
 void widget_draw_hline(Screen *screen, int x, RGB *fg, RGB *bg);
 
-int pos_at_margin(int total_size, int margin);
+int pos_to_margin(int total_size, int margin);
 
-GenericWidget *widget_create_inputline(GenericWidget *parent);
+GenericWidget *widget_create_inputline(GenericWidget *parent, int row);
+GenericWidget *widget_create_inputline_ltrb(Screen *s, int x, int y, int w, int h,
+	RGB *fg, RGB *bg, bool has_border);
 void widget_draw_inputline(Screen *screen, InputLine *input, RGB *fg, RGB *bg);
 char *inputline_text_realloc(InputLine *iw);
 void widget_buffer_reset(void);
