@@ -1,6 +1,7 @@
 #pragma once
 
 typedef struct GameState {
+	bool initialized;
 	bool is_running;
 } GameState;
 

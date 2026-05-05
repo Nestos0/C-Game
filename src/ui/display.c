@@ -10,14 +10,31 @@
 #include <termios.h>
 #include <unistd.h>
 
+typedef struct GenericWidget GenericWidget;
+
 struct Screen {
 	int width, height;
 	Cell *cells;
+	GenericWidget *root;
 	struct {
 		int x;
 		int y;
 	} cursor;
 };
+
+int screen_add_root(Screen *s, GenericWidget *gw)
+{
+	if (!s) {
+		fprintf(stderr, "Exception thrown: read access violation. s was nullptr.\n");
+		return -1;
+	}
+	if (!gw) {
+		fprintf(stderr, "Exception thrown: read access violation. gw was nullptr.\n");
+		return -2;
+	}
+	s->root = gw;
+	return 0;
+}
 
 void screen_set_cursor(struct Screen *s, int *x, int *y)
 {
@@ -116,13 +133,14 @@ Screen *screen_create(int width, int height)
 
 	s->width = width;
 	s->height = height;
+	s->root = NULL;
 	return s;
 }
 
 int __screen_init(void)
 {
 	int width, height;
-	term_get_size(&width,&height);
+	term_get_size(&width, &height);
 	screen = screen_create(width, height);
 	return 0;
 }

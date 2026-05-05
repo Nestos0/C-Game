@@ -57,3 +57,6 @@ int screen_get_width(Screen *s);
 int screen_get_height(Screen *s);
 
 void screen_set_cursor(struct Screen *s, int *x, int *y);
+
+typedef struct GenericWidget GenericWidget;
+int screen_add_root(Screen *s, GenericWidget *gw);

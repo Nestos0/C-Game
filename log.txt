@@ -20,3 +20,6 @@ REALLOC cur_input->string.text
 REALLOC cur_input->string.text
 REALLOC cur_input->string.text
 REALLOC cur_input->string.text
+REALLOC cur_input->string.text
+REALLOC cur_input->string.text
+REALLOC cur_input->string.text

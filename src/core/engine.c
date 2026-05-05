@@ -17,8 +17,7 @@
 
 bool SYNC = false;
 struct InputLine *cur_input = NULL;
-struct GenericWidget *main_window = NULL;
-bool initialized = false;
+struct GenericWidget *root_window = NULL;
 
 static const struct {
 	const char *name;
@@ -41,50 +40,54 @@ static const RGB *theme_lookup(const char *name, size_t len)
 	return NULL;
 }
 
-void game_refresh_ui()
+void init_game()
 {
+	screen_clear();
+	screen_set_fg(screen, get_anti_color(*THEME("bg")));
+	screen_set_bg(screen, *THEME("bg"));
+
 	int width, height = 0;
 	screen_get_size(screen, &width, &height);
-	widget_create_box(screen, 0, 0, width, height, (RGB *)THEME("border"), (RGB *)THEME("border_bg")); // Create Windows border
+	root_window = widget_create_box(screen, 0, 0, width, height, (RGB *)THEME("border"), (RGB *)THEME("border_bg")); // Create Windows border
+	screen_add_root(screen, root_window);
 
-	if (width < 90) {
-		if (initialized) {
-			size_t count = G_WIDGET_BUFFER->count;
-			for (int i = 0; i < count; i++) {
-				GenericWidget *gw = &G_WIDGET_BUFFER->widgets[i];
-				switch (gw->type) {
-				case TYPE_INPUT:
-					widget_draw_inputline(screen, &(gw->data.input), (RGB *)THEME("indicator"), NULL);
-					break;
-				case TYPE_BOX:
-					widget_create_box_ltrb(screen, gw->left, gw->top, gw->right, gw->bottom, NULL, NULL);
-					break;
-				}
-			}
-		} else {
-			main_window = widget_create_box(screen, 2, 1, width - 4, height - 10, NULL, NULL);
-			widget_draw_box(screen, main_window);
-			GenericWidget *info = widget_create_box_ltrb(screen, 2, main_window->bottom + 1,
-				pos_to_margin(width, 2),
-				pos_to_margin(height, 1), NULL, NULL);
-			widget_draw_box(screen, info);
-			GenericWidget *inputbox = widget_create_box_ltrb(screen, main_window->left + 1, main_window->bottom - 3,
-				main_window->right - 1, main_window->bottom - 1, NULL, NULL);
-			widget_draw_box(screen, inputbox);
-			GenericWidget *input = widget_create_inputline(inputbox, 0);
-			widget_draw_inputline(screen, &(input->data.input), (RGB *)THEME("indicator"), NULL);
-			cur_input = &(input->data.input);
-		}
-	} else {
-		widget_create_box(screen, 0, 0, width, height, (RGB *)THEME("border"), (RGB *)THEME("border_bg"));
-		widget_create_box_ltrb(screen, 2, 1, pos_to_margin(width / 2, 2), (height)-2, NULL, NULL);
+	game_refresh_ui();
+
+	game_state.initialized = true;
+
+	screen_flush(screen);
+}
+
+void game_refresh_ui()
+{
+	if (!game_state.initialized) {
+		GenericWidget *input = widget_create_inputline_ltrb(screen, root_window->left + 1, root_window->bottom - 3,
+			root_window->right - 1, root_window->bottom - 1, NULL, NULL, true);
+		cur_input = &(input->data.input);
+		/* widget_draw_box(screen, input); */
+		widget_add_child(root_window, input);
 	}
+
+	for (int i = 0; i < root_window->childs.len; i++) {
+		/* switch (root_window->childs.data[i]->type) { */
+		/* case TYPE_INPUT: */
+		/* 	widget_draw_inputline(screen, &(root_window->childs.data[i]->data.input), NULL, NULL); */
+		/* 	break; */
+		/* case TYPE_BOX: */
+			widget_draw_widget(screen, root_window->childs.data[i]);
+			/* break; */
+		/* } */
+	}
+	widget_draw_widget(screen, root_window);
 }
 
 void update_game(void)
 {
 	int width, height = 0;
-	term_get_size(&width, &height);
+
+	bool got_size = false;
+	while (!got_size)
+		got_size = term_get_size(&width, &height);
 
 	if (screen_get_width(screen) != width || screen_get_height(screen) != height) {
 		Screen *s = screen_create(width, height);
@@ -151,8 +154,8 @@ void process_input(void)
 						*cur_input->string.p = '\0';
 					break;
 				case 13:
-					int top = main_window->top + 1;
-					for (int i = 3; i < main_window->right - 1; i++)
+					int top = root_window->top + 1;
+					for (int i = 3; i < root_window->right - 1; i++)
 						term_set_cell(screen, i, top, 0, NULL, NULL);
 					widget_write_text(screen, 3, top, "%s", cur_input->string.text);
 					cur_input->string.p = cur_input->string.text;
@@ -171,23 +174,10 @@ long long get_microtime()
 	return (long long)tv.tv_sec * 1000000 + tv.tv_usec;
 }
 
-void init_game()
-{
-	screen_clear();
-	screen_set_fg(screen, get_anti_color(*THEME("bg")));
-	screen_set_bg(screen, *THEME("bg"));
-	game_refresh_ui();
-
-	initialized = true;
-
-	screen_flush(screen);
-}
-
 void game_loop()
 {
 	init_game();
-	/* long long last_frame_time = get_microtime(); */
-	/* float delta_time = 0.0f; */
+
 	fflush(stdout);
 	do {
 		long long frame_start = get_microtime();

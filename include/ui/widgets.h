@@ -6,8 +6,6 @@ struct InputLine;
 struct BoxLTRB;
 
 typedef struct BoxLTRB {
-	RGB fg;
-	RGB bg;
 } BoxLTRB;
 
 typedef struct InputLine {
@@ -28,10 +26,13 @@ typedef enum {
 } WidgetType;
 
 typedef struct GenericWidget {
-	int left;
-	int right;
-	int top;
-	int bottom;
+	struct GenericWidget *parent;
+	struct {
+		GenericWidget **data;
+		int len;
+	} childs;
+	RGB fg, bg;
+	int left, right, top, bottom;
 	bool is_active : 1;
 	WidgetType type;
 	union {
@@ -53,7 +54,7 @@ extern WidgetBuffer *G_WIDGET_BUFFER;
 GenericWidget *widget_create_box_ltrb(Screen *screen, int left, int top, int right, int bottom, RGB *fg, RGB *bg);
 
 GenericWidget *widget_create_box(Screen *screen, int x, int y, int w, int h, RGB *fg, RGB *bg);
-void widget_draw_box(Screen *s, GenericWidget *gw);
+void widget_draw_widget(Screen *s, GenericWidget *gw);
 
 void widget_write_text(Screen *screen, int x, int y, const char *format, ...);
 
@@ -71,3 +72,5 @@ char *inputline_text_realloc(InputLine *iw);
 void widget_buffer_reset(void);
 
 void widget_buffer_pop(GenericWidget *gw);
+
+void widget_add_child(GenericWidget *parent, GenericWidget *child);

@@ -239,8 +239,8 @@ GenericWidget *widget_create_box_ltrb(Screen *s,
 	gw->right = right;
 	gw->bottom = bottom;
 
-	gw->data.box.fg = (fg != NULL) ? *fg : G_ENV.fg;
-	gw->data.box.bg = (bg != NULL) ? *bg : G_ENV.bg;
+	gw->fg = (fg != NULL) ? *fg : G_ENV.fg;
+	gw->bg = (bg != NULL) ? *bg : G_ENV.bg;
 
 	return gw;
 }
@@ -265,19 +265,22 @@ GenericWidget *widget_create_box(Screen *s, int x, int y, int w, int h,
 	gw->right = right;
 	gw->bottom = bottom;
 
-	gw->data.box.fg = (fg != NULL) ? *fg : G_ENV.fg;
-	gw->data.box.bg = (bg != NULL) ? *bg : G_ENV.bg;
+	gw->childs.len = 0;
+
+	gw->fg = (fg != NULL) ? *fg : G_ENV.fg;
+	gw->bg = (bg != NULL) ? *bg : G_ENV.bg;
 	return gw;
 }
 
-void widget_draw_box(Screen *s, GenericWidget *gw)
+void widget_draw_widget(Screen *s, GenericWidget *gw)
 {
 	if (!gw)
 		return;
-	if (gw->type != TYPE_BOX)
-		return;
 	draw_box_border(s, gw->left, gw->top, gw->right, gw->bottom,
-		&(gw->data.box.fg), &(gw->data.box.bg));
+		&(gw->fg), &(gw->bg));
+	if (gw->type == TYPE_INPUT) {
+		widget_draw_inputline(s, &(gw->data.input), NULL, NULL);
+	}
 }
 
 /* ------------------------------------------------------------------ */
@@ -372,7 +375,7 @@ GenericWidget *widget_create_inputline(GenericWidget *parent, int row)
 	return gw;
 }
 
-GenericWidget *widget_create_inputline_ltrb(Screen *s, int x, int y, int w, int h,
+GenericWidget *widget_create_inputline_ltrb(Screen *s, int l, int t, int r, int b,
 	RGB *fg, RGB *bg, bool has_border)
 {
 	GenericWidget *gw = widget_buffer_alloc();
@@ -380,10 +383,13 @@ GenericWidget *widget_create_inputline_ltrb(Screen *s, int x, int y, int w, int 
 		return NULL;
 
 	gw->type = TYPE_INPUT;
-	gw->left = (has_border) ? x + 1 : x;
-	gw->top = (has_border) ? y + 1 : y;
-	gw->right = (has_border) ? x + w - 1 : x + w;
-	gw->bottom = (has_border) ? y + h - 1 : y + h;
+	gw->left = (!has_border) ? l + 1 : l;
+	gw->top = (!has_border) ? t + 1 : t;
+	gw->right = (!has_border) ? r - 1 : r;
+	gw->bottom = (!has_border) ? b - 1 : b;
+
+	gw->fg = (fg != NULL) ? *fg : G_ENV.fg;
+	gw->bg = (bg != NULL) ? *bg : G_ENV.bg;
 
 	InputLine *input = &gw->data.input;
 	input->self = gw;
@@ -583,6 +589,27 @@ void widget_draw_inputline(Screen *s, InputLine *input, RGB *fg, RGB *bg)
 	screen_set_cursor(s, &cursor_screen_col, &row);
 
 	input->dirty = false;
+}
+
+void widget_add_child(GenericWidget *parent, GenericWidget *child)
+{
+	if (!parent) {
+		fprintf(stderr, "\n");
+		return;
+	}
+	if (!child) {
+		fprintf(stderr, "\n");
+		return;
+	}
+
+	if (!parent->childs.data) {
+		parent->childs.data = calloc(8, sizeof(GenericWidget *));
+		parent->childs.len = 0;
+	}
+
+	int *top = &(parent->childs.len);
+	parent->childs.data[*top] = child;
+	(*top)++;
 }
 
 /* ================================================================== */
