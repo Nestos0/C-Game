@@ -1,3 +1,4 @@
+/* File src/core/engine.c */
 #include "core/engine.h"
 #include "log.h"
 #include "module.h"
@@ -60,6 +61,7 @@ void init_game()
 
 void game_refresh_ui()
 {
+	/* screen_clear(); */
 	if (!game_state.initialized) {
 		GenericWidget *input = widget_create_inputline_ltrb(screen, root_window->left + 1, root_window->bottom - 3,
 			root_window->right - 1, root_window->bottom - 1, (RGB *)THEME("indicator"), NULL, true);
@@ -91,18 +93,18 @@ void update_game(void)
 	while (!got_size)
 		got_size = term_get_size(&width, &height);
 
-	int check_count = 0;
-	while ((o_width != width || o_height != height) && check_count++ < 8) {
+	if ((o_width != width || o_height != height)) {
 		usleep(1000);
 		Screen *s = screen_create(width, height);
 		if (!s)
-			break;
+			return;
 
 		screen_destroy(screen);
 		screen = s;
 
 		root_window->right = width - 1;
-		
+		root_window->bottom = height - 1;
+
 		for (int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++) {
 				set_cell(s, x, y, 0, NULL, (RGB *)THEME("bg"));
@@ -136,7 +138,9 @@ int kbhit(void)
 void process_input(void)
 {
 	while (kbhit()) {
-		char prev = getchar();
+		char prev;
+
+		ssize_t n = read(STDIN_FILENO, &prev, 1);
 		if (prev == 4) {
 			screen_clear();
 			game_state.is_running = false;
@@ -168,6 +172,11 @@ void process_input(void)
 					widget_write_text(screen, 3, top, "%s", input_w->string.text);
 					input_w->string.p = input_w->string.text;
 					*input_w->string.p = '\0';
+					break;
+				case 0x0c:
+					/* game_refresh_ui(); */
+					/* screen_flush(screen); */
+					break;
 				}
 			}
 			input_w->dirty = true;

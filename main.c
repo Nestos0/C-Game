@@ -4,6 +4,9 @@
 #include "ui/widgets.h"
 #include <string.h>
 #include <unistd.h>
+#include <signal.h>
+#include <sys/ioctl.h>
+#include <unistd.h>
 
 extern initcall_t __start_initcalls[];
 extern initcall_t __stop_initcalls[];

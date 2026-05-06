@@ -7,7 +7,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <sys/ioctl.h>
-#include <termios.h>
 #include <unistd.h>
 
 typedef struct GenericWidget GenericWidget;
@@ -215,6 +214,10 @@ void screen_flush(Screen *s)
 	int buf_pos = 0;
 
 	for (int y = 0; y < s->height; y++) {
+		char cmd[32];
+		int len = snprintf(cmd, sizeof(cmd), "\x1b[%d;1H", 0);
+		buf_write(STDOUT_FILENO, cmd, len, buffer, &buf_pos, sizeof(buffer));
+		cur_x = 0;
 		for (int x = 0; x < s->width; x++) {
 			Cell *c = &s->cells[y * s->width + x];
 

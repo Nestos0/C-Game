@@ -1,0 +1,14 @@
+[
+  {
+    "file": "./test.c",
+    "arguments": [
+      "/bin/gcc",
+      "-std=gnu23",
+      "./test.c",
+      "-o",
+      "test-game"
+    ],
+    "directory": "/home/nestos/Projects/Project-PolarRegions/test/test",
+    "output": "test-game"
+  }
+]

@@ -211,10 +211,10 @@ void widget_draw_hline(Screen *s, int y, RGB *fg, RGB *bg)
 static void draw_box_border(Screen *s, int left, int top, int right, int bottom,
 	RGB *fg_color, RGB *bg_color)
 {
-	set_cell(s, left, top, 0x250C, fg_color, bg_color);
 	set_cell(s, right, top, 0x2510, fg_color, bg_color);
 	set_cell(s, left, bottom, 0x2514, fg_color, bg_color);
 	set_cell(s, right, bottom, 0x2518, fg_color, bg_color);
+	set_cell(s, left, top, 0x250C, fg_color, bg_color);
 
 	for (int x = left + 1; x < right; x++) {
 		set_cell(s, x, top, 0x2500, fg_color, bg_color);

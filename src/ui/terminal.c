@@ -2,9 +2,37 @@
 #include "module.h"
 #include "text/utf8.h"
 #include "ui/display.h"
+#include <signal.h>
 #include <stdio.h>
 #include <sys/ioctl.h>
 #include <unistd.h>
+
+#define ESC "\x1b"
+#define CSI ESC "["
+
+#define CLEAR_SCREEN CSI "2J" CSI "3J"
+
+#define CURSOR_MOVE(R, C) CSI #R ";" #C "H"
+
+#define CURSOR_HIDE CSI "?25l"
+#define CURSOR_SHOW CSI "?25h"
+
+#define ATTR_RESET CSI "0m"
+
+static volatile sig_atomic_t g_resized = 0;
+
+/* -------------------------------------------------------------------------
+ * SIGWINCH handler
+ *
+ * The kernel sends SIGWINCH to the foreground process group when the
+ * terminal window is resized.  We simply set a flag; the actual redraw
+ * happens in the main loop so we avoid async-signal-safety issues.
+ * ------------------------------------------------------------------------- */
+static void handle_sigwinch(int sig)
+{
+	(void)sig;
+	g_resized = 1;
+}
 
 static bool raw_mode_active = false;
 struct termios oldt, newt;
@@ -76,6 +104,7 @@ bool term_enter_raw(void)
 
 int __terminal_init()
 {
+	signal(SIGWINCH, handle_sigwinch);
 	write(STDIN_FILENO, "\e[?1049h", 8);
 	ansi_cursor_hide();
 
