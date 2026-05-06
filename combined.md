@@ -1,57 +1,9 @@
-Project Tree
-```
-tree -I "miniaudio" -I "combined.md" -I "test"
-.
-├── architecture_analysis.md
-├── build
-│   ├── compile_commands.json
-│   └── Zi-Game
-├── include
-│   ├── calc.h
-│   ├── core
-│   │   └── engine.h
-│   ├── log.h
-│   ├── module.h
-│   ├── render
-│   │   └── renderer.h
-│   ├── text
-│   │   ├── rich_text.h
-│   │   └── utf8.h
-│   └── ui
-│       ├── display.h
-│       ├── terminal.h
-│       └── widgets.h
-├── log.txt
-├── main.c
-├── makefile
-└── src
-    ├── calc.c
-    ├── core
-    │   └── engine.c
-    ├── log.c
-    ├── module.c
-    ├── render
-    │   └── renderer.c
-    ├── text
-    │   ├── rich_text.c
-    │   └── utf8.c
-    └── ui
-        ├── display.c
-        ├── terminal.c
-        └── widgets.c
-
-12 directories, 26 files
-
-```
-
 /* --- File: ./main.c --- */
 #include "core/engine.h"
 #include "module.h"
 #include "ui/display.h"
 #include "ui/widgets.h"
 #include <string.h>
-#include <unistd.h>
-#include <signal.h>
 #include <sys/ioctl.h>
 #include <unistd.h>
 
@@ -92,7 +44,6 @@ int main(int argc, char *argv[])
 
 /* --- File: ./include/core/engine.h --- */
 #pragma once
-
 typedef struct GameState {
 	bool initialized;
 	bool is_running;
@@ -294,7 +245,7 @@ GenericWidget *widget_create_box_ltrb(Screen *screen, int left, int top, int rig
 GenericWidget *widget_create_box(Screen *screen, int x, int y, int w, int h, RGB *fg, RGB *bg);
 void widget_draw_widget(Screen *s, GenericWidget *gw);
 
-void widget_write_text(Screen *screen, int x, int y, const char *format, ...);
+void widget_write_text(Screen *s, int x, int y, const char *format, ...);
 
 void widget_draw_vline(Screen *screen, int x, RGB *fg, RGB *bg);
 
@@ -381,6 +332,24 @@ int cp_display_width(uint32_t cp);
 #pragma once
 #include <stddef.h>
 size_t next_power_of_2(size_t n);
+
+
+/* --- File: ./include/game.h --- */
+/* --- File: ./include/game.h --- */
+#pragma once
+#include "ui/display.h"
+
+typedef void (*Game_InitFn)(void);
+typedef void (*Game_HandleCmdFn)(const char *cmd);
+typedef void (*Game_RenderLogsFn)(struct Screen *s, int x, int y, int width, int height);
+
+typedef struct GameInterface {
+    Game_InitFn init;
+    Game_HandleCmdFn handle_command;
+    Game_RenderLogsFn render_logs;
+} GameInterface;
+
+void engine_register_game_interface(const GameInterface *iface);
 
 
 /* --- File: ./src/log.c --- */
@@ -954,25 +923,7 @@ APP_EXIT(__screen_exit);
 
 
 /* --- File: ./src/ui/widgets.c --- */
-/*
- * widgets.c — optimized widget rendering layer
- *
- * PRIMARY FIX: widget_draw_inputline() now uses a "viewport scroll" model.
- * Instead of always rendering from the start of the string, we track how many
- * display columns of text to skip (view_offset_cols), so the visible window
- * always follows the cursor. This makes the widget feel instant even at 4 FPS
- * because the cell-buffer update happens in one tight O(n_visible) pass,
- * and only the changed region is marked dirty.
- *
- * SECONDARY FIX: screen_flush() in display.c batches all ANSI output into a
- * single writev()-style write via a grow-buffer, cutting system-call overhead
- * from O(dirty_cells * 3) down to O(1) per frame. That fix is applied here
- * only for the cells that widget_draw_inputline() touches.
- *
- * KEY STRUCTURAL PROBLEMS IN THE ORIGINAL (for the student):
- * See the long comment block at the bottom of this file.
- */
-
+/* File src/ui/widgets.c */
 #include "ui/widgets.h"
 #include "calc.h"
 #include "log.h"
@@ -1232,8 +1183,14 @@ void widget_draw_widget(Screen *s, GenericWidget *gw)
 {
 	if (!gw)
 		return;
-	draw_box_border(s, gw->left, gw->top, gw->right, gw->bottom,
-		&(gw->fg), &(gw->bg));
+
+	bool can_draw_border = (gw->bottom - gw->top >= 2);
+
+	if (gw->type == TYPE_BOX || (gw->type == TYPE_INPUT && can_draw_border)) {
+		draw_box_border(s, gw->left, gw->top, gw->right, gw->bottom,
+			&(gw->fg), &(gw->bg));
+	}
+
 	if (gw->type == TYPE_INPUT) {
 		widget_draw_inputline(s, &(gw->data.input), &(gw->fg), &(gw->bg));
 	}
@@ -1242,46 +1199,6 @@ void widget_draw_widget(Screen *s, GenericWidget *gw)
 /* ------------------------------------------------------------------ */
 /*  Text writing                                                        */
 /* ------------------------------------------------------------------ */
-
-void widget_write_text(Screen *s, int x, int y, const char *format, ...)
-{
-	va_list args;
-	va_start(args, format);
-	int len = vsnprintf(NULL, 0, format, args);
-	va_end(args);
-
-	if (len <= 0)
-		return;
-
-	char *buf = calloc(1, (size_t)(len + 1));
-	if (!buf)
-		return;
-
-	va_start(args, format);
-	vsnprintf(buf, (size_t)(len + 1), format, args);
-	va_end(args);
-
-	int width = screen_get_width(s);
-	int cur_x = x;
-	for (const char *p = buf; *p && cur_x < width;) {
-		uint32_t cp = 0;
-		int advance = utf8_decode(p, &cp);
-		if (advance <= 0) {
-			p++;
-			continue;
-		}
-		p += advance;
-
-		int w = cp_display_width(cp);
-		if (w == 2)
-			set_cell_wide(s, cur_x, y, cp, NULL, NULL);
-		else
-			set_cell(s, cur_x, y, cp, NULL, NULL);
-		cur_x += w;
-	}
-
-	free(buf);
-}
 
 int pos_to_margin(int total_size, int margin)
 {
@@ -1339,10 +1256,11 @@ GenericWidget *widget_create_inputline_ltrb(Screen *s, int l, int t, int r, int 
 		return NULL;
 
 	gw->type = TYPE_INPUT;
-	gw->left = (!has_border) ? l + 1 : l;
-	gw->top = (!has_border) ? t + 1 : t;
-	gw->right = (!has_border) ? r - 1 : r;
-	gw->bottom = (!has_border) ? b - 1 : b;
+
+	gw->left = l;
+	gw->top = t;
+	gw->right = r;
+	gw->bottom = b;
 
 	gw->fg = (fg != NULL) ? *fg : G_ENV.fg;
 	gw->bg = (bg != NULL) ? *bg : G_ENV.bg;
@@ -1350,7 +1268,7 @@ GenericWidget *widget_create_inputline_ltrb(Screen *s, int l, int t, int r, int 
 	InputLine *input = &gw->data.input;
 	input->self = gw;
 	input->row = 0;
-	input->curser_col = 0; /* logical cursor position in codepoints */
+	input->curser_col = 0;
 	input->dirty = false;
 	input->string.text = calloc(DEFAULT_INPUTLINE_CAP + 1, 1);
 	input->string.cap = DEFAULT_INPUTLINE_CAP;
@@ -1430,34 +1348,30 @@ char *inputline_text_realloc(InputLine *iw)
  */
 void widget_draw_inputline(Screen *s, InputLine *input, RGB *fg, RGB *bg)
 {
-	/* ---- geometry ---- */
 	int box_left = input->self->left;
 	int box_right = input->self->right;
 	int box_top = input->self->top;
 	int box_bot = input->self->bottom;
 
-	int left = box_left + 1; /* inside border */
-	int right = box_right - 1;
-	int row = box_top + 1 + input->row;
-	if (row >= box_bot)
-		row = box_bot - 1;
+	bool has_border = (box_bot - box_top >= 2);
+
+	int left = has_border ? box_left + 1 : box_left;
+	int right = has_border ? box_right - 1 : box_right;
+	int row = has_border ? box_top + 1 + input->row : box_top + input->row;
+
+	if (row > box_bot)
+		row = box_bot;
 
 	int available = right - left + 1 - PROMPT_COLS;
 	if (available <= 0)
-		return; /* box too narrow to show anything */
+		return;
 
 	RGB *fg_color = (fg != NULL) ? fg : &(G_ENV.fg);
 	RGB *bg_color = (bg != NULL) ? bg : &(G_ENV.bg);
 
-	/* ---- draw prompt glyph ---- */
 	set_cell(s, left, row, '$', fg_color, bg_color);
 	set_cell(s, left + 1, row, ' ', fg_color, bg_color);
 
-	/* ---- compute cursor column and viewport offset ---- */
-	/*
-	 * cursor_col: display-column index (0-based from text area) of the
-	 * insertion point — i.e. where the next typed char will appear.
-	 */
 	int cursor_col = 0;
 	{
 		const char *p = input->string.text;
@@ -1471,35 +1385,19 @@ void widget_draw_inputline(Screen *s, InputLine *input, RGB *fg, RGB *bg)
 		}
 	}
 
-	/*
-	 * view_offset: how many display columns to skip from the left of the
-	 * text so that cursor_col is visible within [0, available).
-	 *
-	 * We reuse input->curser_col as the persistent view_offset because:
-	 *   1. The field exists in the struct already.
-	 *   2. It was never actually used for a column value in the original.
-	 * Rename it properly once you refactor widgets.h.
-	 */
-	int view_offset = input->curser_col; /* persisted from last frame */
-
-	/* scroll right: cursor is past right edge */
+	int view_offset = input->curser_col;
 	if (cursor_col - view_offset >= available)
 		view_offset = cursor_col - available + 1;
-
-	/* scroll left: cursor moved before left edge (e.g. after backspace) */
 	if (cursor_col - view_offset < 4 && cursor_col > 3)
 		view_offset = cursor_col - 4;
-
-	/* clamp to non-negative */
 	if (view_offset < 0)
 		view_offset = 0;
 
-	input->curser_col = view_offset; /* persist for next frame */
+	input->curser_col = view_offset;
 
-	/* ---- render visible text ---- */
-	int text_x = left + PROMPT_COLS; /* first renderable column */
+	int text_x = left + PROMPT_COLS;
 	int cur_x = text_x;
-	int skipped = 0; /* display cols skipped so far */
+	int skipped = 0;
 	const char *p = input->string.text;
 
 	while (*p != '\0') {
@@ -1509,36 +1407,27 @@ void widget_draw_inputline(Screen *s, InputLine *input, RGB *fg, RGB *bg)
 			p++;
 			continue;
 		}
-
 		int w = cp_display_width(cp);
-
-		/* still in the skipped region? */
 		if (skipped + w <= view_offset) {
 			skipped += w;
 			p += adv;
 			continue;
 		}
-
-		/* past the right edge of the visible area? */
 		if (cur_x + w > right + 1)
 			break;
-
 		if (w == 2)
 			set_cell_wide(s, cur_x, row, cp, NULL, NULL);
 		else
 			set_cell(s, cur_x, row, cp, NULL, NULL);
-
 		cur_x += w;
 		p += adv;
 	}
 
-	/* ---- erase remainder of text area with spaces ---- */
 	while (cur_x <= right) {
 		set_cell(s, cur_x, row, ' ', fg_color, bg_color);
 		cur_x++;
 	}
 
-	/* ---- update screen cursor so engine can place the blink cursor ---- */
 	int cursor_screen_col = text_x + (cursor_col - view_offset);
 	if (cursor_screen_col > right)
 		cursor_screen_col = right;
@@ -1568,153 +1457,45 @@ void widget_add_child(GenericWidget *parent, GenericWidget *child)
 	(*top)++;
 }
 
-/* ================================================================== */
-/*                                                                      */
-/*  TEACHING SECTION: Why this project is hard to maintain             */
-/*  ---------------------------------------------------------------     */
-/*                                                                      */
-/*  You spent 2 weeks and only have one working widget. Let's look at  */
-/*  exactly why that happened, problem by problem.                      */
-/*                                                                      */
-/* ================================================================== */
+void widget_write_text(Screen *s, int x, int y, const char *format, ...)
+{
+	va_list args;
+	va_start(args, format);
+	int len = vsnprintf(NULL, 0, format, args);
+	va_end(args);
 
-/*
- * PROBLEM 1 — Global mutable state without clear ownership
- * ---------------------------------------------------------
- * `screen`, `G_ENV`, `G_WIDGET_BUFFER`, `cur_input`, `main_window`,
- * `initialized`, `SYNC` — all are file-scope or translation-unit-scope
- * globals that any function can read and write.
- *
- * Consequence: when something renders wrongly you can't tell *who* changed
- * the screen. You end up grepping for every place that writes `.dirty`
- * or `.cp`. As the game grows (NPCs, inventory, map) every new system
- * will fight over these globals.
- *
- * Fix: pass `Screen *s` explicitly (you already do this in some functions
- * — but `set_cell_inline` ignores its `s` parameter and uses the global
- * `screen` anyway). Pick one convention and apply it everywhere.
- *
- *
- * PROBLEM 2 — The `initialized` flag anti-pattern in game_refresh_ui()
- * ---------------------------------------------------------------------
- * `game_refresh_ui()` has two completely different code paths selected
- * by `initialized`. The first path re-draws widgets from the buffer;
- * the second path *creates* widgets. But it also calls `widget_draw_box`
- * (which calls `widget_buffer_alloc()`) inside the "already initialized"
- * branch, silently growing the widget buffer every resize.
- *
- * Consequence: on a terminal resize the box widgets accumulate infinitely.
- * You can trigger this by just dragging the Konsole window.
- *
- * Fix: separate "layout widgets" (one-time creation, stored by pointer)
- * from "draw widgets" (stateless per-frame draw calls). Do not mix
- * allocation and rendering in the same function.
- *
- *
- * PROBLEM 3 — Duplicate code for raw-mode init
- * ---------------------------------------------
- * `term_enter_raw()` and `__terminal_init()` contain an exact copy of the
- * same termios setup block (BRKINT, ICRNL, VMIN, VTIME…). They diverge
- * silently when you change one and forget the other.
- *
- * Fix: one function `_setup_raw_termios(struct termios *t)` that both call.
- *
- *
- * PROBLEM 4 — The macro SET_CELL_INLINE is redefined three times
- * ---------------------------------------------------------------
- * `widget_draw_vline`, `widget_draw_hline`, and `widget_draw_box` each
- * define their own local `#define SET_CELL_INLINE` and then `#undef` it.
- * Meanwhile `widget_draw_box_ltrb` calls the static function
- * `set_cell_inline()` instead. So you have four implementations of the
- * same operation, three of which live inside other functions and can't be
- * tested independently.
- *
- * Fix: use only the static function (done in this file).
- *
- *
- * PROBLEM 5 — No cursor rendering
- * --------------------------------
- * The original `widget_draw_inputline` hides the cursor
- * (`ansi_cursor_hide` is called at startup and never shown again during
- * normal operation). The `screen->cursor` fields were set in `update_game`
- * but `ansi_cursor_goto(cursor.y, cursor.x)` and `ansi_cursor_show()`
- * are never called in `screen_flush`. So the user types with no visible
- * caret.
- *
- * Fix (in engine.c, not here): after `screen_flush(screen)`, add:
- *
- *     if (cur_input && !cur_input->dirty) {
- *         ansi_cursor_goto(screen->cursor.y, screen->cursor.x);
- *         ansi_cursor_show();
- *     }
- *
- *
- * PROBLEM 6 — screen_flush() issues one write() per cell
- * -------------------------------------------------------
- * For each dirty cell: ansi_cursor_goto = 1 write, color change = 1 write,
- * glyph = 1 write. At 80×24 with all cells dirty that is ~5760 system
- * calls per frame. At 4 FPS that's fine, but at 30 FPS on a complex screen
- * it will stutter.
- *
- * Fix (in display.c): accumulate output into a heap buffer (or a
- * static 64 KB stack buffer), then call write() once at the end.
- * Example pattern:
- *
- *     char out[65536]; int pos = 0;
- *     // ... build ANSI escapes into out[pos++] ...
- *     write(STDOUT_FILENO, out, pos);
- *
- *
- * PROBLEM 7 — process_input() backspace is byte-oriented, not codepoint
- * -----------------------------------------------------------------------
- * Case 127 (backspace) does `p--; *p = '\0'`. That works for ASCII but
- * for a multi-byte UTF-8 character (e.g. a CJK character = 3 bytes) it
- * deletes only the last byte, leaving a corrupt sequence.
- *
- * Fix: walk backward over continuation bytes (0x80–0xBF) until you hit
- * the leading byte, then zero from there:
- *
- *     while (p > text && (*(p-1) & 0xC0) == 0x80)
- *         p--;
- *     if (p > text) p--;
- *     *p = '\0';
- *
- * This is not fixed in this file (it lives in engine.c), but it will bite
- * you the moment you or a player tries to type Japanese text.
- *
- *
- * PROBLEM 8 — The module system makes call-order bugs invisible
- * -------------------------------------------------------------
- * The linker-section trick (`APP_INIT`) is clever but the section order
- * is not guaranteed across translation units. So `__screen_init` might
- * run before `__terminal_init`, meaning `screen_create` runs before
- * raw mode is set. Right now it accidentally works because the linker
- * happens to order the objects a certain way — but add one new .c file
- * and the ordering can change.
- *
- * Fix: give each init function an explicit priority:
- *
- *     __attribute__((section("initcalls.10")))  // terminal first
- *     __attribute__((section("initcalls.20")))  // screen second
- *     __attribute__((section("initcalls.30")))  // widgets third
- *
- * Or, more simply: call them in explicit order inside main() instead of
- * relying on linker magic.
- *
- *
- * SUMMARY TABLE
- * -------------
- * Problem                    | Impact on your 2-week struggle
- * ---------------------------|---------------------------------
- * Global mutable state       | Hard to debug who broke the screen
- * initialized flag anti-pat  | Widget leak on every resize
- * Duplicate raw-mode code    | Risk of divergence as you add features
- * Repeated SET_CELL macro    | Confusing, untestable
- * No cursor rendering        | User can't see where they're typing
- * Per-cell write() calls     | Will stutter at higher FPS
- * Byte-oriented backspace    | Breaks for any non-ASCII input
- * Non-deterministic init     | Ordering bugs appear as you add files
- */
+	if (len <= 0)
+		return;
+
+	char *buf = calloc(1, (size_t)(len + 1));
+	if (!buf)
+		return;
+
+	va_start(args, format);
+	vsnprintf(buf, (size_t)(len + 1), format, args);
+	va_end(args);
+
+	int width = screen_get_width(s);
+	int cur_x = x;
+	for (const char *p = buf; *p && cur_x < width;) {
+		uint32_t cp = 0;
+		int advance = utf8_decode(p, &cp);
+		if (advance <= 0) {
+			p++;
+			continue;
+		}
+		p += advance;
+
+		int w = cp_display_width(cp);
+		if (w == 2)
+			set_cell_wide(s, cur_x, y, cp, NULL, NULL);
+		else
+			set_cell(s, cur_x, y, cp, NULL, NULL);
+		cur_x += w;
+	}
+
+	free(buf);
+}
 
 
 /* --- File: ./src/text/rich_text.c --- */
@@ -2025,7 +1806,10 @@ static int in_range_table(uint32_t cp)
 
 
 /* --- File: ./src/core/engine.c --- */
+/* --- File: ./src/core/engine.c --- */
+/* File src/core/engine.c */
 #include "core/engine.h"
+#include "game.h"
 #include "log.h"
 #include "module.h"
 #include "text/rich_text.h"
@@ -2045,198 +1829,225 @@ static int in_range_table(uint32_t cp)
 bool SYNC = false;
 struct GenericWidget *cur_input = NULL;
 struct GenericWidget *root_window = NULL;
+struct GenericWidget *gamelog_window = NULL;
+struct GenericWidget *state_window = NULL;
+
+static const GameInterface *g_game_api = NULL;
+
+void engine_register_game_interface(const GameInterface *iface)
+{
+    g_game_api = iface;
+}
 
 static const struct {
-	const char *name;
-	RGB color;
+    const char *name;
+    RGB color;
 } theme[] = {
-	{ "bg", { 16, 16, 28 } },
-	{ "fg", { 155, 155, 155 } },
-	{ "border", { 155, 155, 155 } },
-	{ "border_bg", { 16, 16, 28 } },
-	{ "indicator", { 48, 172, 82 } },
+    { "bg", { 16, 16, 28 } },
+    { "fg", { 155, 155, 155 } },
+    { "border", { 155, 155, 155 } },
+    { "border_bg", { 16, 16, 28 } },
+    { "indicator", { 48, 172, 82 } },
 };
+
 #define THEME(name) theme_lookup(name, sizeof(theme) / sizeof(theme[0]))
 
 static const RGB *theme_lookup(const char *name, size_t len)
 {
-	for (size_t i = 0; i < len; i++) {
-		if (strcmp(theme[i].name, name) == 0)
-			return &theme[i].color;
-	}
-	return NULL;
-}
-
-void init_game()
-{
-	screen_clear();
-	screen_set_fg(screen, get_anti_color(*THEME("bg")));
-	screen_set_bg(screen, *THEME("bg"));
-
-	int width, height = 0;
-	screen_get_size(screen, &width, &height);
-	root_window = widget_create_box(screen, 0, 0, width, height, (RGB *)THEME("border"), (RGB *)THEME("border_bg")); // Create Windows border
-	screen_add_root(screen, root_window);
-
-	game_refresh_ui();
-
-	game_state.initialized = true;
-
-	screen_flush(screen);
-}
-
-void game_refresh_ui()
-{
-	/* screen_clear(); */
-	if (!game_state.initialized) {
-		GenericWidget *input = widget_create_inputline_ltrb(screen, root_window->left + 1, root_window->bottom - 3,
-			root_window->right - 1, root_window->bottom - 1, (RGB *)THEME("indicator"), NULL, true);
-		cur_input = input;
-		/* widget_draw_box(screen, input); */
-		widget_add_child(root_window, input);
-	}
-
-	widget_draw_widget(screen, root_window);
-	for (int i = 0; i < root_window->childs.len; i++) {
-		/* switch (root_window->childs.data[i]->type) { */
-		/* case TYPE_INPUT: */
-		/* 	widget_draw_inputline(screen, &(root_window->childs.data[i]->data.input), NULL, NULL); */
-		/* 	break; */
-		/* case TYPE_BOX: */
-		widget_draw_widget(screen, root_window->childs.data[i]);
-		/* break; */
-		/* } */
-	}
-}
-
-void update_game(void)
-{
-	int width, height = 0;
-	int o_width, o_height = 0;
-	screen_get_size(screen, &o_width, &o_height);
-
-	bool got_size = false;
-	while (!got_size)
-		got_size = term_get_size(&width, &height);
-
-	if ((o_width != width || o_height != height)) {
-		usleep(1000);
-		Screen *s = screen_create(width, height);
-		if (!s)
-			return;
-
-		screen_destroy(screen);
-		screen = s;
-
-		root_window->right = width - 1;
-		root_window->bottom = height - 1;
-
-		for (int y = 0; y < height; y++) {
-			for (int x = 0; x < width; x++) {
-				set_cell(s, x, y, 0, NULL, (RGB *)THEME("bg"));
-			}
-		}
-
-		game_refresh_ui();
-	}
-
-	if (cur_input && cur_input->data.input.dirty) {
-		widget_draw_widget(screen, cur_input);
-
-		int new_x = cur_input->left;
-		int new_y = cur_input->top + cur_input->data.input.row;
-
-		screen_set_cursor(screen, &new_x, &new_y);
-
-		cur_input->data.input.dirty = false;
-	}
+    for (size_t i = 0; i < len; i++) {
+        if (strcmp(theme[i].name, name) == 0)
+            return &theme[i].color;
+    }
+    return NULL;
 }
 
 int kbhit(void)
 {
-	struct timeval tv = { 0L, 0L };
-	fd_set fds;
-	FD_ZERO(&fds);
-	FD_SET(STDIN_FILENO, &fds);
-	return select(STDIN_FILENO + 1, &fds, NULL, NULL, &tv);
+    struct timeval tv = { 0L, 0L };
+    fd_set fds;
+    FD_ZERO(&fds);
+    FD_SET(STDIN_FILENO, &fds);
+    return select(STDIN_FILENO + 1, &fds, NULL, NULL, &tv);
+}
+
+static void layout_windows(int width, int height)
+{
+    root_window->right = width - 1;
+    root_window->bottom = height - 1;
+
+    if (width > 100) {
+        gamelog_window->left = root_window->left + 1;
+        gamelog_window->top = root_window->top + 1;
+        gamelog_window->right = (int)(width * 0.7);
+        gamelog_window->bottom = root_window->bottom - 1;
+
+        state_window->left = gamelog_window->right + 1;
+        state_window->top = root_window->top + 1;
+        state_window->right = root_window->right - 1;
+        state_window->bottom = root_window->bottom - 1;
+    } else {
+        gamelog_window->left = root_window->left + 1;
+        gamelog_window->top = root_window->top + 1;
+        gamelog_window->right = root_window->right - 1;
+        gamelog_window->bottom = (int)(height * 0.8);
+
+        state_window->left = root_window->left + 1;
+        state_window->top = gamelog_window->bottom + 1;
+        state_window->right = root_window->right - 1;
+        state_window->bottom = root_window->bottom - 1;
+    }
+
+    if (cur_input) {
+        cur_input->left = gamelog_window->left + 1;
+        cur_input->top = gamelog_window->bottom - 3;
+        cur_input->right = gamelog_window->right - 1;
+        cur_input->bottom = gamelog_window->bottom - 1;
+    }
+}
+
+void init_game()
+{
+    if (g_game_api && g_game_api->init) {
+        g_game_api->init();
+    }
+
+    screen_clear();
+    screen_set_fg(screen, get_anti_color(*THEME("bg")));
+    screen_set_bg(screen, *THEME("bg"));
+
+    int width, height = 0;
+    screen_get_size(screen, &width, &height);
+    root_window = widget_create_box(screen, 0, 0, width, height, (RGB *)THEME("border"), (RGB *)THEME("border_bg"));
+    screen_add_root(screen, root_window);
+
+    gamelog_window = widget_create_box(screen, 0, 0, 1, 1, (RGB *)THEME("border"), (RGB *)THEME("border_bg"));
+    state_window = widget_create_box(screen, 0, 0, 1, 1, (RGB *)THEME("border"), (RGB *)THEME("border_bg"));
+
+    widget_add_child(root_window, gamelog_window);
+    widget_add_child(root_window, state_window);
+
+    layout_windows(width, height);
+    game_refresh_ui();
+    game_state.initialized = true;
+    screen_flush(screen);
+}
+
+void game_refresh_ui()
+{
+    if (!game_state.initialized) {
+        GenericWidget *input = widget_create_inputline_ltrb(screen, gamelog_window->left + 1, gamelog_window->bottom - 3,
+            gamelog_window->right - 1, gamelog_window->bottom - 1, (RGB *)THEME("indicator"), NULL, true);
+        cur_input = input;
+        widget_add_child(gamelog_window, input);
+    }
+
+    widget_draw_widget(screen, root_window);
+    widget_draw_widget(screen, gamelog_window);
+    widget_draw_widget(screen, state_window);
+
+    if (g_game_api && g_game_api->render_logs) {
+        int log_w = gamelog_window->right - gamelog_window->left - 1;
+        int log_h = gamelog_window->bottom - gamelog_window->top - 4;
+        g_game_api->render_logs(screen, gamelog_window->left + 1, gamelog_window->top + 1, log_w, log_h);
+    }
+
+    if (cur_input)
+        widget_draw_widget(screen, cur_input);
+}
+
+void update_game(void)
+{
+    int width, height = 0;
+    int o_width, o_height = 0;
+    screen_get_size(screen, &o_width, &o_height);
+
+    bool got_size = false;
+    while (!got_size)
+        got_size = term_get_size(&width, &height);
+
+    if (o_width != width || o_height != height) {
+        usleep(1000);
+        Screen *s = screen_create(width, height);
+        if (!s)
+            return;
+
+        screen_destroy(screen);
+        screen = s;
+
+        RGB bg = *THEME("bg");
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < width; x++) {
+                set_cell(s, x, y, ' ', NULL, &bg);
+            }
+        }
+
+        layout_windows(width, height);
+
+        game_refresh_ui();
+
+        screen_flush(screen);
+    }
+
+    if (cur_input && cur_input->data.input.dirty) {
+        widget_draw_widget(screen, cur_input);
+        int new_x, new_y;
+        screen_set_cursor(screen, &new_x, &new_y);
+        cur_input->data.input.dirty = false;
+    }
 }
 
 void process_input(void)
 {
-	while (kbhit()) {
-		char prev;
-
-		ssize_t n = read(STDIN_FILENO, &prev, 1);
-		if (prev == 4) {
-			screen_clear();
-			game_state.is_running = false;
-			break;
-		}
-		if (cur_input && prev) {
-			InputLine *input_w = &(cur_input->data.input);
-			size_t len = strlen(input_w->string.text);
-			if (input_w->string.cap - len <= 2) {
-				log4engine("log.txt", "REALLOC input_w->string.text\n");
-				input_w->string.text = inputline_text_realloc(input_w);
-			}
-			if (isprint(prev)) {
-				*input_w->string.p++ = prev;
-				*input_w->string.p = '\0';
-			} else {
-				switch (prev) {
-				case 127:
-					if (input_w->string.p > input_w->string.text) {
-						input_w->string.p--;
-						*input_w->string.p = '\0';
-					} else
-						*input_w->string.p = '\0';
-					break;
-				case 13:
-					int top = root_window->top + 1;
-					for (int i = 3; i < root_window->right - 1; i++)
-						term_set_cell(screen, i, top, 0, NULL, NULL);
-					widget_write_text(screen, 3, top, "%s", input_w->string.text);
-					input_w->string.p = input_w->string.text;
-					*input_w->string.p = '\0';
-					break;
-				case 0x0c:
-					/* game_refresh_ui(); */
-					/* screen_flush(screen); */
-					break;
-				}
-			}
-			input_w->dirty = true;
-		}
-	}
+    while (kbhit()) {
+        char prev;
+        ssize_t n = read(STDIN_FILENO, &prev, 1);
+        if (n <= 0)
+            break;
+        if (prev == 4) {
+            game_state.is_running = false;
+            break;
+        }
+        if (cur_input && prev) {
+            InputLine *input_w = &(cur_input->data.input);
+            if (isprint(prev)) {
+                *input_w->string.p++ = prev;
+                *input_w->string.p = '\0';
+            } else if (prev == 127 && input_w->string.p > input_w->string.text) {
+                *(--input_w->string.p) = '\0';
+            } else if (prev == 13) {
+                if (g_game_api && g_game_api->handle_command) {
+                    g_game_api->handle_command(input_w->string.text);
+                }
+                input_w->string.p = input_w->string.text;
+                *input_w->string.p = '\0';
+                game_refresh_ui();
+            }
+            input_w->dirty = true;
+        }
+    }
 }
 
 long long get_microtime()
 {
-	struct timeval tv;
-	gettimeofday(&tv, NULL);
-	return (long long)tv.tv_sec * 1000000 + tv.tv_usec;
+    struct timeval tv;
+    gettimeofday(&tv, NULL);
+    return (long long)tv.tv_sec * 1000000 + tv.tv_usec;
 }
 
 void game_loop()
 {
-	init_game();
-
-	fflush(stdout);
-	do {
-		long long frame_start = get_microtime();
-		process_input();
-		update_game();
-		screen_flush(screen);
-
-		if (SYNC) {
-			long long frame_end = get_microtime();
-			long long actual_frame_duration = frame_end - frame_start;
-
-			if (actual_frame_duration < TARGET_FRAME_TIME) {
-				usleep(TARGET_FRAME_TIME - actual_frame_duration);
-			}
-		}
-	} while (game_state.is_running);
+    init_game();
+    do {
+        long long frame_start = get_microtime();
+        process_input();
+        update_game();
+        screen_flush(screen);
+        if (SYNC) {
+            long long duration = get_microtime() - frame_start;
+            if (duration < TARGET_FRAME_TIME)
+                usleep(TARGET_FRAME_TIME - duration);
+        }
+    } while (game_state.is_running);
 }
 
 
@@ -2259,6 +2070,84 @@ size_t next_power_of_2(size_t n)
 #endif
 	return n + 1;
 }
+
+
+/* --- File: ./src/game.c --- */
+/* --- File: ./src/game.c --- */
+#include "game.h"
+#include "core/engine.h"
+#include "module.h"
+#include "ui/widgets.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define MAX_LOG_LINES 100
+
+static char *log_lines[MAX_LOG_LINES];
+static int log_count = 0;
+
+static void game_init(void)
+{
+	for (int i = 0; i < MAX_LOG_LINES; i++) {
+		log_lines[i] = NULL;
+	}
+}
+
+static void add_log(const char *text)
+{
+	if (log_count < MAX_LOG_LINES) {
+		log_lines[log_count++] = strdup(text);
+	} else {
+		free(log_lines[0]);
+		for (int i = 1; i < MAX_LOG_LINES; i++) {
+			log_lines[i - 1] = log_lines[i];
+		}
+		log_lines[MAX_LOG_LINES - 1] = strdup(text);
+	}
+}
+
+static void game_handle_command(const char *cmd)
+{
+	char buf[512];
+	snprintf(buf, sizeof(buf), "> %s", cmd);
+	add_log(buf);
+
+	if (strcmp(cmd, "quit") == 0) {
+		game_state.is_running = false;
+	} else if (strcmp(cmd, "help") == 0) {
+		add_log("Available commands: help, quit");
+	} else {
+		snprintf(buf, sizeof(buf), "Unknown command: %s", cmd);
+		add_log(buf);
+	}
+}
+
+static void game_render_logs(Screen *s, int x, int y, int width, int height)
+{
+	int display_count = (log_count < height) ? log_count : height;
+	int log_offset = (log_count > height) ? (log_count - height) : 0;
+
+	for (int i = 0; i < display_count; i++) {
+		for (int dx = 0; dx < width; dx++) {
+			set_cell(s, x + dx, y + i, ' ', NULL, NULL);
+		}
+		widget_write_text(s, x, y + i, "%s", log_lines[log_offset + i]);
+	}
+}
+
+static const GameInterface game_api = {
+	.init = game_init,
+	.handle_command = game_handle_command,
+	.render_logs = game_render_logs
+};
+
+static int __game_module_register(void)
+{
+	engine_register_game_interface(&game_api);
+	return 0;
+}
+APP_INIT(__game_module_register);
 
 
 /* --- File: ./combined.c --- */

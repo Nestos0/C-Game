@@ -3,8 +3,6 @@
 #include "ui/display.h"
 #include "ui/widgets.h"
 #include <string.h>
-#include <unistd.h>
-#include <signal.h>
 #include <sys/ioctl.h>
 #include <unistd.h>
 

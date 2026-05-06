@@ -57,7 +57,7 @@ GenericWidget *widget_create_box_ltrb(Screen *screen, int left, int top, int rig
 GenericWidget *widget_create_box(Screen *screen, int x, int y, int w, int h, RGB *fg, RGB *bg);
 void widget_draw_widget(Screen *s, GenericWidget *gw);
 
-void widget_write_text(Screen *screen, int x, int y, const char *format, ...);
+void widget_write_text(Screen *s, int x, int y, const char *format, ...);
 
 void widget_draw_vline(Screen *screen, int x, RGB *fg, RGB *bg);
 

@@ -1,22 +1,4 @@
-/*
- * widgets.c — optimized widget rendering layer
- *
- * PRIMARY FIX: widget_draw_inputline() now uses a "viewport scroll" model.
- * Instead of always rendering from the start of the string, we track how many
- * display columns of text to skip (view_offset_cols), so the visible window
- * always follows the cursor. This makes the widget feel instant even at 4 FPS
- * because the cell-buffer update happens in one tight O(n_visible) pass,
- * and only the changed region is marked dirty.
- *
- * SECONDARY FIX: screen_flush() in display.c batches all ANSI output into a
- * single writev()-style write via a grow-buffer, cutting system-call overhead
- * from O(dirty_cells * 3) down to O(1) per frame. That fix is applied here
- * only for the cells that widget_draw_inputline() touches.
- *
- * KEY STRUCTURAL PROBLEMS IN THE ORIGINAL (for the student):
- * See the long comment block at the bottom of this file.
- */
-
+/* File src/ui/widgets.c */
 #include "ui/widgets.h"
 #include "calc.h"
 #include "log.h"
@@ -276,8 +258,14 @@ void widget_draw_widget(Screen *s, GenericWidget *gw)
 {
 	if (!gw)
 		return;
-	draw_box_border(s, gw->left, gw->top, gw->right, gw->bottom,
-		&(gw->fg), &(gw->bg));
+
+	bool can_draw_border = (gw->bottom - gw->top >= 2);
+
+	if (gw->type == TYPE_BOX || (gw->type == TYPE_INPUT && can_draw_border)) {
+		draw_box_border(s, gw->left, gw->top, gw->right, gw->bottom,
+			&(gw->fg), &(gw->bg));
+	}
+
 	if (gw->type == TYPE_INPUT) {
 		widget_draw_inputline(s, &(gw->data.input), &(gw->fg), &(gw->bg));
 	}
@@ -286,46 +274,6 @@ void widget_draw_widget(Screen *s, GenericWidget *gw)
 /* ------------------------------------------------------------------ */
 /*  Text writing                                                        */
 /* ------------------------------------------------------------------ */
-
-void widget_write_text(Screen *s, int x, int y, const char *format, ...)
-{
-	va_list args;
-	va_start(args, format);
-	int len = vsnprintf(NULL, 0, format, args);
-	va_end(args);
-
-	if (len <= 0)
-		return;
-
-	char *buf = calloc(1, (size_t)(len + 1));
-	if (!buf)
-		return;
-
-	va_start(args, format);
-	vsnprintf(buf, (size_t)(len + 1), format, args);
-	va_end(args);
-
-	int width = screen_get_width(s);
-	int cur_x = x;
-	for (const char *p = buf; *p && cur_x < width;) {
-		uint32_t cp = 0;
-		int advance = utf8_decode(p, &cp);
-		if (advance <= 0) {
-			p++;
-			continue;
-		}
-		p += advance;
-
-		int w = cp_display_width(cp);
-		if (w == 2)
-			set_cell_wide(s, cur_x, y, cp, NULL, NULL);
-		else
-			set_cell(s, cur_x, y, cp, NULL, NULL);
-		cur_x += w;
-	}
-
-	free(buf);
-}
 
 int pos_to_margin(int total_size, int margin)
 {
@@ -383,10 +331,11 @@ GenericWidget *widget_create_inputline_ltrb(Screen *s, int l, int t, int r, int 
 		return NULL;
 
 	gw->type = TYPE_INPUT;
-	gw->left = (!has_border) ? l + 1 : l;
-	gw->top = (!has_border) ? t + 1 : t;
-	gw->right = (!has_border) ? r - 1 : r;
-	gw->bottom = (!has_border) ? b - 1 : b;
+
+	gw->left = l;
+	gw->top = t;
+	gw->right = r;
+	gw->bottom = b;
 
 	gw->fg = (fg != NULL) ? *fg : G_ENV.fg;
 	gw->bg = (bg != NULL) ? *bg : G_ENV.bg;
@@ -394,7 +343,7 @@ GenericWidget *widget_create_inputline_ltrb(Screen *s, int l, int t, int r, int 
 	InputLine *input = &gw->data.input;
 	input->self = gw;
 	input->row = 0;
-	input->curser_col = 0; /* logical cursor position in codepoints */
+	input->curser_col = 0;
 	input->dirty = false;
 	input->string.text = calloc(DEFAULT_INPUTLINE_CAP + 1, 1);
 	input->string.cap = DEFAULT_INPUTLINE_CAP;
@@ -474,34 +423,30 @@ char *inputline_text_realloc(InputLine *iw)
  */
 void widget_draw_inputline(Screen *s, InputLine *input, RGB *fg, RGB *bg)
 {
-	/* ---- geometry ---- */
 	int box_left = input->self->left;
 	int box_right = input->self->right;
 	int box_top = input->self->top;
 	int box_bot = input->self->bottom;
 
-	int left = box_left + 1; /* inside border */
-	int right = box_right - 1;
-	int row = box_top + 1 + input->row;
-	if (row >= box_bot)
-		row = box_bot - 1;
+	bool has_border = (box_bot - box_top >= 2);
+
+	int left = has_border ? box_left + 1 : box_left;
+	int right = has_border ? box_right - 1 : box_right;
+	int row = has_border ? box_top + 1 + input->row : box_top + input->row;
+
+	if (row > box_bot)
+		row = box_bot;
 
 	int available = right - left + 1 - PROMPT_COLS;
 	if (available <= 0)
-		return; /* box too narrow to show anything */
+		return;
 
 	RGB *fg_color = (fg != NULL) ? fg : &(G_ENV.fg);
 	RGB *bg_color = (bg != NULL) ? bg : &(G_ENV.bg);
 
-	/* ---- draw prompt glyph ---- */
 	set_cell(s, left, row, '$', fg_color, bg_color);
 	set_cell(s, left + 1, row, ' ', fg_color, bg_color);
 
-	/* ---- compute cursor column and viewport offset ---- */
-	/*
-	 * cursor_col: display-column index (0-based from text area) of the
-	 * insertion point — i.e. where the next typed char will appear.
-	 */
 	int cursor_col = 0;
 	{
 		const char *p = input->string.text;
@@ -515,35 +460,19 @@ void widget_draw_inputline(Screen *s, InputLine *input, RGB *fg, RGB *bg)
 		}
 	}
 
-	/*
-	 * view_offset: how many display columns to skip from the left of the
-	 * text so that cursor_col is visible within [0, available).
-	 *
-	 * We reuse input->curser_col as the persistent view_offset because:
-	 *   1. The field exists in the struct already.
-	 *   2. It was never actually used for a column value in the original.
-	 * Rename it properly once you refactor widgets.h.
-	 */
-	int view_offset = input->curser_col; /* persisted from last frame */
-
-	/* scroll right: cursor is past right edge */
+	int view_offset = input->curser_col;
 	if (cursor_col - view_offset >= available)
 		view_offset = cursor_col - available + 1;
-
-	/* scroll left: cursor moved before left edge (e.g. after backspace) */
 	if (cursor_col - view_offset < 4 && cursor_col > 3)
 		view_offset = cursor_col - 4;
-
-	/* clamp to non-negative */
 	if (view_offset < 0)
 		view_offset = 0;
 
-	input->curser_col = view_offset; /* persist for next frame */
+	input->curser_col = view_offset;
 
-	/* ---- render visible text ---- */
-	int text_x = left + PROMPT_COLS; /* first renderable column */
+	int text_x = left + PROMPT_COLS;
 	int cur_x = text_x;
-	int skipped = 0; /* display cols skipped so far */
+	int skipped = 0;
 	const char *p = input->string.text;
 
 	while (*p != '\0') {
@@ -553,36 +482,27 @@ void widget_draw_inputline(Screen *s, InputLine *input, RGB *fg, RGB *bg)
 			p++;
 			continue;
 		}
-
 		int w = cp_display_width(cp);
-
-		/* still in the skipped region? */
 		if (skipped + w <= view_offset) {
 			skipped += w;
 			p += adv;
 			continue;
 		}
-
-		/* past the right edge of the visible area? */
 		if (cur_x + w > right + 1)
 			break;
-
 		if (w == 2)
 			set_cell_wide(s, cur_x, row, cp, NULL, NULL);
 		else
 			set_cell(s, cur_x, row, cp, NULL, NULL);
-
 		cur_x += w;
 		p += adv;
 	}
 
-	/* ---- erase remainder of text area with spaces ---- */
 	while (cur_x <= right) {
 		set_cell(s, cur_x, row, ' ', fg_color, bg_color);
 		cur_x++;
 	}
 
-	/* ---- update screen cursor so engine can place the blink cursor ---- */
 	int cursor_screen_col = text_x + (cursor_col - view_offset);
 	if (cursor_screen_col > right)
 		cursor_screen_col = right;
@@ -612,150 +532,42 @@ void widget_add_child(GenericWidget *parent, GenericWidget *child)
 	(*top)++;
 }
 
-/* ================================================================== */
-/*                                                                      */
-/*  TEACHING SECTION: Why this project is hard to maintain             */
-/*  ---------------------------------------------------------------     */
-/*                                                                      */
-/*  You spent 2 weeks and only have one working widget. Let's look at  */
-/*  exactly why that happened, problem by problem.                      */
-/*                                                                      */
-/* ================================================================== */
+void widget_write_text(Screen *s, int x, int y, const char *format, ...)
+{
+	va_list args;
+	va_start(args, format);
+	int len = vsnprintf(NULL, 0, format, args);
+	va_end(args);
 
-/*
- * PROBLEM 1 — Global mutable state without clear ownership
- * ---------------------------------------------------------
- * `screen`, `G_ENV`, `G_WIDGET_BUFFER`, `cur_input`, `main_window`,
- * `initialized`, `SYNC` — all are file-scope or translation-unit-scope
- * globals that any function can read and write.
- *
- * Consequence: when something renders wrongly you can't tell *who* changed
- * the screen. You end up grepping for every place that writes `.dirty`
- * or `.cp`. As the game grows (NPCs, inventory, map) every new system
- * will fight over these globals.
- *
- * Fix: pass `Screen *s` explicitly (you already do this in some functions
- * — but `set_cell_inline` ignores its `s` parameter and uses the global
- * `screen` anyway). Pick one convention and apply it everywhere.
- *
- *
- * PROBLEM 2 — The `initialized` flag anti-pattern in game_refresh_ui()
- * ---------------------------------------------------------------------
- * `game_refresh_ui()` has two completely different code paths selected
- * by `initialized`. The first path re-draws widgets from the buffer;
- * the second path *creates* widgets. But it also calls `widget_draw_box`
- * (which calls `widget_buffer_alloc()`) inside the "already initialized"
- * branch, silently growing the widget buffer every resize.
- *
- * Consequence: on a terminal resize the box widgets accumulate infinitely.
- * You can trigger this by just dragging the Konsole window.
- *
- * Fix: separate "layout widgets" (one-time creation, stored by pointer)
- * from "draw widgets" (stateless per-frame draw calls). Do not mix
- * allocation and rendering in the same function.
- *
- *
- * PROBLEM 3 — Duplicate code for raw-mode init
- * ---------------------------------------------
- * `term_enter_raw()` and `__terminal_init()` contain an exact copy of the
- * same termios setup block (BRKINT, ICRNL, VMIN, VTIME…). They diverge
- * silently when you change one and forget the other.
- *
- * Fix: one function `_setup_raw_termios(struct termios *t)` that both call.
- *
- *
- * PROBLEM 4 — The macro SET_CELL_INLINE is redefined three times
- * ---------------------------------------------------------------
- * `widget_draw_vline`, `widget_draw_hline`, and `widget_draw_box` each
- * define their own local `#define SET_CELL_INLINE` and then `#undef` it.
- * Meanwhile `widget_draw_box_ltrb` calls the static function
- * `set_cell_inline()` instead. So you have four implementations of the
- * same operation, three of which live inside other functions and can't be
- * tested independently.
- *
- * Fix: use only the static function (done in this file).
- *
- *
- * PROBLEM 5 — No cursor rendering
- * --------------------------------
- * The original `widget_draw_inputline` hides the cursor
- * (`ansi_cursor_hide` is called at startup and never shown again during
- * normal operation). The `screen->cursor` fields were set in `update_game`
- * but `ansi_cursor_goto(cursor.y, cursor.x)` and `ansi_cursor_show()`
- * are never called in `screen_flush`. So the user types with no visible
- * caret.
- *
- * Fix (in engine.c, not here): after `screen_flush(screen)`, add:
- *
- *     if (cur_input && !cur_input->dirty) {
- *         ansi_cursor_goto(screen->cursor.y, screen->cursor.x);
- *         ansi_cursor_show();
- *     }
- *
- *
- * PROBLEM 6 — screen_flush() issues one write() per cell
- * -------------------------------------------------------
- * For each dirty cell: ansi_cursor_goto = 1 write, color change = 1 write,
- * glyph = 1 write. At 80×24 with all cells dirty that is ~5760 system
- * calls per frame. At 4 FPS that's fine, but at 30 FPS on a complex screen
- * it will stutter.
- *
- * Fix (in display.c): accumulate output into a heap buffer (or a
- * static 64 KB stack buffer), then call write() once at the end.
- * Example pattern:
- *
- *     char out[65536]; int pos = 0;
- *     // ... build ANSI escapes into out[pos++] ...
- *     write(STDOUT_FILENO, out, pos);
- *
- *
- * PROBLEM 7 — process_input() backspace is byte-oriented, not codepoint
- * -----------------------------------------------------------------------
- * Case 127 (backspace) does `p--; *p = '\0'`. That works for ASCII but
- * for a multi-byte UTF-8 character (e.g. a CJK character = 3 bytes) it
- * deletes only the last byte, leaving a corrupt sequence.
- *
- * Fix: walk backward over continuation bytes (0x80–0xBF) until you hit
- * the leading byte, then zero from there:
- *
- *     while (p > text && (*(p-1) & 0xC0) == 0x80)
- *         p--;
- *     if (p > text) p--;
- *     *p = '\0';
- *
- * This is not fixed in this file (it lives in engine.c), but it will bite
- * you the moment you or a player tries to type Japanese text.
- *
- *
- * PROBLEM 8 — The module system makes call-order bugs invisible
- * -------------------------------------------------------------
- * The linker-section trick (`APP_INIT`) is clever but the section order
- * is not guaranteed across translation units. So `__screen_init` might
- * run before `__terminal_init`, meaning `screen_create` runs before
- * raw mode is set. Right now it accidentally works because the linker
- * happens to order the objects a certain way — but add one new .c file
- * and the ordering can change.
- *
- * Fix: give each init function an explicit priority:
- *
- *     __attribute__((section("initcalls.10")))  // terminal first
- *     __attribute__((section("initcalls.20")))  // screen second
- *     __attribute__((section("initcalls.30")))  // widgets third
- *
- * Or, more simply: call them in explicit order inside main() instead of
- * relying on linker magic.
- *
- *
- * SUMMARY TABLE
- * -------------
- * Problem                    | Impact on your 2-week struggle
- * ---------------------------|---------------------------------
- * Global mutable state       | Hard to debug who broke the screen
- * initialized flag anti-pat  | Widget leak on every resize
- * Duplicate raw-mode code    | Risk of divergence as you add features
- * Repeated SET_CELL macro    | Confusing, untestable
- * No cursor rendering        | User can't see where they're typing
- * Per-cell write() calls     | Will stutter at higher FPS
- * Byte-oriented backspace    | Breaks for any non-ASCII input
- * Non-deterministic init     | Ordering bugs appear as you add files
- */
+	if (len <= 0)
+		return;
+
+	char *buf = calloc(1, (size_t)(len + 1));
+	if (!buf)
+		return;
+
+	va_start(args, format);
+	vsnprintf(buf, (size_t)(len + 1), format, args);
+	va_end(args);
+
+	int width = screen_get_width(s);
+	int cur_x = x;
+	for (const char *p = buf; *p && cur_x < width;) {
+		uint32_t cp = 0;
+		int advance = utf8_decode(p, &cp);
+		if (advance <= 0) {
+			p++;
+			continue;
+		}
+		p += advance;
+
+		int w = cp_display_width(cp);
+		if (w == 2)
+			set_cell_wide(s, cur_x, y, cp, NULL, NULL);
+		else
+			set_cell(s, cur_x, y, cp, NULL, NULL);
+		cur_x += w;
+	}
+
+	free(buf);
+}
