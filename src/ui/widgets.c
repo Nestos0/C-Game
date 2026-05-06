@@ -279,7 +279,7 @@ void widget_draw_widget(Screen *s, GenericWidget *gw)
 	draw_box_border(s, gw->left, gw->top, gw->right, gw->bottom,
 		&(gw->fg), &(gw->bg));
 	if (gw->type == TYPE_INPUT) {
-		widget_draw_inputline(s, &(gw->data.input), NULL, NULL);
+		widget_draw_inputline(s, &(gw->data.input), &(gw->fg), &(gw->bg));
 	}
 }
 
@@ -490,12 +490,12 @@ void widget_draw_inputline(Screen *s, InputLine *input, RGB *fg, RGB *bg)
 	if (available <= 0)
 		return; /* box too narrow to show anything */
 
-	RGB fg_color = (fg != NULL) ? *fg : G_ENV.fg;
-	RGB bg_color = (bg != NULL) ? *bg : G_ENV.bg;
+	RGB *fg_color = (fg != NULL) ? fg : &(G_ENV.fg);
+	RGB *bg_color = (bg != NULL) ? bg : &(G_ENV.bg);
 
 	/* ---- draw prompt glyph ---- */
-	set_cell(s, left, row, '$', &fg_color, &bg_color);
-	set_cell(s, left + 1, row, ' ', &fg_color, &bg_color);
+	set_cell(s, left, row, '$', fg_color, bg_color);
+	set_cell(s, left + 1, row, ' ', fg_color, bg_color);
 
 	/* ---- compute cursor column and viewport offset ---- */
 	/*
@@ -578,7 +578,7 @@ void widget_draw_inputline(Screen *s, InputLine *input, RGB *fg, RGB *bg)
 
 	/* ---- erase remainder of text area with spaces ---- */
 	while (cur_x <= right) {
-		set_cell(s, cur_x, row, ' ', &fg_color, &bg_color);
+		set_cell(s, cur_x, row, ' ', fg_color, bg_color);
 		cur_x++;
 	}
 

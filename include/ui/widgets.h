@@ -13,6 +13,7 @@ typedef struct InputLine {
 	int row;
 	int curser_col;
 	bool dirty : 1;
+	RGB symbol;
 	struct {
 		char *p;
 		char *text;
